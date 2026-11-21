@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { imagePair } from "../data/assets";
 import { links } from "../data/links";
 import CompactListHeader from "../components/CompactListHeader";
 import SectionTitle from "../components/SectionTitle";
@@ -9,22 +10,22 @@ import DriveFilePreview from "../components/DriveFilePreview";
 
 const githubImages = [
   {
-    src: `${import.meta.env.BASE_URL}images/sprint1/github/github_repo_overview.png`,
+    ...imagePair("sprint-1/github/github-repo-overview"),
     alt: "Visão geral do repositório US123 Telemetry Decoder no GitHub",
     caption: "Repo overview",
   },
   {
-    src: `${import.meta.env.BASE_URL}images/sprint1/github/github_readme_overview.png`,
+    ...imagePair("sprint-1/github/github-readme-overview"),
     alt: "Visão geral do README do US123 Telemetry Decoder",
     caption: "README overview",
   },
   {
-    src: `${import.meta.env.BASE_URL}images/sprint1/github/github_readme_project_links.png`,
+    ...imagePair("sprint-1/github/github-readme-project-links"),
     alt: "Links do projeto apresentados no README do US123 Telemetry Decoder",
     caption: "Project links",
   },
   {
-    src: `${import.meta.env.BASE_URL}images/sprint1/github/github_readme_tech_author.png`,
+    ...imagePair("sprint-1/github/github-readme-tech-author"),
     alt: "Tecnologias e autoria apresentadas no README do US123 Telemetry Decoder",
     caption: "Tecnologias / Autor",
   },

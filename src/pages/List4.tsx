@@ -1,3 +1,4 @@
+import { imagePair } from "../data/assets";
 import { ExternalLink, FileText } from "lucide-react";
 import CompactListHeader from "../components/CompactListHeader";
 import SectionTitle from "../components/SectionTitle";
@@ -17,23 +18,22 @@ const sprint2ReportUrl = `https://drive.google.com/file/d/${sprint2ReportId}/vie
 const rawProcessedGuideId = "16-t_z0elYB_lxDx4RF5XY-rsCLCsl3zv";
 const localArchitectureId = "1GOFfQGxtIgRgEW1p3etudt_qrudVdlSk";
 
-const us221Image = (fileName: string) =>
-  `${import.meta.env.BASE_URL}images/sprint2/us221/${encodeURIComponent(fileName)}`;
+const us221Image = (slug: string) => imagePair(`sprint-2/us221/${slug}`);
 
-const figure1Image = us221Image("Fluxo e Arquitetura dos dados na US221.png");
-const figure2Image = us221Image("JSON_para_Struct.png");
-const kanbanImage = `${import.meta.env.BASE_URL}images/sprint2/us221/sprint2-kanban-board.webp`;
+const figure1Image = us221Image("fluxo-e-arquitetura-us221");
+const figure2Image = us221Image("json-para-struct");
+const kanbanImage = us221Image("sprint2-kanban-board");
 
 const carouselItems: SprintEvidenceItem[] = [
-  { label: "Tela1_US221_Aba_Monitor.png", alt: "Tela 1 da US221 — Aba Monitor", src: us221Image("Tela1_US221_Aba_Monitor.png") },
-  { label: "Tela2_US221_Aba_FluxoDeDados.png", alt: "Tela 2 da US221 — Aba Fluxo de Dados", src: us221Image("Tela2_US221_Aba_FluxoDeDados.png") },
-  { label: "Tela3_US221_Aba_Raw&Storage.png", alt: "Tela 3 da US221 — Aba Raw & Storage", src: us221Image("Tela3_US221_Aba_Raw&Storage.png") },
-  { label: "Tela3_US221_Aba_Raw&Storage2.png", alt: "Tela 3 da US221 — Aba Raw & Storage, segunda visão", src: us221Image("Tela3_US221_Aba_Raw&Storage2.png") },
-  { label: "Tela3_US221_Aba_Raw&Storage_RAW.png", alt: "Tela 3 da US221 — Raw & Storage RAW", src: us221Image("Tela3_US221_Aba_Raw&Storage_RAW.png") },
-  { label: "Tela3_US221_Aba_Raw&Storage_RAW2.png", alt: "Tela 3 da US221 — Raw & Storage RAW, segunda visão", src: us221Image("Tela3_US221_Aba_Raw&Storage_RAW2.png") },
-  { label: "Tela4_US221_Aba_Api&Scade.png", alt: "Tela 4 da US221 — Aba API & SCADE", src: us221Image("Tela4_US221_Aba_Api&Scade.png") },
-  { label: "Tela4_US221_Aba_Api&Scade2.png", alt: "Tela 4 da US221 — Aba API & SCADE, segunda visão", src: us221Image("Tela4_US221_Aba_Api&Scade2.png") },
-  { label: "Kanban — Sprint 2", alt: "Kanban da Sprint 2 do Projeto SPRB-TR/BD", src: kanbanImage },
+  { label: "Tela1_US221_Aba_Monitor.png", alt: "Tela 1 da US221 — Aba Monitor", ...us221Image("tela1-us221-aba-monitor") },
+  { label: "Tela2_US221_Aba_FluxoDeDados.png", alt: "Tela 2 da US221 — Aba Fluxo de Dados", ...us221Image("tela2-us221-aba-fluxodedados") },
+  { label: "Tela3_US221_Aba_Raw&Storage.png", alt: "Tela 3 da US221 — Aba Raw & Storage", ...us221Image("tela3-us221-aba-raw-storage") },
+  { label: "Tela3_US221_Aba_Raw&Storage2.png", alt: "Tela 3 da US221 — Aba Raw & Storage, segunda visão", ...us221Image("tela3-us221-aba-raw-storage2") },
+  { label: "Tela3_US221_Aba_Raw&Storage_RAW.png", alt: "Tela 3 da US221 — Raw & Storage RAW", ...us221Image("tela3-us221-aba-raw-storage-raw") },
+  { label: "Tela3_US221_Aba_Raw&Storage_RAW2.png", alt: "Tela 3 da US221 — Raw & Storage RAW, segunda visão", ...us221Image("tela3-us221-aba-raw-storage-raw2") },
+  { label: "Tela4_US221_Aba_Api&Scade.png", alt: "Tela 4 da US221 — Aba API & SCADE", ...us221Image("tela4-us221-aba-api-scade") },
+  { label: "Tela4_US221_Aba_Api&Scade2.png", alt: "Tela 4 da US221 — Aba API & SCADE, segunda visão", ...us221Image("tela4-us221-aba-api-scade2") },
+  { label: "Kanban — Sprint 2", alt: "Kanban da Sprint 2 do Projeto SPRB-TR/BD", ...kanbanImage },
 ];
 
 export default function List4() {
@@ -110,12 +110,12 @@ export default function List4() {
 
             <div className="sprint2-main-figures">
               <SprintSpriteFigure
-                src={figure1Image}
+                {...figure1Image}
                 caption="Figura 1: Fluxo e Arquitetura dos dados na US221.png"
                 alt="Fluxo e Arquitetura dos dados na US221"
               />
               <SprintSpriteFigure
-                src={figure2Image}
+                {...figure2Image}
                 caption="Figura 2: JSON_para_Struct.png"
                 alt="JSON para Struct na US221"
               />
@@ -172,7 +172,7 @@ export default function List4() {
                 style={{ marginBottom: 16 }}
               >
                 <img
-                  src={kanbanImage}
+                  src={kanbanImage.src}
                   alt="Kanban da Sprint 2"
                   loading="lazy"
                   style={{ width: "100%", height: "auto", aspectRatio: "auto", objectFit: "contain" }}
