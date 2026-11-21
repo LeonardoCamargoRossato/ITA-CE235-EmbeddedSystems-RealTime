@@ -127,13 +127,15 @@ O portal utiliza **HashRouter**, permitindo a navegação pelas páginas interna
 ## Executar o portal localmente
 
 ```bash
-npm install
+cd code
+npm ci
 npm run dev
 ```
 
 ## Build do portal
 
 ```bash
+cd code
 npm run build
 npm run preview
 ```
@@ -156,3 +158,5 @@ https://leonardocamargorossato.github.io/LCR-SolutionsArchitecture-IA-Quantum/#/
 
 **Leonardo Camargo Rossato**  
 Arquiteto de Soluções · Doutorando no ITA
+
+A aplicação está em [`code/`](code/) e a documentação publicável em [`documentation/public/`](documentation/public/).
