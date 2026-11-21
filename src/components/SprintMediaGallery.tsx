@@ -3,6 +3,7 @@ import { Expand, X } from "lucide-react";
 
 export type SprintMediaItem = {
   src: string;
+  fullSrc: string;
   alt: string;
   caption: string;
 };
@@ -52,7 +53,7 @@ export default function SprintMediaGallery({
               <strong>{active.caption}</strong>
               <button type="button" onClick={() => setActive(null)} aria-label="Fechar imagem"><X size={22}/></button>
             </div>
-            <img src={active.src} alt={active.alt} />
+            <img src={active.fullSrc} alt={active.alt} />
           </div>
         </div>
       )}

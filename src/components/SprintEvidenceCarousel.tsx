@@ -6,6 +6,7 @@ export type SprintEvidenceItem = {
   alt: string;
   spriteIndex?: number;
   src?: string;
+  fullSrc?: string;
 };
 
 function SpriteMedia({
@@ -46,12 +47,14 @@ function SpriteMedia({
 
 export function SprintSpriteFigure({
   src,
+  fullSrc,
   atlasSrc,
   spriteIndex,
   caption,
   alt,
 }: {
   src?: string;
+  fullSrc?: string;
   atlasSrc?: string;
   spriteIndex?: number;
   caption: string;
@@ -88,7 +91,7 @@ export function SprintSpriteFigure({
               <button type="button" onClick={() => setOpen(false)} aria-label="Fechar imagem"><X size={22} /></button>
             </div>
             <div className="sprint-evidence-lightbox__media">
-              <SpriteMedia atlasSrc={atlasSrc} item={item} />
+              <SpriteMedia atlasSrc={atlasSrc} item={{ ...item, src: fullSrc ?? item.src }} />
             </div>
           </div>
         </div>
@@ -176,7 +179,7 @@ export default function SprintEvidenceCarousel({
               </div>
             </div>
             <div className="sprint-evidence-lightbox__media">
-              <SpriteMedia atlasSrc={atlasSrc} item={item} />
+              <SpriteMedia atlasSrc={atlasSrc} item={{ ...item, src: item.fullSrc ?? item.src }} />
             </div>
             <button type="button" className="sprint-evidence-lightbox__next" onClick={next} aria-label="Próxima imagem"><ChevronRight size={28} /></button>
           </div>
