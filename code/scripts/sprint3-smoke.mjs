@@ -27,7 +27,7 @@ async function openViewer(page,trigger) {
   await decoded(dialog.locator('img'));
   assert.match(await dialog.locator('img').getAttribute('src'),/\.png(?:\?|$)/);
   assert.equal(await page.evaluate(()=>document.body.style.overflow),'hidden');
-  assert.equal(await dialog.locator('img').evaluate(el=>Math.abs(el.clientWidth/el.clientHeight-el.naturalWidth/el.naturalHeight)<0.04),true);
+  assert.equal(await dialog.locator('img').evaluate(el=>Math.abs((el.clientWidth/el.clientHeight)/(el.naturalWidth/el.naturalHeight)-1)<0.02),true);
   return dialog;
 }
 async function closeViewer(page,dialog,trigger,viaKeyboard=true) {
