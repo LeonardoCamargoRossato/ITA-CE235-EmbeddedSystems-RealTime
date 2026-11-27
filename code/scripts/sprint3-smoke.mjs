@@ -11,20 +11,28 @@ const localEvidence = u => u.startsWith(base+'assets/') && /\/sprint-[123]\//.te
 const png = u => localEvidence(u)&&/\/PNG\//.test(u);
 const webp = u => localEvidence(u)&&/\/WebP\//.test(u);
 async function checkSprintOpening(page,label,sprint){
-  await page.evaluate(()=>window.scrollTo(0,0));
+  await page.locator(`.sprint-page--${sprint}`).waitFor({state:'visible'});
   const pair=page.locator('.sprint-contribution-pair');
   const card=pair.locator('.contribution-card');
   const evidence=page.locator('.sprint-first-evidence');
   await pair.waitFor({state:'visible'});
-  await page.evaluate(()=>document.fonts.ready);
+  await page.evaluate(async()=>{
+    await document.fonts.ready;
+    document.documentElement.style.scrollBehavior='auto';
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  });
+  await page.waitForFunction(()=>window.scrollY===0);
   const stats=await page.evaluate(()=>{
     const pair=document.querySelector('.sprint-contribution-pair');
     const evidence=document.querySelector('.sprint-first-evidence');
     const firstMedia=evidence.querySelector('.sprint-demo-card,.drive-file-preview-card');
     const a=pair.children[0].getBoundingClientRect(), b=pair.children[1].getBoundingClientRect();
-    return {viewport:innerHeight,width:innerWidth,pairHeight:pair.getBoundingClientRect().height,pairBottom:pair.getBoundingClientRect().bottom,evidenceTop:evidence.getBoundingClientRect().top,mediaTop:firstMedia.getBoundingClientRect().top,cardA:a.height,cardB:b.height,horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1};
+    return {scrollY:window.scrollY,pairTop:pair.getBoundingClientRect().top,viewport:innerHeight,width:innerWidth,pairHeight:pair.getBoundingClientRect().height,pairBottom:pair.getBoundingClientRect().bottom,evidenceTop:evidence.getBoundingClientRect().top,mediaTop:firstMedia.getBoundingClientRect().top,cardA:a.height,cardB:b.height,horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1};
   });
   assert.equal(stats.horizontalOverflow,false);
+  assert.equal(stats.scrollY,0);
+  assert.ok(stats.pairTop>=0 && stats.pairBottom>0 && stats.evidenceTop>0,JSON.stringify(stats));
   if(label==='desktop'){
     assert.ok(stats.pairHeight<=340,JSON.stringify(stats));
     assert.ok(stats.pairBottom<=stats.viewport*2/3,JSON.stringify(stats));
@@ -33,6 +41,7 @@ async function checkSprintOpening(page,label,sprint){
     assert.ok(Math.abs(stats.cardA-stats.cardB)<=2,JSON.stringify(stats));
   }
   if(sprint===1 && label==='desktop') await decoded(pair.locator('.pdf-page-reader__page').first().locator('img'));
+  assert.equal(await page.evaluate(()=>window.scrollY),0);
   await page.screenshot({path:`qa-sprint3/opening-sprint${sprint}-${label}.png`});
   const read=card.locator('.sprint-read-more');
   const controlled=card.locator('.sprint-contribution-summary > div[id]');
