@@ -1,5 +1,6 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const base = 'http://127.0.0.1:4173/ITA-CE235-EmbeddedSystems-RealTime/';
@@ -259,6 +260,13 @@ try {
     await checkPdfReader(page,'sprint3-relatorio',5, '/ITA-CE235-EmbeddedSystems-RealTime/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf',label);
     const pdf=await page.request.get(base+'assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf');
     assert.equal(pdf.status(),200);assert.equal((await pdf.body()).subarray(0,5).toString(),'%PDF-');
+    assert.equal(createHash('sha256').update(await pdf.body()).digest('hex'),'d3bbbbca202e696b1ac4aaba62f486b434659f4ef9ea4cb6035ecb89c9c32177','Published PDF differs from user-approved edition');
+    for (const [i,expected] of ["1611e89a4132ec907d68183b1983507dd04ae17e","cecde45409155659a98d64de80c589b77f109c33","939c847e17a9ba84297fbdd7968fb4a3725e103f","eea41dd49114b9d0366c7b2127cdbb92240087ce","b49651dc8ee55b2306f1f8491697205712408927"].entries()) {
+      const imageResponse=await page.request.get(base+'assets/WebP/sprint-3/pdf/sprint3-relatorio-p0'+(i+1)+'.webp');
+      assert.equal(imageResponse.status(),200);
+      const bytes=await imageResponse.body();
+      assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),expected,'PDF preview bytes differ');
+    }
     await page.locator('.sprint3-note').first().scrollIntoViewIfNeeded();
     assert.match(await page.locator('.sprint3-note').first().innerText(),/disponibilidade a confirmar/i);
     const countS3={webp:requests.filter(webp).length,png:requests.filter(png).length,webpBeforeScroll:before};

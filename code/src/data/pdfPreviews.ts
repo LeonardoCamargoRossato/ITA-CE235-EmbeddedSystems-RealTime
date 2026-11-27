@@ -1,4 +1,4 @@
-// Complete page renderings of approved, existing PDF documents. Original PDFs remain unchanged.
+// Complete page renderings of approved, existing PDF documents. Previews match the currently approved source PDFs.
 export const pdfPreviews = {
   "sprint1-enunciado": [
     {
@@ -48,7 +48,7 @@ export const pdfPreviews = {
     {
       "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p02.webp",
       "width": 1600,
-      "height": 1132
+      "height": 2263
     },
     {
       "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p03.webp",
