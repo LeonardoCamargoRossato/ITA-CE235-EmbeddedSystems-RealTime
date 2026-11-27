@@ -1,0 +1,23 @@
+import { ArrowLeft, ArrowRight, ExternalLink, BookOpen, CheckCircle2, ClipboardList, CalendarDays, FileText, Info } from "lucide-react";
+import { Link } from "react-router-dom";
+import CompactListHeader from "./CompactListHeader";
+import TeamResourceCard from "./TeamResourceCard";
+import TeamMeetingTimeline from "./TeamMeetingTimeline";
+import type { Team } from "../data/sprintContexts";
+import "./TeamContextPage.css";
+
+export default function TeamContextPage({team}:{team:Team}){
+  return <div className="team-context-page" data-team={team.number}>
+    <CompactListHeader list={team.sprint===2?"LIST 4":"LIST 5"} lab={`SPRINT ${team.sprint}`} title={`SPRB-TR/BD — ${team.name}`}/>
+    <section className="section team-context-main"><div className="container team-context-stack">
+      <Link className="team-return" to={team.back}><ArrowLeft size={16}/> Voltar à Sprint {team.sprint}</Link>
+      <header className="team-context-hero"><span className="eyebrow">ITA · CE-235 · CE-230 · CE-237</span><h2>{team.name}</h2><p className="team-context-segment">{team.segment}</p><p className="team-period"><CalendarDays size={17}/> {team.period}</p><p>{team.intro}</p><nav className="team-jump" aria-label="Seções da página">{[["contexto","Contexto"],["desenvolvimento","User Stories"],["resultados","Resultados"],["reunioes","Reuniões"],["documentos","Documentação"]].map(([id,label])=><button type="button" key={id} onClick={()=>document.getElementById(id)?.scrollIntoView({behavior:"smooth",block:"start"})}>{label}</button>)}</nav></header>
+      <section id="contexto"><h2><BookOpen size={21}/> Contexto técnico</h2><div className="team-content-grid">{team.context.map(c=><article className="team-panel" key={c.title}><h3>{c.title}</h3><p>{c.text}</p></article>)}</div></section>
+      <section id="desenvolvimento"><h2><ClipboardList size={21}/> Desenvolvimento e User Stories</h2><p className="team-muted">Situação documentada na consulta de 27/11/2026. Fechamento de issue não é sinônimo de aceite técnico.</p><div className="team-story-list">{team.stories.map(s=><article className="team-story" key={s.id}><div className="team-story__head"><span className="team-us">{s.id}</span><h3>{s.title}</h3><span className="team-state">{s.status}</span></div><details><summary>Leia mais</summary><p>{s.description}</p>{s.source&&<a className="team-source-link" href={s.source.href} target="_blank" rel="noopener noreferrer">Consultar atividade original <ExternalLink size={13}/></a>}</details></article>)}</div></section>
+      <section id="resultados"><h2><CheckCircle2 size={21}/> Resultados e evidências</h2><div className="team-content-grid">{team.results.map(result=><article className="team-panel" key={result.title}><h3>{result.title}</h3><p>{result.text}</p>{result.source&&<a className="team-source-link" href={result.source.href} target="_blank" rel="noopener noreferrer">Consultar evidência <ExternalLink size={13}/><span className="team-visually-hidden"> — {result.title}</span></a>}</article>)}</div><article className="team-limitations"><h3><Info size={18}/> Impedimentos e pendências</h3><ul>{team.limitations.map(text=><li key={text}>{text}</li>)}</ul></article></section>
+      <section id="reunioes"><h2><CalendarDays size={21}/> Histórico de reuniões</h2><p className="team-muted">Resumos técnicos das atas e, quando disponíveis, das anotações Gemini. Não reproduzimos transcrições integrais, listas de presença ou dados pessoais.</p><TeamMeetingTimeline meetings={team.meetings}/></section>
+      <section id="documentos"><h2><FileText size={21}/> Gestão e documentação</h2><p className="team-muted">Os links abrem os materiais originais, sujeitos às permissões do Drive/GitHub. Nenhum documento coletivo foi copiado para o site.</p>{team.groups.map((g,i)=><details key={g.title} className="team-resource-group" open={i===0||i===1}><summary>{g.title} <span>{g.resources.length} recursos</span></summary><div className="team-resource-grid">{g.resources.map(resource=><TeamResourceCard key={resource.href+"-"+resource.title} resource={resource}/>)}</div></details>)}</section>
+      <nav className="team-footer-nav" aria-label="Navegação entre times"><Link className="button button--primary" to={team.back}><ArrowLeft size={15}/> Voltar à Sprint {team.sprint}</Link>{team.number===1?<Link className="button button--secondary" to="/list4/time2">Time 2 <ArrowRight size={15}/></Link>:team.number===2?<Link className="button button--secondary" to="/list4/time1">Time 1 <ArrowRight size={15}/></Link>:<><Link className="button button--secondary" to="/list4/time1">Time 1 <ArrowRight size={15}/></Link><Link className="button button--secondary" to="/list4/time2">Time 2 <ArrowRight size={15}/></Link></>}</nav>
+    </div></section>
+  </div>;
+}

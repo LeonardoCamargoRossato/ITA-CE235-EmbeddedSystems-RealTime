@@ -1,0 +1,18 @@
+/* Scope only the replacement right-hand card. Do not style the approved contribution card.
+   Baseline PR #8 desktop 1440x900 measured 268.53125px (S2), 279.90625px (S3).
+   Internal scrolling on expansion avoids resizing the adjacent approved card. */
+.sprint-page--2 .project-context-card{--context-height:268.53125px}
+.sprint-page--3 .project-context-card{--context-height:279.90625px}
+.project-context-card{box-sizing:border-box;min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;align-self:stretch;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 20px;box-shadow:0 6px 20px rgba(7,23,47,.04);overflow:hidden;color:var(--navy)}
+.project-context-card header .eyebrow{display:flex;align-items:center;gap:6px;margin:0 0 5px;color:#876524;font-size:11px}
+.project-context-card h2{margin:0 0 5px;font-size:clamp(20px,2vw,25px);line-height:1.12}
+.project-context-card h3{margin:0;font-size:14px;color:var(--blue);line-height:1.25}
+.project-context-card__content{min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-color:#b9c7d5 #fff;padding-right:3px}
+.project-context-card__content p{font-size:14px;line-height:1.4;margin:0 0 6px;color:var(--muted)}
+.project-context-card__content [hidden]{display:none}
+.project-context-card__read{border:0;background:none;color:#245c8e;text-decoration:underline;font:inherit;font-size:12px;font-weight:800;padding:4px 0;cursor:pointer;text-align:left}
+.project-context-card__actions{display:flex;gap:7px}
+.project-context-card__actions .button{flex:1 1 0;min-width:0;min-height:44px;white-space:normal;text-align:center}
+.project-context-card :focus-visible{outline:2px solid #b78b43;outline-offset:2px}
+@media(min-width:901px){.project-context-card{height:var(--context-height);min-height:var(--context-height)}}
+@media(max-width:900px){.project-context-card{grid-template-rows:auto auto auto;padding:16px;min-height:0}.project-context-card__content{max-height:260px}}

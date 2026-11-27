@@ -13,6 +13,9 @@ import List2 from "./pages/List2";
 import List3 from "./pages/List3";
 import List4 from "./pages/List4";
 import List5 from "./pages/List5";
+import Sprint2Team1 from "./pages/Sprint2Team1";
+import Sprint2Team2 from "./pages/Sprint2Team2";
+import Sprint3Team3 from "./pages/Sprint3Team3";
 import Artifacts from "./pages/Artifacts";
 import FinalReport from "./pages/FinalReport";
 import Curriculum from "./pages/Curriculum";
@@ -37,6 +40,9 @@ export default function App() {
           <Route path="/list3" element={<List3 />} />
           <Route path="/list4" element={<List4 />} />
           <Route path="/list5" element={<List5 />} />
+          <Route path="/list4/time1" element={<Sprint2Team1 />} />
+          <Route path="/list4/time2" element={<Sprint2Team2 />} />
+          <Route path="/list5/time3" element={<Sprint3Team3 />} />
           <Route path="/artefatos" element={<Artifacts />} />
           <Route path="/relatorio-final" element={<FinalReport />} />
           <Route path="/curriculo" element={<Curriculum />} />

@@ -2,7 +2,8 @@ import { imagePair } from "../data/assets";
 import { links } from "../data/links";
 import SprintContributionSummary from "../components/SprintContributionSummary";
 import SprintContributionActions from "../components/SprintContributionActions";
-import { ExternalLink, FileText } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import ProjectContextCard from "../components/ProjectContextCard";
 import CompactListHeader from "../components/CompactListHeader";
 import SectionTitle from "../components/SectionTitle";
 import SprintEvidenceCarousel, { SprintEvidenceItem, SprintSpriteFigure } from "../components/SprintEvidenceCarousel";
@@ -69,21 +70,7 @@ export default function List4() {
               ]}/>
             </article>
 
-            <article className="drive-file-preview-card list4-enunciado-card">
-              <div className="drive-file-preview-card__viewer drive-file-preview-card__fallback">
-                <FileText size={34}/>
-                <span>Enunciado oficial da ListEx 4</span>
-              </div>
-              <div className="drive-file-preview-card__body">
-                <span className="file-type-pill">PDF</span>
-                <h3>Enunciado — ListEx 4 / Sprint 2</h3>
-                <small className="drive-file-preview-card__filename">list4-enunciado.pdf</small>
-                <p>Espaço preparado para o PDF oficial. O arquivo ainda não foi fornecido neste repositório.</p>
-                <div className="preview-actions">
-                  <span className="button button--secondary button--disabled">PDF a inserir</span>
-                </div>
-              </div>
-            </article>
+            <ProjectContextCard sprint={2}/>
           </div>
 
           <div className="sprint-first-evidence">

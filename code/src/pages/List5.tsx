@@ -1,4 +1,5 @@
-import { ExternalLink, FileText } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import ProjectContextCard from "../components/ProjectContextCard";
 import ZoomableImage from "../components/galleries/ZoomableImage";
 import SprintContributionSummary from "../components/SprintContributionSummary";
 import SprintContributionActions from "../components/SprintContributionActions";
@@ -45,10 +46,7 @@ export default function List5() {
           ]}/>
           <small className="sprint3-portal-status">Portal: endereço temporário, disponibilidade a confirmar.</small>
         </article>
-        <article className="drive-file-preview-card list4-enunciado-card">
-          <div className="drive-file-preview-card__viewer drive-file-preview-card__fallback"><FileText size={34}/><span>Enunciado oficial da ListEx 5</span></div>
-          <div className="drive-file-preview-card__body"><h3>Enunciado específico — pendente</h3><p>Não localizado na pasta pessoal consultada. Relatório preliminar quanto a este requisito; prazo geral conforme planejamento CE-235: 27/11/2026, 23h59.</p></div>
-        </article>
+        <ProjectContextCard sprint={3}/>
       </div>
       <div className="sprint-first-evidence"><SectionTitle eyebrow="US330" title="Relatório individual e evidências" description="Contribuição individual, arquitetura, resultados históricos e limitações."/>
         <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" pagePreview="sprint3-relatorio" large/>
