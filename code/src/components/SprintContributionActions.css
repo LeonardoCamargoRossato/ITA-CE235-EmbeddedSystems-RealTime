@@ -1,0 +1,26 @@
+/* Shared hierarchy: Drive first, optional application second, then reference links. */
+.sprint1-contribution-enunciado.sprint-contribution-pair > .contribution-card,
+.sprint1-contribution-enunciado.sprint-contribution-pair > .drive-file-preview-card {
+  height:auto; min-height:0; max-height:none; align-self:stretch;
+}
+.sprint1-contribution-enunciado.sprint-contribution-pair .contribution-card {
+  overflow:visible;
+}
+.sprint1-contribution-enunciado.sprint-contribution-pair .sprint-contribution-actions {
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px; align-items:stretch; margin-top:auto; padding-top:8px;
+}
+.sprint1-contribution-enunciado.sprint-contribution-pair .sprint-contribution-actions .button {
+  width:100%; min-width:0; min-height:48px; display:flex; align-items:center;
+  justify-content:center; gap:8px; text-align:center; white-space:normal;
+  overflow-wrap:anywhere; padding:10px 12px; line-height:1.25;
+}
+.sprint-contribution-actions .button svg {flex-shrink:0}
+.sprint-contribution-actions .button--app-accent {
+  color:#f5d88d; background:#6e59283d; border:1px solid #b78b43;
+}
+.sprint-contribution-actions .button--app-accent:hover {background:#6e592875;border-color:#e4bb67;color:#fff1c5}
+.sprint-contribution-actions .button:focus-visible {outline:3px solid #e4bb67;outline-offset:3px}
+@media(max-width:480px){
+  .sprint1-contribution-enunciado.sprint-contribution-pair .sprint-contribution-actions {grid-template-columns:1fr}
+}

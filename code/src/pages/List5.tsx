@@ -1,5 +1,6 @@
 import { ExternalLink, FileText } from "lucide-react";
 import ZoomableImage from "../components/galleries/ZoomableImage";
+import SprintContributionActions from "../components/SprintContributionActions";
 import { Link } from "react-router-dom";
 import CompactListHeader from "../components/CompactListHeader";
 import SectionTitle from "../components/SectionTitle";
@@ -31,16 +32,17 @@ export default function List5() {
     <CompactListHeader list="LIST 5" lab="SPRINT 3" title="Terceira Sprint do Projeto SPRB-TR/BD"/>
     <section className="sprint1-meta"><div className="container"><span>Projeto Acadêmico SPRB-TR/BD · TS#3 — Integração</span><strong>Entrega: 27/11/2026 · início a confirmar</strong></div></section>
     <section className="section sprint1-main"><div className="container content-stack content-stack--sprint1">
-      <div className="sprint1-contribution-enunciado">
+      <div className="sprint1-contribution-enunciado sprint-contribution-pair">
         <article className="contribution-card">
           <span className="eyebrow">Minha contribuição</span><h2>US330 — Telemetry Decoder</h2>
           <p>Evolução da US123 e da US221 para um serviço de ingestão autenticada, tratamento, persistência PostgreSQL isolada e consulta na Estação de Solo 1. O teste documentado empregou telemetria simulada externa. O escopo individual não equivale à autoria integral da estação ou da US330.</p>
-          <div className="card-actions contribution-card__actions sprint3-contribution-actions">
-            <a className="button button--gold" href={links.disciplineDrive} target="_blank" rel="noopener noreferrer">Drive da disciplina <ExternalLink size={15}/></a>
-            <External href="https://github.com/LeonardoCamargoRossato/ITA-CE235-EmbeddedSystems-RealTime">GitHub pessoal</External>
-            <External href={issue(146)}>US330 #146</External>
-            <External href={board}>Kanban Sprint 3</External>
-          </div>
+          <SprintContributionActions items={[
+            {label:"Drive da disciplina",href:links.disciplineDrive,variant:"drive"},
+            {label:"Portal de acesso US330",href:portal,variant:"app",title:"Link temporário; disponibilidade a confirmar"},
+            {label:"GitHub pessoal",href:"https://github.com/LeonardoCamargoRossato/ITA-CE235-EmbeddedSystems-RealTime"},
+            {label:"US330 #146",href:issue(146)}
+          ]}/>
+          <small className="sprint3-portal-status">Portal: endereço temporário, disponibilidade a confirmar.</small>
         </article>
         <article className="drive-file-preview-card list4-enunciado-card">
           <div className="drive-file-preview-card__viewer drive-file-preview-card__fallback"><FileText size={34}/><span>Enunciado oficial da ListEx 5</span></div>
