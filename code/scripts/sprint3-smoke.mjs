@@ -29,6 +29,7 @@ try {
       assert.match(await dialog.locator('img').getAttribute('src'), /\.png/);
       await page.keyboard.press('Escape');
       await dialog.waitFor({state:'hidden'});
+      await page.waitForFunction(el => !el.hasAttribute('src'), await dialog.locator('img').elementHandle());
       assert.equal(await dialog.locator('img').getAttribute('src'), null);
     }
     const pdf = await page.request.get(base+'assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf');
