@@ -54,7 +54,6 @@ export default function List5() {
         <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" pagePreview="sprint3-relatorio" large/>
         <div className="card-actions"><a className="button button--secondary" href={report} download>Baixar PDF</a><External href="https://drive.google.com/file/d/1FLtHN8y6VvkbGYzM8FRCMDYM1vHe7lzo/view">Cópia no Drive</External></div>
       </div>
-      <GroundStationEvolution/>
       <div><SectionTitle eyebrow="Arquitetura" title="Integração da telemetria" description="Diagrama original aprovado, preservado sem corte."/>
         <Evidence slug="diagrama-us330" caption="Figura 1 — Arquitetura US330, teste histórico de 21/11/2026" alt="Fluxo de acesso e autorização, ingestão FastAPI, RAW, tratamento, PROCESSED, consulta e auditoria."/>
         <div className="sprint3-grid">
@@ -63,6 +62,21 @@ export default function List5() {
           <article><h3>03 — Consulta e retorno</h3><p>GET e dashboard retornam dados autorizados; não há acesso direto ao banco. Eventos permitem rastreabilidade e auditoria.</p></article>
         </div>
       </div>
+      <GroundStationEvolution/>
+      <section id="rastreabilidade" className="sprint3-traceability">
+        <SectionTitle eyebrow="GitHub e Kanban" title="Rastreabilidade" description="Acesso direto às atividades e aos registros oficiais da Sprint 3."/>
+        <div className="sprint3-trace-table" role="region" aria-label="Links de rastreabilidade" tabIndex={0}>
+          <table><thead><tr><th scope="col">Acesso</th><th scope="col">Keywords</th><th scope="col">Descrição</th></tr></thead><tbody>{[
+            {href:board,label:"Abrir quadro oficial — Kanban",keywords:"Scrum · Sprint 3 · Kanban",description:"Acompanhar o quadro de atividades do Time 3."},
+            {href:issue(146),label:"US330 #146",keywords:"API · Legado · Integração",description:"User Story oficial de integração e roteamento bidirecional da API."},
+            {href:issue(162),label:"T2 #162",keywords:"Filtragem · Tratamento",description:"Task coletiva de tratamento da telemetria, atribuída a Felipe Araújo Thomaz."},
+            {href:issue(168),label:"Matriz oficial #168",keywords:"Requisitos · Testes",description:"Matriz de rastreabilidade dos casos de teste da Sprint 3."},
+            {href:issue(170),label:"Segurança #170",keywords:"CE-237 · Segurança",description:"Atividade de especificação de casos de teste de segurança."}
+          ].map(row=><tr key={row.href}><th scope="row"><External href={row.href}>{row.label}</External></th><td>{row.keywords}</td><td>{row.description}</td></tr>)}</tbody></table>
+        </div>
+        <p className="sprint3-trace-note">Consulta de 27/11: #146, #162 e #192–194 fechadas. Fechamento não equivale a aceite técnico integral; a T2 e os ensaios coletivos não são autoria individual.</p>
+        <details className="sprint3-trace-history"><summary>Registro histórico do Kanban (27/11/2026)</summary><p>Recorte de 09h21: Backlog 4, Ready 1, In progress 6, In review 15. Done não observado; não representa o quadro completo nem seu estado atual.</p><External href={evidence("kanban-sprint3").fullSrc}>Abrir recorte original (PNG)</External></details>
+      </section>
       <div><SectionTitle eyebrow="Demonstração" title={"Portal de acesso — "+gsaV3.name} description="Captura histórica de 26/11/2026. Não é status ao vivo."/>
         <Evidence slug="portal-us330" caption="Figura 2 — Portal histórico, QR ocultado; Failed to fetch preservado" alt="Portal de acesso autenticado à API, formulário de solicitação e mensagem Failed to fetch."/>
         <article className="sprint3-note"><h3>Link temporário — disponibilidade a confirmar</h3><p>Quick Tunnel pode expirar ou mudar. Para novo teste, contate Leonardo pelo canal autorizado da equipe, solicite novo endereço e uma chave individual. O acesso privado usa Tailscale e SSH autorizados. A captura interna do dashboard remoto está pendente de recuperação de acesso.</p><External href={portal}>Link utilizado na demonstração</External></article>
@@ -75,11 +89,6 @@ export default function List5() {
       <div><SectionTitle eyebrow="Documentação técnica" title="Relato, contrato e rastreabilidade"/>
         <div className="card-actions"><External href={links.list5Drive}>Acervo da Sprint 3 — acesso conforme permissões</External><External href="https://github.com/Projeto-SPRB-TR-BD/Projeto-SPRB-TR-BD/blob/main/compartilhado/icd/ICD_Telemetry_v1.md">ICD oficial · TS#1</External><External href="https://github.com/LeonardoCamargoRossato/ITA-US330-Telemetry-Decoder">Implementação US330 — repositório privado</External></div>
         <p>O relatório, a fonte e a matriz estão no acervo individual. Os guias de operação restritos e os documentos de infraestrutura não integram as entregas pessoais públicas.</p>
-      </div>
-      <div><SectionTitle eyebrow="GitHub e Kanban" title="Rastreabilidade oficial" description="Recorte do quadro de 27/11/2026 às 09h21; cobertura parcial, Done não observado."/>
-        <Evidence slug="kanban-sprint3" caption="Figura 3 — Cabeçalhos do Kanban: Backlog 4, Ready 1, In progress 6, In review 15" alt="Quatro colunas visíveis do Kanban com suas contagens; quadro parcial."/>
-        <p>Consulta GitHub de 27/11: #146 e #162 fechadas; #192, #193 e #194 fechadas na consulta posterior de 27/11. Os ensaios coletivos registrados não equivalem à validação integral da aplicação individual. A T2 está atribuída a FelipeAraujoThomaz; não é reivindicada como autoria exclusiva de Leonardo. Fechamento de issue não comprova aceite técnico.</p>
-        <div className="card-actions"><External href={board}>Abrir quadro oficial</External><External href={issue(146)}>US330 #146</External><External href={issue(162)}>T2 #162</External><External href={issue(168)}>Matriz oficial #168</External><External href={issue(170)}>Segurança #170</External></div>
       </div>
       <div><SectionTitle eyebrow="Evolução" title="US123 → US221 → US330"/>
         <div className="sprint3-grid"><article><h3>US123 · Sprint 1</h3><p>React/Vite/TypeScript e telemetria simulada no navegador.</p><Link to="/sprint1">Ver Sprint 1</Link></article><article><h3>US221 · Sprint 2</h3><p>FastAPI local, JSONL e SQLite; contrato C para SCADE/legado, não integração concluída.</p><Link to="/list4">Ver Sprint 2</Link></article><article><h3>US330 · Sprint 3.1</h3><p>API autenticada, PostgreSQL 15 isolado, auditoria e consulta remota; primeira implantação ainda com armazenamento local.</p></article></div>

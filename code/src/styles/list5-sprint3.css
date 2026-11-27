@@ -15,3 +15,16 @@
 
 
 .list5-sprint3 .sprint3-portal-status{display:block;margin-top:10px;color:#b9c8d7;font-size:12px;line-height:1.4}
+
+/* Compact vertical traceability: original image retained as a link, not a giant preview. */
+.sprint3-traceability .section-title{margin-bottom:12px}
+.sprint3-trace-table{overflow-x:auto;max-width:100%;border:1px solid #dce4ec;border-radius:10px;background:#fff}
+.list5-sprint3 .sprint3-trace-table table{min-width:0;table-layout:fixed}
+.sprint3-trace-table th:first-child{width:30%}.sprint3-trace-table th:nth-child(2){width:27%}
+.list5-sprint3 .sprint3-trace-table td,.list5-sprint3 .sprint3-trace-table th{padding:10px 12px;font-size:13px;vertical-align:middle;overflow-wrap:anywhere}
+.sprint3-trace-table tbody tr:nth-child(even){background:#f6f8fb}
+.sprint3-trace-table .button{font-size:12px;padding:8px 10px;min-height:38px;width:100%;white-space:normal;justify-content:space-between;text-align:left}
+.sprint3-trace-table .button svg{flex-shrink:0}
+.sprint3-trace-note,.sprint3-trace-history{font-size:13px;line-height:1.5;color:#526477;margin-top:10px}
+.sprint3-trace-history summary{cursor:pointer;font-weight:700;color:#245c8e}
+@media(max-width:600px){.list5-sprint3 .sprint3-trace-table table{min-width:510px}.list5-sprint3 .sprint3-trace-table td,.list5-sprint3 .sprint3-trace-table th{padding:8px}}
