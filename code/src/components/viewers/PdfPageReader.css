@@ -1,0 +1,12 @@
+/* White, edge-to-edge pages; mixed portrait and landscape retain the source proportions. */
+.drive-file-preview-card__viewer--pages {background:#fff !important;overflow:hidden;min-width:0;display:block}
+.pdf-page-reader {display:block;box-sizing:border-box;width:100%;height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;background:#fff;color:#10253d;overscroll-behavior:contain;scrollbar-color:#b9c7d5 #fff}
+.pdf-page-reader:focus-visible {outline:2px solid #b78b43;outline-offset:-2px}
+.pdf-page-reader__page {position:relative;display:block;width:100%;background:#fff}
+.pdf-page-reader__page+.pdf-page-reader__page {border-top:1px solid #dce4ec}
+.pdf-page-reader__page img {display:block;width:100%;height:100%;object-fit:contain;margin:0;padding:0}
+.pdf-page-reader__page p {margin:0;padding:20px;color:#10253d}
+.pdf-modal__panel--pages {grid-template-rows:auto minmax(0,1fr)}
+.pdf-modal__panel--pages .pdf-page-reader {min-height:0}
+.sprint1-contribution-enunciado.sprint-contribution-pair .drive-file-preview-card__viewer--pages {height:clamp(360px,52vh,540px);flex:1 1 auto;min-height:360px}
+@media(max-width:680px){.sprint1-contribution-enunciado.sprint-contribution-pair .drive-file-preview-card__viewer--pages {min-height:0;height:clamp(360px,58vh,520px);flex:0 0 auto}}

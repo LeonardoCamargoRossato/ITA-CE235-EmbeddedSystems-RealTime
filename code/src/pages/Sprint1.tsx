@@ -55,6 +55,7 @@ export default function Sprint1() {
               fallbackHref={links.list3Drive}
               large
               fitMode="width"
+              pagePreview="sprint1-enunciado"
             />
           </div>
 

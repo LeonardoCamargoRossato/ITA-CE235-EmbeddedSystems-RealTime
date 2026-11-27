@@ -1,0 +1,122 @@
+{
+  "method": "Original PDF page rasterized with PyMuPDF; RGB, 1600 px width, WebP quality 91, no cropping. Original PDFs unchanged. Restricted ancillary documents retain Drive preview and permissions.",
+  "documents": [
+    {
+      "key": "sprint1-enunciado",
+      "source": "code/public/documents/list3/listex3-enunciado.pdf",
+      "sourceSha256": "f56ff51f938dd14796ad162b9e271df593c1b92dc0ff6cafb96e7344d54dbecc",
+      "pages": [
+        {
+          "key": "sprint1-enunciado",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-enunciado-p01.webp",
+          "sha": "b5626acfdab88b5e686c33aac137cbfb8c522cbe",
+          "height": 2071,
+          "width": 1600,
+          "bytes": 354056
+        },
+        {
+          "key": "sprint1-enunciado",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-enunciado-p02.webp",
+          "sha": "fb451cecd0de61c144f0ca43aa637fcdfb7947d2",
+          "height": 2071,
+          "width": 1600,
+          "bytes": 185012
+        }
+      ]
+    },
+    {
+      "key": "sprint2-relatorio",
+      "source": "https://drive.google.com/file/d/1SKaTGLuDpG73mpjqtZCscrjLby858x6S/view",
+      "sourceSha256": "d86ca7287dc180bd6bebd4da5e69d0804e46e04b5b5a7127bdd9cb2ba195598a",
+      "pages": [
+        {
+          "key": "sprint2-relatorio",
+          "path": "assets/WebP/sprint-2/pdf/sprint2-relatorio-p01.webp",
+          "sha": "3b29d5f0a5c649916ac2f911d5007c5b6fe7415f",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 242288
+        },
+        {
+          "key": "sprint2-relatorio",
+          "path": "assets/WebP/sprint-2/pdf/sprint2-relatorio-p02.webp",
+          "sha": "dfb953cdafe6ec80a5743ff4e6590ba45fbbacda",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 254826
+        },
+        {
+          "key": "sprint2-relatorio",
+          "path": "assets/WebP/sprint-2/pdf/sprint2-relatorio-p03.webp",
+          "sha": "18bcbaed21eee6a8307690be42e8de15f32f3ed4",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 238056
+        },
+        {
+          "key": "sprint2-relatorio",
+          "path": "assets/WebP/sprint-2/pdf/sprint2-relatorio-p04.webp",
+          "sha": "9341615471beba49cdebcd8653c70fd6d23249c8",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 293964
+        },
+        {
+          "key": "sprint2-relatorio",
+          "path": "assets/WebP/sprint-2/pdf/sprint2-relatorio-p05.webp",
+          "sha": "624d800fff8ec8097e73456e0ce131c9e6bd50fe",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 219322
+        }
+      ]
+    },
+    {
+      "key": "sprint3-relatorio",
+      "source": "code/public/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf",
+      "sourceSha256": "0ab5665f2fa2c7a76b140f6cd11f32e70b9291e3087a9c488c08b60ebcac5983",
+      "pages": [
+        {
+          "key": "sprint3-relatorio",
+          "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p01.webp",
+          "sha": "a798e733395912730512a7a5ab007eec8f68fdb6",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 240598
+        },
+        {
+          "key": "sprint3-relatorio",
+          "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p02.webp",
+          "sha": "18a32a9e3181f7538eccd76257b85b89076edea1",
+          "height": 1132,
+          "width": 1600,
+          "bytes": 144004
+        },
+        {
+          "key": "sprint3-relatorio",
+          "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p03.webp",
+          "sha": "3990d5652cd8c44033f9798d48a740d0417f31f3",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 358666
+        },
+        {
+          "key": "sprint3-relatorio",
+          "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p04.webp",
+          "sha": "e0ae1dec9fcd999bfc7d59806ada2f27ef38e2cd",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 189378
+        },
+        {
+          "key": "sprint3-relatorio",
+          "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p05.webp",
+          "sha": "e169baf306a47d04a3c37b5e7f31d94652ca6c75",
+          "height": 2263,
+          "width": 1600,
+          "bytes": 313476
+        }
+      ]
+    }
+  ]
+}
