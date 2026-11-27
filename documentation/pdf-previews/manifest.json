@@ -1,5 +1,5 @@
 {
-  "method": "Original PDF page rasterized with PyMuPDF; RGB, 1600 px width, WebP quality 91, no cropping. Original PDFs unchanged. Restricted ancillary documents retain Drive preview and permissions.",
+  "method": "Original PDF page rasterized with PyMuPDF; RGB, 1600 px width, WebP quality 91, no cropping. Source PDFs preserved in version history; Sprint 3 replaced with the user-approved 27/11/2026 edition, five portrait pages. Restricted ancillary documents retain Drive preview and permissions.",
   "documents": [
     {
       "key": "sprint1-enunciado",
@@ -74,47 +74,47 @@
     {
       "key": "sprint3-relatorio",
       "source": "code/public/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf",
-      "sourceSha256": "0ab5665f2fa2c7a76b140f6cd11f32e70b9291e3087a9c488c08b60ebcac5983",
+      "sourceSha256": "d3bbbbca202e696b1ac4aaba62f486b434659f4ef9ea4cb6035ecb89c9c32177",
       "pages": [
         {
           "key": "sprint3-relatorio",
           "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p01.webp",
-          "sha": "a798e733395912730512a7a5ab007eec8f68fdb6",
+          "sha": "1611e89a4132ec907d68183b1983507dd04ae17e",
           "height": 2263,
           "width": 1600,
-          "bytes": 240598
+          "bytes": 261914
         },
         {
           "key": "sprint3-relatorio",
           "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p02.webp",
-          "sha": "18a32a9e3181f7538eccd76257b85b89076edea1",
-          "height": 1132,
+          "sha": "cecde45409155659a98d64de80c589b77f109c33",
+          "height": 2263,
           "width": 1600,
-          "bytes": 144004
+          "bytes": 311216
         },
         {
           "key": "sprint3-relatorio",
           "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p03.webp",
-          "sha": "3990d5652cd8c44033f9798d48a740d0417f31f3",
+          "sha": "939c847e17a9ba84297fbdd7968fb4a3725e103f",
           "height": 2263,
           "width": 1600,
-          "bytes": 358666
+          "bytes": 252674
         },
         {
           "key": "sprint3-relatorio",
           "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p04.webp",
-          "sha": "e0ae1dec9fcd999bfc7d59806ada2f27ef38e2cd",
+          "sha": "eea41dd49114b9d0366c7b2127cdbb92240087ce",
           "height": 2263,
           "width": 1600,
-          "bytes": 189378
+          "bytes": 207278
         },
         {
           "key": "sprint3-relatorio",
           "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p05.webp",
-          "sha": "e169baf306a47d04a3c37b5e7f31d94652ca6c75",
+          "sha": "b49651dc8ee55b2306f1f8491697205712408927",
           "height": 2263,
           "width": 1600,
-          "bytes": 313476
+          "bytes": 269722
         }
       ]
     }

@@ -51,7 +51,7 @@ export default function List5() {
         <ProjectContextCard sprint={3}/>
       </div>
       <div className="sprint-first-evidence"><SectionTitle eyebrow="US330" title="Relatório individual e evidências" description="Contribuição individual, arquitetura, resultados históricos e limitações."/>
-        <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" pagePreview="sprint3-relatorio" large/>
+        <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Edição aprovada em 27/11/2026 — cinco páginas A4, identidade visual ITA, arquitetura, resultados e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" pagePreview="sprint3-relatorio" large/>
         <div className="card-actions"><a className="button button--secondary" href={report} download>Baixar PDF</a><External href="https://drive.google.com/file/d/1FLtHN8y6VvkbGYzM8FRCMDYM1vHe7lzo/view">Cópia no Drive</External></div>
       </div>
       <div><SectionTitle eyebrow="Arquitetura" title="Integração da telemetria" description="Diagrama original aprovado, preservado sem corte."/>
