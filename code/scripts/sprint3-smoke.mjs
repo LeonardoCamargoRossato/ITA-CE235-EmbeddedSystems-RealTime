@@ -32,9 +32,10 @@ async function checkSprintOpening(page,label,sprint){
     assert.ok(stats.mediaTop<stats.viewport-100,JSON.stringify(stats));
     assert.ok(Math.abs(stats.cardA-stats.cardB)<=2,JSON.stringify(stats));
   }
+  if(sprint===1 && label==='desktop') await decoded(pair.locator('.pdf-page-reader__page').first().locator('img'));
   await page.screenshot({path:`qa-sprint3/opening-sprint${sprint}-${label}.png`});
-  const read=card.getByRole('button',{name:'Leia mais',exact:true});
-  const controlled=card.locator('[id]').first();
+  const read=card.locator('.sprint-read-more');
+  const controlled=card.locator('.sprint-contribution-summary > div[id]');
   assert.equal(await read.getAttribute('aria-expanded'),'false');
   assert.equal(await controlled.isVisible(),false);
   await read.click();
