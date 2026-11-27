@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import { ChevronLeft, ChevronRight, Download, Maximize2, Minimize2, X, ZoomIn, ZoomOut } from "lucide-react";
 import "./ImageViewer.css";
@@ -80,7 +81,7 @@ export default function ImageViewer({items,index,onChange,onClose}: {items: View
     catch{setMaximized(true);}
   }
   if(!current)return null;
-  return <dialog ref={dialog} className={`lcr-viewer${maximized?" is-maximized":""}`} aria-label="Visualizador de imagens"
+  return createPortal(<dialog ref={dialog} className={`lcr-viewer${maximized?" is-maximized":""}`} aria-label="Visualizador de imagens"
     onCancel={e=>{e.preventDefault();onClose();}}
     onClick={e=>{if(e.target===dialog.current)onClose();}}
     onKeyDown={e=>{
@@ -112,5 +113,5 @@ export default function ImageViewer({items,index,onChange,onClose}: {items: View
         {items.length>1&&<button className="lcr-viewer-next lcr-viewer-nav" type="button" aria-label="Próxima imagem" onClick={()=>move(1)}><ChevronRight/></button>}
       </div>
     </div>
-  </dialog>;
+  </dialog>, document.body);
 }
