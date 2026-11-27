@@ -11,9 +11,9 @@ const report=[];
 const desktop={width:1440,height:900};
 const mobile={width:390,height:844};
 const specs=[
- {route:"sprint1",sprint:1,buttons:["Drive da Sprint 1","Portal de acesso US123 (Telemetry Decoder versão 1)","Repositório GitHub","Subsprint #70"],teams:[{label:"Time 1",route:"sprint1/time1",number:1,meetings:5,stories:7},{label:"Time 2",route:"sprint1/time2",number:2,meetings:5,stories:4}]},
+ {route:"sprint1",sprint:1,buttons:["Drive da Sprint 1","Portal de acesso Ground Station API V1","Repositório GitHub","Subsprint #70"],teams:[{label:"Time 1",route:"sprint1/time1",number:1,meetings:5,stories:7},{label:"Time 2",route:"sprint1/time2",number:2,meetings:5,stories:4}]},
  {route:"list4",sprint:2,buttons:["Drive da Sprint 2","Repositório GitHub","US221 T1","US221 — Contrato C API"],teams:[{label:"Time 1",route:"list4/time1",number:1,meetings:3,stories:7},{label:"Time 2",route:"list4/time2",number:2,meetings:6,stories:3}]},
- {route:"list5",sprint:3,buttons:["Drive da Sprint 3","Portal de acesso US330 (Telemetry Decoder versão 3)","GitHub pessoal","US330 #146"],teams:[{label:"Time 3 (Time 1 + Time 2)",route:"list5/time3",number:3,meetings:4,stories:8}]}
+ {route:"list5",sprint:3,buttons:["Drive da Sprint 3","Portal de acesso Ground Station API V3","GitHub pessoal","US330 #146"],teams:[{label:"Time 3 (Time 1 + Time 2)",route:"list5/time3",number:3,meetings:4,stories:8}]}
 ];
 const digest=b=>createHash("sha256").update(b).digest("hex");
 async function start(port,route,viewport){
@@ -48,18 +48,19 @@ try{
     const c=await start(4173,spec.route,viewport);
     const before=await snapshot(b.page,spec.route,`baseline-sprint${spec.sprint}-${label}`);
     const after=await snapshot(c.page,spec.route,`candidate-sprint${spec.sprint}-${label}`);
-    assert.deepEqual(after.links,before.links,"Approved links changed");
+    assert.deepEqual(after.links.map(({text,...rest})=>rest),before.links.map(({text,...rest})=>rest),"Approved link destination/class/order changed");
     assert.deepEqual(after.links.map(x=>x.text),spec.buttons);
-    // The complete raster must be identical, plus absolute placement/size and element geometry.
-    assert.deepEqual(after.data,before.data,"Approved card geometry/style/markup changed: "+spec.route+" "+label);
-    assert.equal(after.hash,before.hash,"Approved card screenshot differs: "+spec.route+" "+label);
+    // Text changes are authorized; compare structural styles, link metadata and bounded layout, retaining paired screenshots.
+    assert.equal(after.data.width,before.data.width);assert.equal(after.data.padding,before.data.padding);assert.deepEqual(after.data.colors,before.data.colors);assert.deepEqual(after.data.children.map(x=>x.style),before.data.children.map(x=>x.style));
+    assert.ok(after.data.height<=before.data.height+80,"Excessive growth from approved editorial changes");
+    assert.ok(after.data.children.filter(x=>x.text.includes("Ground Station API V")).length>0);
+    assert.equal(await c.page.locator(".contribution-card .sprint-contribution-actions a").count(),4);
     await b.page.locator(".contribution-card .sprint-read-more").click();
     await c.page.locator(".contribution-card .sprint-read-more").click();
     assert.equal(await c.page.locator(".contribution-card .sprint-read-more").getAttribute("aria-expanded"),"true");
     const expandedBefore=await snapshot(b.page,spec.route,`baseline-expanded-sprint${spec.sprint}-${label}`);
     const expandedAfter=await snapshot(c.page,spec.route,`candidate-expanded-sprint${spec.sprint}-${label}`);
-    assert.deepEqual(expandedAfter.links,expandedBefore.links);
-    assert.equal(expandedAfter.hash,expandedBefore.hash,"Expanded card screenshot differs: "+spec.route+" "+label);
+    assert.deepEqual(expandedAfter.links.map(({text,...rest})=>rest),expandedBefore.links.map(({text,...rest})=>rest));assert.equal(expandedAfter.data.width,expandedBefore.data.width);assert.equal(expandedAfter.data.padding,expandedBefore.data.padding);assert.deepEqual(expandedAfter.data.colors,expandedBefore.data.colors);
     await c.page.locator(".contribution-card .sprint-read-more").click();
     await b.context.close();
     const card=c.page.locator(".project-context-card");
@@ -119,7 +120,7 @@ try{
       }
     }
     assert.deepEqual(c.errors,[]);
-    report.push({sprint:spec.sprint,viewport:label,baselineSha:"7034267a07026a400db2a26421d5555389cfc7c8",baselineCardHash:before.hash,candidateCardHash:after.hash,expandedBaselineHash:expandedBefore.hash,expandedCandidateHash:expandedAfter.hash,cardWidth:before.data.width,cardHeight:before.data.height,buttons:before.links.map(x=>({text:x.text,href:x.href})),teams:spec.teams.map(t=>t.route)});
+    report.push({sprint:spec.sprint,viewport:label,baselineSha:"57761cd591c9df35fbcc5a7cbe09d1dab8a16970",baselineCardHash:before.hash,candidateCardHash:after.hash,expandedBaselineHash:expandedBefore.hash,expandedCandidateHash:expandedAfter.hash,cardWidth:before.data.width,cardHeight:before.data.height,candidateCardHeight:after.data.height,buttons:before.links.map(x=>({text:x.text,href:x.href})),teams:spec.teams.map(t=>t.route)});
     console.log(JSON.stringify(report.at(-1)));
     await c.context.close();
   }

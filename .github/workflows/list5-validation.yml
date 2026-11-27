@@ -21,10 +21,11 @@ jobs:
       - run: npm run build
       - name: Verify Sprint 3 publication assets
         run: |
-          for slug in diagrama-us330 portal-us330 kanban-sprint3; do
+          for slug in diagrama-us330 portal-us330 kanban-sprint3 ground-station-api-componentes; do
             test -s "dist/assets/PNG/sprint-3/us330/$slug.png"
             test -s "dist/assets/WebP/sprint-3/us330/$slug.webp"
           done
+          test -s dist/assets/SVG/sprint-3/us330/ground-station-api-componentes.svg
           test -s dist/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf
           grep -q 'path="/list5"' src/App.tsx
           grep -q 'id:"list5"' src/data/lists.ts
@@ -42,8 +43,8 @@ jobs:
           node scripts/sprint3-smoke.mjs
       - name: Build approved baseline for visual regression
         run: |
-          git fetch --no-tags origin 7034267a07026a400db2a26421d5555389cfc7c8
-          git worktree add --detach /tmp/ce235-approved 7034267a07026a400db2a26421d5555389cfc7c8
+          git fetch --no-tags origin 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
+          git worktree add --detach /tmp/ce235-approved 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
           ln -s "$GITHUB_WORKSPACE/code/node_modules" /tmp/ce235-approved/code/node_modules
           cd /tmp/ce235-approved/code
           npm run build

@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="footer__author">
           <small>Desenvolvido por</small>
           <a href={links.portfolio} target="_blank" rel="noopener noreferrer">
-            Leonardo Camargo Rossato ↗
+            Leonardo Camargo Rossato<br/><span>@leonardocamargorossato ↗</span>
           </a>
           <span>2026</span>
         </div>

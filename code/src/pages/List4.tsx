@@ -1,3 +1,4 @@
+import { gsaV2, groundStationTitle } from "../data/groundStation";
 import { imagePair } from "../data/assets";
 import { links } from "../data/links";
 import SprintContributionSummary from "../components/SprintContributionSummary";
@@ -57,8 +58,8 @@ export default function List4() {
           <div className="sprint1-contribution-enunciado sprint-contribution-pair">
             <article className="contribution-card">
               <span className="eyebrow">Minha contribuição</span>
-              <h2>US221 — Telemetry Decoder</h2>
-              <SprintContributionSummary summary="Backend FastAPI local, persistência RAW/PROCESSED e contrato C preparado para SCADE.">Na Sprint 2, a demonstração da US123 foi evoluída para uma arquitetura local com backend FastAPI,
+              <h2>{groundStationTitle(gsaV2)}</h2>
+              <SprintContributionSummary summary={gsaV2.name+" — FastAPI local, RAW/PROCESSED, JSONL/SQLite e contrato C para SCADE."}>Na Sprint 2, a demonstração da US123 evoluiu para uma arquitetura local com frontend React/Vite/TypeScript e backend FastAPI,
                 persistência RAW/PROCESSED e uma fronteira C preparada para formalizar o contrato de dados entre
                 telemetria, sistema legado e ANSYS SCADE. A documentação técnica da US221 foi publicada no repositório
                 oficial do TS2 para manter a rastreabilidade entre implementação, atividade e especificação.</SprintContributionSummary>
@@ -76,7 +77,7 @@ export default function List4() {
           <div className="sprint-first-evidence">
             <SectionTitle
               eyebrow="US221"
-              title="Demonstração e evidências da Sprint 2"
+              title={"Demonstração e evidências — "+gsaV2.name}
               description="Relatório pessoal da US221 / Sprint 2 e evidências visuais da implementação executada em localhost."
             />
             <div className="sprint2-report-block">

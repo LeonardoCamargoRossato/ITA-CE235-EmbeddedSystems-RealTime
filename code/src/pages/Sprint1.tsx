@@ -1,3 +1,4 @@
+import { gsaV1 } from "../data/groundStation";
 import { ExternalLink } from "lucide-react";
 import { imagePair } from "../data/assets";
 import { links } from "../data/links";
@@ -54,14 +55,14 @@ export default function Sprint1() {
           <div className="sprint-first-evidence">
             <SectionTitle
               eyebrow="US123"
-              title="Demonstração publicada"
+              title={"Demonstração publicada — "+gsaV1.name}
               description="Demonstração funcional da cadeia de recepção, desempacotamento e validação de telemetria."
             />
             <article className="sprint-demo-card">
-              <div className="browser-bar"><i/><i/><i/><span>US123 — Telemetry Decoder</span></div>
+              <div className="browser-bar"><i/><i/><i/><span>{gsaV1.name} · US123</span></div>
               <iframe
                 src={links.us123TelemetryDecoder}
-                title="Demonstração publicada — US123 Telemetry Decoder"
+                title={"Demonstração publicada — "+gsaV1.name}
                 loading="lazy"
                 referrerPolicy="no-referrer"
               />
