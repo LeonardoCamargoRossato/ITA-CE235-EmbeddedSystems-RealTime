@@ -166,7 +166,7 @@ try {
     assert.match(await buttons.nth(1).getAttribute('class'),/button--app-accent/);
     assert.equal(await buttons.nth(1).getAttribute('href'),'https://egg-steady-sixth-fax.trycloudflare.com/us330-api/');
     assert.equal(await page.locator('.sprint-contribution-actions .button--gold').count(),1);
-    assert.ok(await page.getByRole('link',{name:'Abrir quadro oficial',exact:true}).count()>0);
+    assert.ok(await page.getByRole('link',{name:'Abrir quadro oficial — Kanban',exact:true}).count()>0);
     assert.ok(await page.getByRole('link',{name:'T2 #162',exact:true}).count()>0);
     await page.locator('.contribution-card').first().scrollIntoViewIfNeeded();
     const contributionBox=await page.locator('.contribution-card').first().boundingBox();
@@ -176,13 +176,19 @@ try {
     }
     await page.locator('.contribution-card').first().screenshot({path:'qa-sprint3/contribution-'+label+'.png'});
     const figures=page.locator('.sprint3-evidence');
-    assert.equal(await figures.count(),3);
+    assert.equal(await figures.count(),2);
     assert.equal(requests.filter(png).length,0,'PNG before opening');
     // The first diagram may already have intersected during navigation or screenshot.
     // The two later figures have not been visited; no initial request may load them.
     for(const slug of ['portal-us330','kanban-sprint3']){
       assert.equal(requests.filter(u=>webp(u)&&u.includes('/'+slug+'.webp')).length,0,slug+' fetched before its section was visited');
     }
+    assert.equal(await page.locator('.sprint3-trace-table thead th').count(),3);
+    assert.equal(await page.locator('.sprint3-trace-table tbody tr').count(),5);
+    assert.ok(await page.evaluate(()=>{const a=document.querySelector('.sprint3-evidence'),b=document.querySelector('#gsa-evolucao'),c=document.querySelector('#rastreabilidade');return a.compareDocumentPosition(b)&Node.DOCUMENT_POSITION_FOLLOWING && b.compareDocumentPosition(c)&Node.DOCUMENT_POSITION_FOLLOWING}));
+    assert.equal(await page.locator('.sprint3-trace-history img').count(),0);
+    await page.locator('.sprint3-trace-table').screenshot({path:`qa-sprint3/traceability-${label}.png`});
+    assert.equal(requests.filter(u=>u.includes('kanban-sprint3')).length,0);
     const before=requests.filter(webp).length;
     const concept=page.locator('.gsa-concept-figure > button');
     assert.equal(requests.filter(u=>png(u)&&u.includes('ground-station-api-componentes')).length,0);
@@ -256,7 +262,7 @@ try {
     await page.locator('.sprint3-note').first().scrollIntoViewIfNeeded();
     assert.match(await page.locator('.sprint3-note').first().innerText(),/disponibilidade a confirmar/i);
     const countS3={webp:requests.filter(webp).length,png:requests.filter(png).length,webpBeforeScroll:before};
-    assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,4);
+    assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,3);
     await page.getByRole('link',{name:'Voltar às listas'}).click();await page.waitForURL('**/#/listas');
     await page.goto(base+'#/sprint1');
     await checkSprintOpening(page,label,1);
@@ -296,7 +302,7 @@ try {
       const author=page.locator('footer .footer__author a');
       assert.match(await author.innerText(),/@leonardocamargorossato/);
       assert.equal(await author.getAttribute('href'),'https://leonardocamargorossato.github.io/LCR-SolutionsArchitecture-IA-Quantum/#/');
-      if(route==='projeto'){assert.equal(await page.locator('.gsa-table thead th').count(),4);await page.locator('.gsa-table').screenshot({path:`qa-sprint3/gsa-project-table-${label}.png`});await page.locator('footer').screenshot({path:`qa-sprint3/gsa-footer-${label}.png`});}
+      if(route==='projeto'){assert.equal(await page.locator('.gsa-story-history .gsa-story').count(),3);assert.deepEqual(await page.locator('.gsa-story-history .gsa-story dt').allTextContents(),Array(3).fill(['Objetivo','Contexto','Arquitetura','O que foi realizado']).flat());await page.locator('.gsa-story-history').screenshot({path:`qa-sprint3/project-stories-${label}.png`});assert.equal(await page.locator('.gsa-table thead th').count(),4);await page.locator('.gsa-table').screenshot({path:`qa-sprint3/gsa-project-table-${label}.png`});await page.locator('footer').screenshot({path:`qa-sprint3/gsa-footer-${label}.png`});}
     }
     await page.goto(base+'#/list5?secao=evolucao');
     await page.locator('#gsa-evolucao').waitFor();

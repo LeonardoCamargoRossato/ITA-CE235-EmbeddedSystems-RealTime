@@ -32,3 +32,5 @@
 .gsa-concept-figure figcaption{padding:12px 16px;color:#173b5c;font-weight:600}
 .gsa-evolution :focus-visible,.gsa-table:focus-visible{outline:3px solid #b78b43;outline-offset:2px}
 @media(max-width:700px){.gsa-version-flow{grid-template-columns:1fr;gap:24px}.gsa-arrow{right:50%;top:auto;bottom:-23px;transform:rotate(90deg)}.gsa-identity{gap:12px}.gsa-identity>svg{width:32px;height:32px}}
+
+.gsa-story-history{display:grid;gap:14px;margin:18px 0 24px}.gsa-story h3{margin:4px 0 14px}.gsa-story dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 16px}.gsa-story dl>div{background:#f5f8fb;border-radius:8px;padding:12px}.gsa-story dt{font-size:12px;font-weight:800;color:#245c8e;margin-bottom:4px}.gsa-story dd{margin:0;font-size:14px;line-height:1.5}.gsa-story .card-actions{flex-wrap:wrap}@media(max-width:650px){.gsa-story dl{grid-template-columns:1fr}}
