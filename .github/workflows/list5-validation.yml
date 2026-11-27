@@ -40,6 +40,24 @@ jobs:
             sleep 1
           done
           node scripts/sprint3-smoke.mjs
+      - name: Build approved baseline for visual regression
+        run: |
+          git fetch --no-tags origin 7034267a07026a400db2a26421d5555389cfc7c8
+          git worktree add --detach /tmp/ce235-approved 7034267a07026a400db2a26421d5555389cfc7c8
+          ln -s "$GITHUB_WORKSPACE/code/node_modules" /tmp/ce235-approved/code/node_modules
+          cd /tmp/ce235-approved/code
+          npm run build
+      - name: Team contexts and baseline regression
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/ce235-context-preview.log 2>&1 &
+          (cd /tmp/ce235-approved/code && npm run preview -- --host 127.0.0.1 --port 4174 > /tmp/ce235-baseline-preview.log 2>&1) &
+          for port in 4173 4174; do
+            for i in {1..30}; do
+              curl -fsS "http://127.0.0.1:$port/ITA-CE235-EmbeddedSystems-RealTime/" > /dev/null && break
+              sleep 1
+            done
+          done
+          node scripts/team-context-smoke.mjs
       - name: Upload QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
