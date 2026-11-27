@@ -35,10 +35,11 @@ export default function List5() {
         <article className="contribution-card">
           <span className="eyebrow">Minha contribuição</span><h2>US330 — Telemetry Decoder</h2>
           <p>Evolução da US123 e da US221 para um serviço de ingestão autenticada, tratamento, persistência PostgreSQL isolada e consulta na Estação de Solo 1. O teste documentado empregou telemetria simulada externa. O escopo individual não equivale à autoria integral da estação ou da US330.</p>
-          <div className="card-actions contribution-card__actions">
+          <div className="card-actions contribution-card__actions sprint3-contribution-actions">
+            <a className="button button--gold" href={links.disciplineDrive} target="_blank" rel="noopener noreferrer">Drive da disciplina <ExternalLink size={15}/></a>
             <External href="https://github.com/LeonardoCamargoRossato/ITA-CE235-EmbeddedSystems-RealTime">GitHub pessoal</External>
-            <External href={issue(146)}>US330 #146</External><External href={issue(162)}>T2 #162 — relacionada</External>
-            <External href={board}>Kanban TS#3</External><External href={links.list5Drive}>Drive da Sprint 3</External>
+            <External href={issue(146)}>US330 #146</External>
+            <External href={board}>Kanban Sprint 3</External>
           </div>
         </article>
         <article className="drive-file-preview-card list4-enunciado-card">
