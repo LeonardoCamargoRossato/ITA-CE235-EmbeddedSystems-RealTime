@@ -45,8 +45,8 @@ export default function Sprint1() {
 
       <section className="section sprint1-main">
         <div className="container content-stack content-stack--sprint1">
-          <div className="sprint1-contribution-enunciado">
-            <ContributionCard demoUrl={links.us123TelemetryDecoder} githubUrl={links.us123Repository} issueUrl={links.us123Issue70} />
+          <div className="sprint1-contribution-enunciado sprint-contribution-pair">
+            <ContributionCard driveUrl={links.list3Drive} demoUrl={links.us123TelemetryDecoder} githubUrl={links.us123Repository} issueUrl={links.us123Issue70} />
             <DriveFilePreview
               title="Enunciado — ListEx 3 / Sprint 1"
               fileName="listex3-enunciado.pdf"

@@ -12,12 +12,6 @@
 .list5-sprint3 thead{background:#123651;color:#fff}
 .list5-sprint3 button:focus-visible,.list5-sprint3 a:focus-visible{outline:3px solid #b78b43;outline-offset:3px}
 
-.list5-sprint3 .sprint1-contribution-enunciado .sprint3-contribution-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:stretch}
-.list5-sprint3 .sprint3-contribution-actions .button{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;white-space:normal;overflow-wrap:anywhere;padding:10px 12px;line-height:1.25}
-.list5-sprint3 .sprint3-contribution-actions .button svg{flex-shrink:0}
-@media(max-width:420px){.list5-sprint3 .sprint1-contribution-enunciado .sprint3-contribution-actions{grid-template-columns:1fr}}
 
-/* The contribution pair must grow with content, rather than inherit Sprint 1's fixed height. */
-.list5-sprint3 .sprint1-contribution-enunciado>.contribution-card,.list5-sprint3 .sprint1-contribution-enunciado>.drive-file-preview-card{height:auto;min-height:0;max-height:none}
-.list5-sprint3 .sprint1-contribution-enunciado>.contribution-card{align-self:stretch;overflow:visible}
-.list5-sprint3 .sprint3-contribution-actions{margin-top:auto;padding-top:8px}
+
+.list5-sprint3 .sprint3-portal-status{display:block;margin-top:10px;color:#b9c8d7;font-size:12px;line-height:1.4}

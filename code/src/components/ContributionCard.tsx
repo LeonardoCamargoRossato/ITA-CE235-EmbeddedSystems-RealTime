@@ -1,2 +1,15 @@
-import { ExternalLink } from "lucide-react";
-export default function ContributionCard({demoUrl,githubUrl,issueUrl}:{demoUrl:string;githubUrl:string;issueUrl:string}){return <article className="contribution-card"><span className="eyebrow">Minha contribuição</span><h2>US123 — Telemetry Decoder</h2><p>Como parte da Sprint 1, foi desenvolvida uma demonstração funcional da cadeia de recepção, desempacotamento e validação de telemetria, servindo como referência funcional para integração posterior com o ANSYS SCADE.</p><div className="card-actions contribution-card__actions"><a className="button button--gold" href={demoUrl} target="_blank" rel="noopener noreferrer">Telemetry Decoder <ExternalLink size={15}/></a><a className="button button--ghost-dark" href={githubUrl} target="_blank" rel="noopener noreferrer">Repositório GitHub <ExternalLink size={15}/></a><a className="button button--ghost-dark" href={issueUrl} target="_blank" rel="noopener noreferrer">Subsprint #70 <ExternalLink size={15}/></a></div></article>}
+import SprintContributionActions from "./SprintContributionActions";
+
+export default function ContributionCard({driveUrl,demoUrl,githubUrl,issueUrl}:{driveUrl:string;demoUrl:string;githubUrl:string;issueUrl:string}){
+  return <article className="contribution-card">
+    <span className="eyebrow">Minha contribuição</span>
+    <h2>US123 — Telemetry Decoder</h2>
+    <p>Como parte da Sprint 1, foi desenvolvida uma demonstração funcional da cadeia de recepção, desempacotamento e validação de telemetria, servindo como referência funcional para integração posterior com o ANSYS SCADE.</p>
+    <SprintContributionActions items={[
+      {label:"Drive da Sprint 1",href:driveUrl,variant:"drive"},
+      {label:"Telemetry Decoder",href:demoUrl,variant:"app"},
+      {label:"Repositório GitHub",href:githubUrl},
+      {label:"Subsprint #70",href:issueUrl}
+    ]}/>
+  </article>;
+}

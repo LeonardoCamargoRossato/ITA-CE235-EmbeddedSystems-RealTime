@@ -1,4 +1,6 @@
 import { imagePair } from "../data/assets";
+import { links } from "../data/links";
+import SprintContributionActions from "../components/SprintContributionActions";
 import { ExternalLink, FileText } from "lucide-react";
 import CompactListHeader from "../components/CompactListHeader";
 import SectionTitle from "../components/SectionTitle";
@@ -50,7 +52,7 @@ export default function List4() {
 
       <section className="section sprint1-main">
         <div className="container content-stack content-stack--sprint1">
-          <div className="sprint1-contribution-enunciado">
+          <div className="sprint1-contribution-enunciado sprint-contribution-pair">
             <article className="contribution-card">
               <span className="eyebrow">Minha contribuição</span>
               <h2>US221 — Telemetry Decoder</h2>
@@ -60,17 +62,12 @@ export default function List4() {
                 telemetria, sistema legado e ANSYS SCADE. A documentação técnica da US221 foi publicada no repositório
                 oficial do TS2 para manter a rastreabilidade entre implementação, atividade e especificação.
               </p>
-              <div className="card-actions contribution-card__actions">
-                <a className="button button--gold" href={personalRepositoryUrl} target="_blank" rel="noopener noreferrer">
-                  Repositório GitHub <ExternalLink size={15}/>
-                </a>
-                <a className="button button--ghost-dark" href={us221ProjectUrl} target="_blank" rel="noopener noreferrer">
-                  US221 T1 <ExternalLink size={15}/>
-                </a>
-                <a className="button button--ghost-dark" href={us221DocumentationUrl} target="_blank" rel="noopener noreferrer">
-                  US221 — Contrato C API <ExternalLink size={15}/>
-                </a>
-              </div>
+              <SprintContributionActions items={[
+                {label:"Drive da Sprint 2",href:links.list4Drive,variant:"drive"},
+                {label:"Repositório GitHub",href:personalRepositoryUrl},
+                {label:"US221 T1",href:us221ProjectUrl},
+                {label:"US221 — Contrato C API",href:us221DocumentationUrl}
+              ]}/>
             </article>
 
             <article className="drive-file-preview-card list4-enunciado-card">

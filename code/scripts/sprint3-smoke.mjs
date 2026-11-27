@@ -10,6 +10,24 @@ const results = [];
 const localEvidence = u => u.startsWith(base+'assets/') && /\/sprint-[123]\//.test(u);
 const png = u => localEvidence(u)&&/\/PNG\//.test(u);
 const webp = u => localEvidence(u)&&/\/WebP\//.test(u);
+async function checkContribution(page, expected, drive, app, file) {
+  const card=page.locator('.contribution-card').first();
+  await card.scrollIntoViewIfNeeded();
+  const links=card.locator('.sprint-contribution-actions a');
+  assert.deepEqual((await links.allTextContents()).map(t=>t.trim()),expected);
+  assert.equal(await links.first().getAttribute('href'),drive);
+  assert.equal(await card.locator('.button--gold').count(),1);
+  assert.match(await links.first().getAttribute('class'),/button--gold/);
+  assert.equal(await card.locator('.button--app-accent').count(),app?1:0);
+  if(app) {assert.equal(await links.nth(1).getAttribute('href'),app);assert.match(await links.nth(1).getAttribute('class'),/button--app-accent/);}
+  const cardBox=await card.boundingBox();
+  for(const link of await links.all()){
+    const b=await link.boundingBox();
+    assert.ok(b && b.x>=cardBox.x-1 && b.x+b.width<=cardBox.x+cardBox.width+1 && b.y+b.height<=cardBox.y+cardBox.height+1,'contribution button clipped');
+  }
+  await card.screenshot({path:file});
+}
+
 async function decoded(locator) {
   await locator.waitFor({state:'visible'});
   await locator.evaluate(el=>el.decode());
@@ -59,10 +77,14 @@ try {
     await page.getByRole('link',{name:'Ver Sprint 3'}).click();
     await page.waitForURL('**/#/list5');
     await page.getByRole('heading',{name:'US330 — Telemetry Decoder'}).waitFor();
-    const buttons=page.locator('.sprint3-contribution-actions a');
-    assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da disciplina','GitHub pessoal','US330 #146','Kanban Sprint 3']);
+    const buttons=page.locator('.sprint-contribution-actions a');
+    assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da disciplina','Portal de acesso US330','GitHub pessoal','US330 #146']);
     assert.equal(await buttons.first().getAttribute('href'),'https://drive.google.com/drive/folders/1G2xcYjDR7YVyom-LLZlm7UlpJl-SgxsD');
     assert.match(await buttons.first().getAttribute('class'),/button--gold/);
+    assert.match(await buttons.nth(1).getAttribute('class'),/button--app-accent/);
+    assert.equal(await buttons.nth(1).getAttribute('href'),'https://egg-steady-sixth-fax.trycloudflare.com/us330-api/');
+    assert.equal(await page.locator('.sprint-contribution-actions .button--gold').count(),1);
+    assert.ok(await page.getByRole('link',{name:'Abrir quadro oficial',exact:true}).count()>0);
     assert.ok(await page.getByRole('link',{name:'T2 #162',exact:true}).count()>0);
     await page.locator('.contribution-card').first().scrollIntoViewIfNeeded();
     const contributionBox=await page.locator('.contribution-card').first().boundingBox();
@@ -141,6 +163,7 @@ try {
     assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,3);
     await page.getByRole('link',{name:'Voltar às listas'}).click();await page.waitForURL('**/#/listas');
     await page.goto(base+'#/sprint1');
+    await checkContribution(page,['Drive da Sprint 1','Telemetry Decoder','Repositório GitHub','Subsprint #70'],'https://drive.google.com/drive/folders/1XBxqqxhEtPH28rLyM3hbt0fQD92DiaQO','https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/','qa-sprint3/contribution-sprint1-'+label+'.png');
     const s1=page.locator('.sprint-media-gallery__item').first();
     const dialog1=await openViewer(page,s1);
     const first=await dialog1.locator('img').getAttribute('src');
@@ -149,6 +172,7 @@ try {
     await page.keyboard.press('ArrowLeft');await decoded(dialog1.locator('img'));assert.equal(await dialog1.locator('img').getAttribute('src'),first);
     await closeViewer(page,dialog1,s1);
     await page.goto(base+'#/list4');
+    await checkContribution(page,['Drive da Sprint 2','Repositório GitHub','US221 T1','US221 — Contrato C API'],'https://drive.google.com/drive/folders/1keKi3JUQDIM-mJS40sKdC3FLve-Bz2g-',null,'qa-sprint3/contribution-sprint2-'+label+'.png');
     const s2=page.locator('.sprint-main-figure__media');
     assert.equal(await s2.count(),3);
     for(const trigger of await s2.all()){
