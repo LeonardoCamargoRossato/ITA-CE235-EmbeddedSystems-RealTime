@@ -1,0 +1,30 @@
+name: Validate CE-235 PR
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: code
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: code/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Verify Sprint 3 publication assets
+        run: |
+          for slug in diagrama-us330 portal-us330 kanban-sprint3; do
+            test -s "dist/assets/PNG/sprint-3/us330/$slug.png"
+            test -s "dist/assets/WebP/sprint-3/us330/$slug.webp"
+          done
+          test -s dist/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf
+          grep -q 'path="/list5"' src/App.tsx
+          grep -q 'id:"list5"' src/data/lists.ts
