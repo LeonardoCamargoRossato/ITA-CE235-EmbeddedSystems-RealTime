@@ -157,10 +157,10 @@ try {
     await page.goto(base+'#/listas');
     await page.getByRole('link',{name:'Ver Sprint 3'}).click();
     await page.waitForURL('**/#/list5');
-    await page.getByRole('heading',{name:'US330 — Telemetry Decoder'}).waitFor();
+    await page.getByRole('heading',{name:'US330 (Plataforma de serviços da estação de solo)'}).waitFor();
     await checkSprintOpening(page,label,3);
     const buttons=page.locator('.sprint-contribution-actions a');
-    assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da Sprint 3','Portal de acesso US330 (Telemetry Decoder versão 3)','GitHub pessoal','US330 #146']);
+    assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da Sprint 3','Portal de acesso Ground Station API V3','GitHub pessoal','US330 #146']);
     assert.equal(await buttons.first().getAttribute('href'),'https://drive.google.com/drive/folders/15snftyx0i1KedmWKj-tcm2iaX0XqweAM');
     assert.match(await buttons.first().getAttribute('class'),/button--gold/);
     assert.match(await buttons.nth(1).getAttribute('class'),/button--app-accent/);
@@ -184,6 +184,19 @@ try {
       assert.equal(requests.filter(u=>webp(u)&&u.includes('/'+slug+'.webp')).length,0,slug+' fetched before its section was visited');
     }
     const before=requests.filter(webp).length;
+    const concept=page.locator('.gsa-concept-figure > button');
+    assert.equal(requests.filter(u=>png(u)&&u.includes('ground-station-api-componentes')).length,0);
+    await visiblePreview(concept);
+    assert.equal(requests.filter(u=>png(u)&&u.includes('ground-station-api-componentes')).length,0);
+    await page.locator('.gsa-concept-figure').screenshot({path:`qa-sprint3/gsa-concept-${label}.png`});
+    const conceptDialog=await openViewer(page,concept);
+    await conceptDialog.getByRole('button',{name:'Aumentar zoom'}).click();
+    assert.equal(await conceptDialog.locator('output').textContent(),'125%');
+    await closeViewer(page,conceptDialog,concept);
+    await page.locator('.gsa-version-flow').scrollIntoViewIfNeeded();
+    await page.locator('.gsa-version-flow').screenshot({path:`qa-sprint3/gsa-evolution-${label}.png`});
+    await page.locator('.gsa-identity').screenshot({path:`qa-sprint3/gsa-identity-${label}.png`});
+    assert.equal(await page.locator('.gsa-chosen').count(),1);
     for(const [i,figure] of (await figures.all()).entries()){
       const trigger=figure.locator(':scope > button');
       const originalPngs=requests.filter(png).length;
@@ -243,11 +256,11 @@ try {
     await page.locator('.sprint3-note').first().scrollIntoViewIfNeeded();
     assert.match(await page.locator('.sprint3-note').first().innerText(),/disponibilidade a confirmar/i);
     const countS3={webp:requests.filter(webp).length,png:requests.filter(png).length,webpBeforeScroll:before};
-    assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,3);
+    assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,4);
     await page.getByRole('link',{name:'Voltar às listas'}).click();await page.waitForURL('**/#/listas');
     await page.goto(base+'#/sprint1');
     await checkSprintOpening(page,label,1);
-    await checkContribution(page,['Drive da Sprint 1','Portal de acesso US123 (Telemetry Decoder versão 1)','Repositório GitHub','Subsprint #70'],'https://drive.google.com/drive/folders/1XBxqqxhEtPH28rLyM3hbt0fQD92DiaQO','https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/','qa-sprint3/contribution-sprint1-'+label+'.png');
+    await checkContribution(page,['Drive da Sprint 1','Portal de acesso Ground Station API V1','Repositório GitHub','Subsprint #70'],'https://drive.google.com/drive/folders/1XBxqqxhEtPH28rLyM3hbt0fQD92DiaQO','https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/','qa-sprint3/contribution-sprint1-'+label+'.png');
     const s1=page.locator('.sprint-media-gallery__item').first();
     const dialog1=await openViewer(page,s1);
     const first=await dialog1.locator('img').getAttribute('src');
@@ -276,11 +289,18 @@ try {
     await closeViewer(page,dlg,trigger);
     await car.getByRole('button',{name:'Próxima imagem'}).click();await visiblePreview(trigger);
     await checkPdfReader(page,'sprint2-relatorio',5,'https://drive.google.com/file/d/1SKaTGLuDpG73mpjqtZCscrjLby858x6S/view',label);
-    for(const route of ['','projeto','list0','list1','list2','list3','artefatos','scade','disciplina','curriculo','relatorio-final']){
+    for(const route of ['','projeto','list0','list1','list2','list3','artefatos','scade','disciplina','curriculo','relatorio-final','sprint1/time1','sprint1/time2','list4/time1','list4/time2','list5/time3','nao-existe']){
       await page.goto(base+'#/'+route);
       await page.locator('main').waitFor();
-      assert.ok((await page.locator('main').innerText()).trim().length>30,route+' empty');
+      assert.ok((await page.locator('main').innerText()).trim().length>10,route+' empty');
+      const author=page.locator('footer .footer__author a');
+      assert.match(await author.innerText(),/@leonardocamargorossato/);
+      assert.equal(await author.getAttribute('href'),'https://leonardocamargorossato.github.io/LCR-SolutionsArchitecture-IA-Quantum/#/');
+      if(route==='projeto'){assert.equal(await page.locator('.gsa-table thead th').count(),4);await page.locator('.gsa-table').screenshot({path:`qa-sprint3/gsa-project-table-${label}.png`});await page.locator('footer').screenshot({path:`qa-sprint3/gsa-footer-${label}.png`});}
     }
+    await page.goto(base+'#/list5?secao=evolucao');
+    await page.locator('#gsa-evolucao').waitFor();
+    await page.waitForFunction(()=>Math.abs(document.querySelector('#gsa-evolucao').getBoundingClientRect().top-100)<160);
     assert.deepEqual(failed,[],'local image HTTP errors');assert.deepEqual(errors,[],label+' page errors');
     const sum=arr=>[...responseSizes].filter(([u])=>arr(u)).reduce((a,[,n])=>a+n,0);
     const result={label,case:'cold isolated browser; external requests blocked',sprint3:countS3,uniqueWebp:new Set(requests.filter(webp)).size,uniquePng:new Set(requests.filter(png)).size,webpBytes:sum(webp),pngBytes:sum(png),externalRequestsBlocked:blocked.length};

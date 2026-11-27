@@ -14,7 +14,7 @@
 .project-context-card__actions{display:flex;gap:7px}
 .project-context-card__actions .button{flex:1 1 0;min-width:0;min-height:44px;white-space:normal;text-align:center}
 .project-context-card :focus-visible{outline:2px solid #b78b43;outline-offset:2px}
-@media(min-width:901px){.project-context-card{height:var(--context-height);min-height:var(--context-height)}}
+@media(min-width:901px){.project-context-card{height:auto;min-height:var(--context-height)}}
 @media(max-width:900px){.project-context-card{grid-template-rows:auto auto auto;padding:16px;min-height:0}.project-context-card__content{max-height:260px}}
 
 .sprint-page--1 .project-context-card{--context-height:268.53125px}
@@ -22,3 +22,6 @@
 .sprint1-enunciado-reference>h2{font-size:20px;margin:0 0 6px;color:var(--navy)}
 .sprint1-enunciado-reference>p{font-size:13px;color:var(--muted);margin:0 0 12px}
 .sprint1-enunciado-reference .drive-file-preview-card__viewer{height:220px;min-height:180px}
+
+/* Editorial title can wrap. Keep right card aligned with its adjacent contribution; contain expanded details. */
+@media(min-width:901px){.project-context-card__content{height:0;min-height:100%}}

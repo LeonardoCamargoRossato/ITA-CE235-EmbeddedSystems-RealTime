@@ -1,0 +1,9 @@
+export const groundStationVersions = [
+  {sprint:1,userStory:"US123",name:"Ground Station API V1",technicalName:"Telemetry Decoder",technicalNamePt:"Telemetry Decoder",route:"/sprint1",development:"Protótipo de recepção e interpretação de telemetria",detail:"Recepção, interpretação, desempacotamento e validação dos dados simulados."},
+  {sprint:2,userStory:"US221",name:"Ground Station API V2",technicalName:"Telemetry Processing API",technicalNamePt:"Telemetry Processing API",route:"/list4",development:"API de comunicação, processamento e persistência local",detail:"FastAPI, React/Vite/TypeScript, contratos RAW/PROCESSED, JSONL, SQLite e fronteira C preparada."},
+  {sprint:3,userStory:"US330",name:"Ground Station API V3",technicalName:"Ground Station Services Platform",technicalNamePt:"Plataforma de serviços da estação de solo",route:"/list5",development:"Plataforma de serviços implantada na estação de solo",detail:"Servidor remoto, autenticação, API, PostgreSQL, portal e dashboard."}
+] as const;
+export const [gsaV1,gsaV2,gsaV3]=groundStationVersions;
+export const groundStationTitle=(v:typeof groundStationVersions[number])=>v.userStory+" ("+v.technicalNamePt+")";
+export const evolutionRoute="/list5?secao=evolucao";
+export const groundStationObjective="O objetivo final da contribuição individual durante a Sprint 3 foi evoluir a Telemetry Processing API para uma plataforma de serviços da estação de solo, denominada Ground Station API. A aplicação passou a integrar mecanismos de comunicação autenticada, recepção e processamento de telemetria, persistência de dados, consulta por API, interfaces de monitoramento e acesso remoto à infraestrutura da estação de solo. Essa evolução consolida a continuidade tecnológica das três Sprints, desde a decodificação inicial até a implantação de uma arquitetura de serviços.";

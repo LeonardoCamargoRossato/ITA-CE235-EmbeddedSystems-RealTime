@@ -17,3 +17,6 @@ export const assets = {
   profile: publicAsset("assets/WebP/portal/foto-perfil.webp"),
   itaLogo: publicAsset("assets/SVG/marcas/ita-logo.svg"),
 } as const;
+
+// Conceptual identity diagram: SVG source, WebP initial view, PNG on demand.
+export const groundStationComponents = { ...imagePair("sprint-3/us330/ground-station-api-componentes"), svg: publicAsset("assets/SVG/sprint-3/us330/ground-station-api-componentes.svg") } as const;
