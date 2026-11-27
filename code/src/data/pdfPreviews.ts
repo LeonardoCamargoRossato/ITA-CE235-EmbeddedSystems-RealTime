@@ -41,27 +41,27 @@ export const pdfPreviews = {
   ],
   "sprint3-relatorio": [
     {
-      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p01.webp",
+      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p01-d3bbbbca.webp",
       "width": 1600,
       "height": 2263
     },
     {
-      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p02.webp",
+      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p02-d3bbbbca.webp",
       "width": 1600,
       "height": 2263
     },
     {
-      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p03.webp",
+      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p03-d3bbbbca.webp",
       "width": 1600,
       "height": 2263
     },
     {
-      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p04.webp",
+      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p04-d3bbbbca.webp",
       "width": 1600,
       "height": 2263
     },
     {
-      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p05.webp",
+      "path": "assets/WebP/sprint-3/pdf/sprint3-relatorio-p05-d3bbbbca.webp",
       "width": 1600,
       "height": 2263
     }

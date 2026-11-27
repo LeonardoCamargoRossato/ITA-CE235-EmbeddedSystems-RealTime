@@ -16,7 +16,7 @@ import "../styles/list5-sprint3.css";
 
 const issue = (id: number) => `https://github.com/Projeto-SPRB-TR-BD/Projeto-SPRB-TR-BD/issues/${id}`;
 const board = "https://github.com/orgs/Projeto-SPRB-TR-BD/projects/7/views/1";
-const report = `${import.meta.env.BASE_URL}assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf`;
+const report = `${import.meta.env.BASE_URL}assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato-d3bbbbca.pdf`;
 const portal = "https://egg-steady-sixth-fax.trycloudflare.com/us330-api/";
 const evidence = (slug: string) => imagePair(`sprint-3/us330/${slug}`);
 
