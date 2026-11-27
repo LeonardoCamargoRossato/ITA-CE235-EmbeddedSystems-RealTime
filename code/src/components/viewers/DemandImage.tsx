@@ -5,10 +5,10 @@ export default function DemandImage({src,alt,className="",ratio=false}:{src:stri
   useEffect(()=>{
     const el=ref.current;if(!el)return;
     if(typeof IntersectionObserver==="undefined"){setVisible(true);return;}
-    const observer=new IntersectionObserver(entries=>setVisible(entries.some(e=>e.isIntersecting && e.intersectionRatio>0)),{rootMargin:"0px",threshold:0});
+    const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting && e.intersectionRatio>0)){setVisible(true);observer.disconnect();}},{rootMargin:"0px",threshold:0});
     observer.observe(el);return()=>observer.disconnect();
   },[]);
   return <span ref={ref} className={`lcr-demand-image${ratio?" lcr-demand-image--ratio":""} ${className}`}>
-    {visible&&<img src={src} alt={alt} decoding="async" loading="lazy"/>}
+    {visible&&<img src={src} alt={alt} decoding="async"/>}
   </span>;
 }
