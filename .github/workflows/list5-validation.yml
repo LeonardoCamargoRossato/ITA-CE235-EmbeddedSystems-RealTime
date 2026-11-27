@@ -47,11 +47,18 @@ jobs:
           git worktree add --detach /tmp/ce235-approved 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
           ln -s "$GITHUB_WORKSPACE/code/node_modules" /tmp/ce235-approved/code/node_modules
           cd /tmp/ce235-approved/code
-          npm run build
+          test "$(git rev-parse HEAD)" = 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
+          grep -q "US123 — Telemetry Decoder" src/components/ContributionCard.tsx
+          node "$GITHUB_WORKSPACE/code/node_modules/typescript/bin/tsc" -b
+          node "$GITHUB_WORKSPACE/code/node_modules/vite/bin/vite.js" build /tmp/ce235-approved/code --config /tmp/ce235-approved/code/vite.config.ts --outDir /tmp/ce235-baseline-dist
+          grep -rq "Portal de acesso US123 (Telemetry Decoder versão 1)" /tmp/ce235-baseline-dist/assets
+          ! grep -rq "Portal de acesso Ground Station API V1" /tmp/ce235-baseline-dist/assets
+          mkdir -p /tmp/ce235-baseline-http
+          ln -s /tmp/ce235-baseline-dist /tmp/ce235-baseline-http/ITA-CE235-EmbeddedSystems-RealTime
       - name: Team contexts and baseline regression
         run: |
           npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/ce235-context-preview.log 2>&1 &
-          (cd /tmp/ce235-approved/code && npm run preview -- --host 127.0.0.1 --port 4174 > /tmp/ce235-baseline-preview.log 2>&1) &
+          python3 -m http.server 4174 --bind 127.0.0.1 --directory /tmp/ce235-baseline-http > /tmp/ce235-baseline-preview.log 2>&1 &
           for port in 4173 4174; do
             for i in {1..30}; do
               curl -fsS "http://127.0.0.1:$port/ITA-CE235-EmbeddedSystems-RealTime/" > /dev/null && break
