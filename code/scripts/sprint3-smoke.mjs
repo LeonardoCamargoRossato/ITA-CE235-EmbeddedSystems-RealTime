@@ -65,6 +65,11 @@ try {
     assert.match(await buttons.first().getAttribute('class'),/button--gold/);
     assert.ok(await page.getByRole('link',{name:'T2 #162',exact:true}).count()>0);
     await page.locator('.contribution-card').first().scrollIntoViewIfNeeded();
+    const contributionBox=await page.locator('.contribution-card').first().boundingBox();
+    for(const button of await buttons.all()){
+      const box=await button.boundingBox();
+      assert.ok(box && box.y+box.height<=contributionBox.y+contributionBox.height+1 && box.x>=contributionBox.x-1 && box.x+box.width<=contributionBox.x+contributionBox.width+1,'contribution button clipped');
+    }
     await page.locator('.contribution-card').first().screenshot({path:'qa-sprint3/contribution-'+label+'.png'});
     const figures=page.locator('.sprint3-evidence');
     assert.equal(await figures.count(),3);

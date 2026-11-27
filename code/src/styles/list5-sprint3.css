@@ -16,3 +16,8 @@
 .list5-sprint3 .sprint3-contribution-actions .button{width:100%;min-height:48px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;white-space:normal;overflow-wrap:anywhere;padding:10px 12px;line-height:1.25}
 .list5-sprint3 .sprint3-contribution-actions .button svg{flex-shrink:0}
 @media(max-width:420px){.list5-sprint3 .sprint1-contribution-enunciado .sprint3-contribution-actions{grid-template-columns:1fr}}
+
+/* The contribution pair must grow with content, rather than inherit Sprint 1's fixed height. */
+.list5-sprint3 .sprint1-contribution-enunciado>.contribution-card,.list5-sprint3 .sprint1-contribution-enunciado>.drive-file-preview-card{height:auto;min-height:0;max-height:none}
+.list5-sprint3 .sprint1-contribution-enunciado>.contribution-card{align-self:stretch;overflow:visible}
+.list5-sprint3 .sprint3-contribution-actions{margin-top:auto;padding-top:8px}
