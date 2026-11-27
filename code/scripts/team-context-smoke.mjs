@@ -47,10 +47,13 @@ try{
     const b=await start(4174,spec.route,viewport);
     const c=await start(4173,spec.route,viewport);
     const before=await snapshot(b.page,spec.route,`baseline-sprint${spec.sprint}-${label}`);
+    assert.equal(await b.page.locator(".contribution-card h2").innerText(),["US123 — Telemetry Decoder","US221 — Telemetry Decoder","US330 — Telemetry Decoder"][spec.sprint-1],"Wrong baseline: old heading required");
+    assert.equal(await c.page.locator(".contribution-card h2").innerText(),["US123 (Telemetry Decoder)","US221 (Telemetry Processing API)","US330 (Plataforma de serviços da estação de solo)"][spec.sprint-1],"Wrong candidate heading");
     const after=await snapshot(c.page,spec.route,`candidate-sprint${spec.sprint}-${label}`);
     assert.deepEqual(after.links.map(({text,...rest})=>rest),before.links.map(({text,...rest})=>rest),"Approved link destination/class/order changed");
     assert.deepEqual(after.links.map(x=>x.text),spec.buttons);
     // Text changes are authorized; compare structural styles, link metadata and bounded layout, retaining paired screenshots.
+    assert.notEqual(after.hash,before.hash,"Editorial text must differ from the old raster");
     assert.equal(after.data.width,before.data.width);assert.equal(after.data.padding,before.data.padding);assert.deepEqual(after.data.colors,before.data.colors);assert.deepEqual(after.data.children.map(x=>x.style),before.data.children.map(x=>x.style));
     assert.ok(after.data.height<=before.data.height+80,"Excessive growth from approved editorial changes");
     assert.ok(after.data.children.filter(x=>x.text.includes("Ground Station API V")).length>0);
@@ -120,7 +123,7 @@ try{
       }
     }
     assert.deepEqual(c.errors,[]);
-    report.push({sprint:spec.sprint,viewport:label,baselineSha:"57761cd591c9df35fbcc5a7cbe09d1dab8a16970",baselineCardHash:before.hash,candidateCardHash:after.hash,expandedBaselineHash:expandedBefore.hash,expandedCandidateHash:expandedAfter.hash,cardWidth:before.data.width,cardHeight:before.data.height,candidateCardHeight:after.data.height,buttons:before.links.map(x=>({text:x.text,href:x.href})),teams:spec.teams.map(t=>t.route)});
+    report.push({sprint:spec.sprint,viewport:label,baselineSha:"57761cd591c9df35fbcc5a7cbe09d1dab8a16970",baselineCardHash:before.hash,candidateCardHash:after.hash,expandedBaselineHash:expandedBefore.hash,expandedCandidateHash:expandedAfter.hash,cardWidth:before.data.width,cardHeight:before.data.height,candidateCardHeight:after.data.height,buttons:after.links.map(x=>({text:x.text,href:x.href})),baselineButtons:before.links.map(x=>({text:x.text,href:x.href})),teams:spec.teams.map(t=>t.route)});
     console.log(JSON.stringify(report.at(-1)));
     await c.context.close();
   }
