@@ -164,25 +164,8 @@ export default function List4() {
               description="Kanban da Sprint 2 com acesso direto à atividade US221 T1 e ao repositório individual da disciplina."
             />
             <div className="sprint2-repository-focus" style={{ display: "block" }}>
-              <a
-                className="sprint2-kanban-card"
-                href={us221ProjectUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ marginBottom: 16 }}
-              >
-                <img
-                  src={kanbanImage.src}
-                  alt="Kanban da Sprint 2"
-                  loading="lazy"
-                  style={{ width: "100%", height: "auto", aspectRatio: "auto", objectFit: "contain" }}
-                />
-                <div>
-                  <span>SPRINT 2</span>
-                  <strong>Kanban — US221</strong>
-                  <small>Abrir atividade no projeto da turma <ExternalLink size={13}/></small>
-                </div>
-              </a>
+              <SprintSpriteFigure {...kanbanImage} caption="Kanban — US221" alt="Kanban da Sprint 2"/>
+
               <div
                 className="sprint2-repository-links"
                 style={{

@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { ExternalLink, FileText, Expand, X } from "lucide-react";
+import { ExternalLink, FileText } from "lucide-react";
+import ZoomableImage from "../components/galleries/ZoomableImage";
 import { Link } from "react-router-dom";
 import CompactListHeader from "../components/CompactListHeader";
 import SectionTitle from "../components/SectionTitle";
@@ -18,27 +18,8 @@ const evidence = (slug: string) => imagePair(`sprint-3/us330/${slug}`);
 function External({ href, children }: {href: string; children: string}) {
   return <a className="button button--secondary" href={href} target="_blank" rel="noopener noreferrer">{children} <ExternalLink size={15}/></a>;
 }
-function Evidence({slug, caption, alt}: {slug:string; caption:string; alt:string}) {
-  const {src, fullSrc} = evidence(slug);
-  const dialog = useRef<HTMLDialogElement>(null);
-  const trigger = useRef<HTMLButtonElement>(null);
-  const fullImage = useRef<HTMLImageElement>(null);
-  function show() {
-    if (fullImage.current) fullImage.current.src = fullSrc;
-    dialog.current?.showModal();
-  }
-  return <figure className="sprint3-evidence">
-    <button ref={trigger} type="button" onClick={show} aria-label={`Ampliar: ${caption}`}>
-      <img src={src} alt={alt} loading="lazy" decoding="async"/>
-      <span><Expand size={16}/> Ampliar</span>
-    </button>
-    <figcaption>{caption}</figcaption>
-    <dialog ref={dialog} onClose={() => { if (fullImage.current) fullImage.current.removeAttribute("src"); trigger.current?.focus(); }} className="sprint3-dialog">
-      <div className="sprint3-dialog-bar"><strong>{caption}</strong><button type="button" autoFocus onClick={() => dialog.current?.close()} aria-label="Fechar imagem"><X size={24}/></button></div>
-      <img ref={fullImage} alt={alt}/>
-      <a href={fullSrc} download className="button button--secondary">Baixar PNG</a>
-    </dialog>
-  </figure>;
+function Evidence({slug,caption,alt}:{slug:string;caption:string;alt:string}){
+  return <ZoomableImage {...evidence(slug)} caption={caption} alt={alt}/>;
 }
 const cases = [
   {id:192, name:"TC022", requirement:"100/500 ms por 300 s por patamar; 15.000 pacotes por patamar; jitter e RSS", limit:"Ensaio externo curto; teste oficial prolongado pendente."},
