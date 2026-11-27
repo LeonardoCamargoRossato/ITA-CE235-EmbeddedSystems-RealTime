@@ -1,5 +1,6 @@
 import { imagePair } from "../data/assets";
 import { links } from "../data/links";
+import SprintContributionSummary from "../components/SprintContributionSummary";
 import SprintContributionActions from "../components/SprintContributionActions";
 import { ExternalLink, FileText } from "lucide-react";
 import CompactListHeader from "../components/CompactListHeader";
@@ -40,7 +41,7 @@ const carouselItems: SprintEvidenceItem[] = [
 
 export default function List4() {
   return (
-    <div className="list4-sprint2">
+    <div className="list4-sprint2 sprint-page sprint-page--2">
       <CompactListHeader list="LIST 4" lab="SPRINT 2" title="Segunda Sprint do Projeto SPRB-TR/BD" />
 
       <section className="sprint1-meta">
@@ -56,12 +57,10 @@ export default function List4() {
             <article className="contribution-card">
               <span className="eyebrow">Minha contribuição</span>
               <h2>US221 — Telemetry Decoder</h2>
-              <p>
-                Na Sprint 2, a demonstração da US123 foi evoluída para uma arquitetura local com backend FastAPI,
+              <SprintContributionSummary summary="Backend FastAPI local, persistência RAW/PROCESSED e contrato C preparado para SCADE.">Na Sprint 2, a demonstração da US123 foi evoluída para uma arquitetura local com backend FastAPI,
                 persistência RAW/PROCESSED e uma fronteira C preparada para formalizar o contrato de dados entre
                 telemetria, sistema legado e ANSYS SCADE. A documentação técnica da US221 foi publicada no repositório
-                oficial do TS2 para manter a rastreabilidade entre implementação, atividade e especificação.
-              </p>
+                oficial do TS2 para manter a rastreabilidade entre implementação, atividade e especificação.</SprintContributionSummary>
               <SprintContributionActions items={[
                 {label:"Drive da Sprint 2",href:links.list4Drive,variant:"drive"},
                 {label:"Repositório GitHub",href:personalRepositoryUrl},
@@ -87,7 +86,7 @@ export default function List4() {
             </article>
           </div>
 
-          <div>
+          <div className="sprint-first-evidence">
             <SectionTitle
               eyebrow="US221"
               title="Demonstração e evidências da Sprint 2"

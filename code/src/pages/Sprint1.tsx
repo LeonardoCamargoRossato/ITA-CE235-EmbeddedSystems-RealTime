@@ -33,7 +33,7 @@ const githubImages = [
 
 export default function Sprint1() {
   return (
-    <>
+    <div className="sprint-page sprint-page--1">
       <CompactListHeader list="LIST 3" lab="SPRINT 1" title="Primeira Sprint do Projeto SPRB-TR/BD" />
 
       <section className="sprint1-meta">
@@ -59,7 +59,7 @@ export default function Sprint1() {
             />
           </div>
 
-          <div>
+          <div className="sprint-first-evidence">
             <SectionTitle
               eyebrow="US123"
               title="Demonstração publicada"
@@ -142,6 +142,6 @@ export default function Sprint1() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

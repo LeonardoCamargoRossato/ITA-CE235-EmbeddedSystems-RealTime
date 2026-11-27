@@ -1,5 +1,6 @@
 import { ExternalLink, FileText } from "lucide-react";
 import ZoomableImage from "../components/galleries/ZoomableImage";
+import SprintContributionSummary from "../components/SprintContributionSummary";
 import SprintContributionActions from "../components/SprintContributionActions";
 import { Link } from "react-router-dom";
 import CompactListHeader from "../components/CompactListHeader";
@@ -28,14 +29,14 @@ const cases = [
   {id:194, name:"TC024", requirement:"200 válidos + 20 malformados; p95 < 10 ms e isolamento", limit:"Mock histórico; aceite de roteamento não comprovado."}
 ];
 export default function List5() {
-  return <div className="list4-sprint2 list5-sprint3">
+  return <div className="list4-sprint2 list5-sprint3 sprint-page sprint-page--3">
     <CompactListHeader list="LIST 5" lab="SPRINT 3" title="Terceira Sprint do Projeto SPRB-TR/BD"/>
     <section className="sprint1-meta"><div className="container"><span>Projeto Acadêmico SPRB-TR/BD · TS#3 — Integração</span><strong>Entrega: 27/11/2026 · início a confirmar</strong></div></section>
     <section className="section sprint1-main"><div className="container content-stack content-stack--sprint1">
       <div className="sprint1-contribution-enunciado sprint-contribution-pair">
         <article className="contribution-card">
           <span className="eyebrow">Minha contribuição</span><h2>US330 — Telemetry Decoder</h2>
-          <p>Evolução da US123 e da US221 para um serviço de ingestão autenticada, tratamento, persistência PostgreSQL isolada e consulta na Estação de Solo 1. O teste documentado empregou telemetria simulada externa. O escopo individual não equivale à autoria integral da estação ou da US330.</p>
+          <SprintContributionSummary summary="Ingestão autenticada, tratamento e persistência PostgreSQL isolada na Estação de Solo 1, com telemetria simulada.">Evolução da US123 e da US221 para um serviço de ingestão autenticada, tratamento, persistência PostgreSQL isolada e consulta na Estação de Solo 1. O teste documentado empregou telemetria simulada externa. O escopo individual não equivale à autoria integral da estação ou da US330.</SprintContributionSummary>
           <SprintContributionActions items={[
             {label:"Drive da Sprint 3",href:links.list5Drive,variant:"drive"},
             {label:"Portal de acesso US330 (Telemetry Decoder versão 3)",href:portal,variant:"app",title:"Link temporário; disponibilidade a confirmar"},
@@ -49,7 +50,7 @@ export default function List5() {
           <div className="drive-file-preview-card__body"><h3>Enunciado específico — pendente</h3><p>Não localizado na pasta pessoal consultada. Relatório preliminar quanto a este requisito; prazo geral conforme planejamento CE-235: 27/11/2026, 23h59.</p></div>
         </article>
       </div>
-      <div><SectionTitle eyebrow="US330" title="Relatório individual e evidências" description="Contribuição individual, arquitetura, resultados históricos e limitações."/>
+      <div className="sprint-first-evidence"><SectionTitle eyebrow="US330" title="Relatório individual e evidências" description="Contribuição individual, arquitetura, resultados históricos e limitações."/>
         <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" pagePreview="sprint3-relatorio" large/>
         <div className="card-actions"><a className="button button--secondary" href={report} download>Baixar PDF</a><External href="https://drive.google.com/file/d/1FLtHN8y6VvkbGYzM8FRCMDYM1vHe7lzo/view">Cópia no Drive</External></div>
       </div>
