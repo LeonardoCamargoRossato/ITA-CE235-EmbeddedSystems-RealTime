@@ -77,3 +77,6 @@
 @media(max-width:360px){
   .sprint-page .sprint-contribution-pair .sprint-contribution-actions {grid-template-columns:1fr}
 }
+
+/* Long technical identity is the only title-size exception; preserve the approved card footprint. */
+.sprint-page--3 .sprint-contribution-pair .contribution-card h2{font-size:clamp(19px,1.65vw,23px);line-height:1.12}
