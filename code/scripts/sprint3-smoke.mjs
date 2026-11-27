@@ -7,7 +7,7 @@ const origin = new URL(base).origin;
 const browser = await chromium.launch({ headless: true });
 await mkdir('qa-sprint3', { recursive: true });
 const results = [];
-const localEvidence = u => u.startsWith(base+'assets/') && /\/sprint-[123]\//.test(u);
+const localEvidence = u => u.startsWith(base+'assets/') && /\/sprint-[123]\//.test(u) && !u.includes('/pdf/');
 const png = u => localEvidence(u)&&/\/PNG\//.test(u);
 const webp = u => localEvidence(u)&&/\/WebP\//.test(u);
 async function checkContribution(page, expected, drive, app, file) {
@@ -26,6 +26,37 @@ async function checkContribution(page, expected, drive, app, file) {
     assert.ok(b && b.x>=cardBox.x-1 && b.x+b.width<=cardBox.x+cardBox.width+1 && b.y+b.height<=cardBox.y+cardBox.height+1,'contribution button clipped');
   }
   await card.screenshot({path:file});
+}
+
+async function checkPdfReader(page,key,count,originalHref,label){
+  const reader=page.locator(`.pdf-page-reader[data-pdf-preview="${key}"]`);
+  await reader.scrollIntoViewIfNeeded();
+  const pages=reader.locator('.pdf-page-reader__page');
+  assert.equal(await pages.count(),count);
+  assert.equal(await reader.evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 255, 255)');
+  const card=reader.locator('xpath=ancestor::article[1]');
+  assert.equal(await card.locator('iframe').count(),0);
+  assert.equal(await card.locator('.preview-actions a').getAttribute('href'),originalHref);
+  for(const item of await pages.all()){
+    // Center the actual page within the scrollable reader; do not scroll a hidden image.
+    await item.evaluate(el=>el.scrollIntoView({block:'start',inline:'nearest'}));
+    const img=item.locator('img');
+    await decoded(img);
+    assert.ok(await img.evaluate(el=>Math.abs(el.getBoundingClientRect().width-el.parentElement.getBoundingClientRect().width)<=1));
+    assert.ok(await img.evaluate(el=>Math.abs((el.clientWidth/el.clientHeight)/(el.naturalWidth/el.naturalHeight)-1)<0.02));
+  }
+  await reader.evaluate(el=>{el.scrollTop=0;});
+  await reader.scrollIntoViewIfNeeded();
+  await reader.screenshot({path:`qa-sprint3/pdf-${key}-${label}.png`});
+  await card.getByRole('button',{name:'Expandir'}).click();
+  const modal=page.locator('.pdf-modal');
+  await modal.waitFor({state:'visible'});
+  const modalReader=modal.locator('.pdf-page-reader');
+  assert.equal(await modalReader.locator('.pdf-page-reader__page').count(),count);
+  await decoded(modalReader.locator('.pdf-page-reader__page').first().locator('img'));
+  await modalReader.screenshot({path:`qa-sprint3/pdf-expanded-${key}-${label}.png`});
+  await page.keyboard.press('Escape');
+  await modal.waitFor({state:'detached'});
 }
 
 async function decoded(locator) {
@@ -78,8 +109,8 @@ try {
     await page.waitForURL('**/#/list5');
     await page.getByRole('heading',{name:'US330 — Telemetry Decoder'}).waitFor();
     const buttons=page.locator('.sprint-contribution-actions a');
-    assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da disciplina','Portal de acesso US330','GitHub pessoal','US330 #146']);
-    assert.equal(await buttons.first().getAttribute('href'),'https://drive.google.com/drive/folders/1G2xcYjDR7YVyom-LLZlm7UlpJl-SgxsD');
+    assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da Sprint 3','Portal de acesso US330 (Telemetry Decoder versão 3)','GitHub pessoal','US330 #146']);
+    assert.equal(await buttons.first().getAttribute('href'),'https://drive.google.com/drive/folders/15snftyx0i1KedmWKj-tcm2iaX0XqweAM');
     assert.match(await buttons.first().getAttribute('class'),/button--gold/);
     assert.match(await buttons.nth(1).getAttribute('class'),/button--app-accent/);
     assert.equal(await buttons.nth(1).getAttribute('href'),'https://egg-steady-sixth-fax.trycloudflare.com/us330-api/');
@@ -155,6 +186,7 @@ try {
       }
       await closeViewer(page,dialog,trigger,i!==1);
     }
+    await checkPdfReader(page,'sprint3-relatorio',5, '/ITA-CE235-EmbeddedSystems-RealTime/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf',label);
     const pdf=await page.request.get(base+'assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf');
     assert.equal(pdf.status(),200);assert.equal((await pdf.body()).subarray(0,5).toString(),'%PDF-');
     await page.locator('.sprint3-note').first().scrollIntoViewIfNeeded();
@@ -163,7 +195,7 @@ try {
     assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,3);
     await page.getByRole('link',{name:'Voltar às listas'}).click();await page.waitForURL('**/#/listas');
     await page.goto(base+'#/sprint1');
-    await checkContribution(page,['Drive da Sprint 1','Telemetry Decoder','Repositório GitHub','Subsprint #70'],'https://drive.google.com/drive/folders/1XBxqqxhEtPH28rLyM3hbt0fQD92DiaQO','https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/','qa-sprint3/contribution-sprint1-'+label+'.png');
+    await checkContribution(page,['Drive da Sprint 1','Portal de acesso US123 (Telemetry Decoder versão 1)','Repositório GitHub','Subsprint #70'],'https://drive.google.com/drive/folders/1XBxqqxhEtPH28rLyM3hbt0fQD92DiaQO','https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/','qa-sprint3/contribution-sprint1-'+label+'.png');
     const s1=page.locator('.sprint-media-gallery__item').first();
     const dialog1=await openViewer(page,s1);
     const first=await dialog1.locator('img').getAttribute('src');
@@ -171,6 +203,7 @@ try {
     await decoded(dialog1.locator('img'));assert.notEqual(await dialog1.locator('img').getAttribute('src'),first);
     await page.keyboard.press('ArrowLeft');await decoded(dialog1.locator('img'));assert.equal(await dialog1.locator('img').getAttribute('src'),first);
     await closeViewer(page,dialog1,s1);
+    await checkPdfReader(page,'sprint1-enunciado',2,'/ITA-CE235-EmbeddedSystems-RealTime/documents/list3/listex3-enunciado.pdf',label);
     await page.goto(base+'#/list4');
     await checkContribution(page,['Drive da Sprint 2','Repositório GitHub','US221 T1','US221 — Contrato C API'],'https://drive.google.com/drive/folders/1keKi3JUQDIM-mJS40sKdC3FLve-Bz2g-',null,'qa-sprint3/contribution-sprint2-'+label+'.png');
     const s2=page.locator('.sprint-main-figure__media');
@@ -189,6 +222,7 @@ try {
     assert.equal(await dlg.locator('img').getAttribute('src'),first2);
     await closeViewer(page,dlg,trigger);
     await car.getByRole('button',{name:'Próxima imagem'}).click();await visiblePreview(trigger);
+    await checkPdfReader(page,'sprint2-relatorio',5,'https://drive.google.com/file/d/1SKaTGLuDpG73mpjqtZCscrjLby858x6S/view',label);
     for(const route of ['','projeto','list0','list1','list2','list3','artefatos','scade','disciplina','curriculo','relatorio-final']){
       await page.goto(base+'#/'+route);
       await page.locator('main').waitFor();

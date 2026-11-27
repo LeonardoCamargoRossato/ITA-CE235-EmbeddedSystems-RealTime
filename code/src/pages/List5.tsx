@@ -37,8 +37,8 @@ export default function List5() {
           <span className="eyebrow">Minha contribuição</span><h2>US330 — Telemetry Decoder</h2>
           <p>Evolução da US123 e da US221 para um serviço de ingestão autenticada, tratamento, persistência PostgreSQL isolada e consulta na Estação de Solo 1. O teste documentado empregou telemetria simulada externa. O escopo individual não equivale à autoria integral da estação ou da US330.</p>
           <SprintContributionActions items={[
-            {label:"Drive da disciplina",href:links.disciplineDrive,variant:"drive"},
-            {label:"Portal de acesso US330",href:portal,variant:"app",title:"Link temporário; disponibilidade a confirmar"},
+            {label:"Drive da Sprint 3",href:links.list5Drive,variant:"drive"},
+            {label:"Portal de acesso US330 (Telemetry Decoder versão 3)",href:portal,variant:"app",title:"Link temporário; disponibilidade a confirmar"},
             {label:"GitHub pessoal",href:"https://github.com/LeonardoCamargoRossato/ITA-CE235-EmbeddedSystems-RealTime"},
             {label:"US330 #146",href:issue(146)}
           ]}/>
@@ -50,7 +50,7 @@ export default function List5() {
         </article>
       </div>
       <div><SectionTitle eyebrow="US330" title="Relatório individual e evidências" description="Contribuição individual, arquitetura, resultados históricos e limitações."/>
-        <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" large/>
+        <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" pagePreview="sprint3-relatorio" large/>
         <div className="card-actions"><a className="button button--secondary" href={report} download>Baixar PDF</a><External href="https://drive.google.com/file/d/1FLtHN8y6VvkbGYzM8FRCMDYM1vHe7lzo/view">Cópia no Drive</External></div>
       </div>
       <div><SectionTitle eyebrow="Arquitetura" title="Integração da telemetria" description="Diagrama original aprovado, preservado sem corte."/>

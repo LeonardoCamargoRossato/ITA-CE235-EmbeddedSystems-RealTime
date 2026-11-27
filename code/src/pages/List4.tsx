@@ -99,6 +99,7 @@ export default function List4() {
                 fileName="Relatorio_Pessoal_US221_Sprint2_Leonardo_Rossato.pdf"
                 description="Relato individual da contribuição de Leonardo Camargo Rossato na US221 durante a Sprint 2, com arquitetura local, evolução semanal, evidências técnicas e anexos visuais."
                 fileId={personalReportId}
+                pagePreview="sprint2-relatorio"
                 fallbackHref={personalReportUrl}
                 buttonLabel="Abrir relatório pessoal"
                 large
