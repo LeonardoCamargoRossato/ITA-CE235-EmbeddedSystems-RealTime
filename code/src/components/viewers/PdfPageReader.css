@@ -8,5 +8,3 @@
 .pdf-page-reader__page p {margin:0;padding:20px;color:#10253d}
 .pdf-modal__panel--pages {grid-template-rows:auto minmax(0,1fr)}
 .pdf-modal__panel--pages .pdf-page-reader {min-height:0}
-.sprint1-contribution-enunciado.sprint-contribution-pair .drive-file-preview-card__viewer--pages {height:clamp(360px,52vh,540px);flex:1 1 auto;min-height:360px}
-@media(max-width:680px){.sprint1-contribution-enunciado.sprint-contribution-pair .drive-file-preview-card__viewer--pages {min-height:0;height:clamp(360px,58vh,520px);flex:0 0 auto}}

@@ -24,3 +24,56 @@
 @media(max-width:480px){
   .sprint1-contribution-enunciado.sprint-contribution-pair .sprint-contribution-actions {grid-template-columns:1fr}
 }
+
+/* Compact initial viewport shared by Sprints 1–3. No fixed maximum height:
+   expanding the contribution or increasing browser text size reflows the pair. */
+.sprint-page .compact-list-header {padding:10px 0}
+.sprint-page .compact-list-header__row {min-height:48px;gap:16px}
+.sprint-page .compact-list-header h1 {font-size:clamp(22px,2.5vw,32px)}
+.sprint-page .sprint1-meta .container {min-height:34px}
+.sprint-page .sprint1-main {padding-top:16px}
+.sprint-page .content-stack--sprint1 {gap:24px}
+.sprint-page .sprint-contribution-pair {gap:16px;align-items:stretch}
+.sprint-page .sprint-contribution-pair > .contribution-card,
+.sprint-page .sprint-contribution-pair > .drive-file-preview-card {
+  height:auto;min-height:0;max-height:none;min-width:0;align-self:stretch;
+}
+.sprint-page .sprint-contribution-pair > .contribution-card {
+  display:flex;flex-direction:column;gap:0;padding:16px 20px;overflow:visible;
+}
+.sprint-page .sprint-contribution-pair .contribution-card .eyebrow {margin:0 0 5px}
+.sprint-page .sprint-contribution-pair .contribution-card h2 {font-size:clamp(22px,2.1vw,28px);line-height:1.15;margin:0 0 8px}
+.sprint-page .sprint-contribution-pair .sprint-contribution-summary p {font-size:14px;line-height:1.4;margin:0 0 4px}
+.sprint-read-more {font:inherit;font-size:12px;font-weight:800;background:none;border:0;padding:4px 0;color:#f5d88d;text-decoration:underline;cursor:pointer;text-align:left}
+.sprint-read-more:focus-visible {outline:2px solid #e4bb67;outline-offset:3px}
+.sprint-page .sprint-contribution-pair .sprint-contribution-actions {gap:7px;padding-top:8px;margin-top:auto}
+.sprint-page .sprint-contribution-pair .sprint-contribution-actions .button {min-height:44px;padding:7px 9px;font-size:12px;line-height:1.2}
+.sprint-page .sprint-contribution-pair .sprint3-portal-status {margin-top:6px;font-size:11px;line-height:1.25}
+.sprint-page .sprint-contribution-pair > .drive-file-preview-card {display:flex;flex-direction:column;overflow:hidden}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__viewer {
+  flex:1 1 132px;height:132px;min-height:132px;max-height:none;border-bottom:1px solid var(--line);border-right:0;
+}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__viewer--pages {flex:1 1 132px;height:132px;min-height:132px}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__body {flex:0 0 auto;padding:10px 14px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__body .file-type-pill {align-self:flex-start;margin:0;font-size:10px}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__body h3 {font-size:15px;line-height:1.25;margin:0}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__body > small {font-size:11px;min-height:0;line-height:1.2;margin:0}
+.sprint-page .sprint-contribution-pair .drive-file-preview-card__body p {font-size:12px;line-height:1.3;min-height:0;margin:3px 0 5px}
+.sprint-page .sprint-contribution-pair .preview-actions {gap:7px;margin:0}
+.sprint-page .sprint-contribution-pair .preview-actions .button {padding:7px 10px;font-size:11px;min-height:32px}
+.sprint-page .sprint-first-evidence .section-title {margin-bottom:12px}
+.sprint-page .sprint-first-evidence .section-title h2 {font-size:clamp(24px,2.6vw,34px);line-height:1.15;margin:4px 0 5px}
+.sprint-page .sprint-first-evidence .section-title p {font-size:14px;line-height:1.4}
+@media(min-width:901px){
+  .sprint-page .sprint-contribution-pair {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .sprint-page .sprint-contribution-pair {grid-template-columns:1fr;gap:12px}
+  .sprint-page .sprint-contribution-pair .drive-file-preview-card__viewer,
+  .sprint-page .sprint-contribution-pair .drive-file-preview-card__viewer--pages {flex:0 0 auto;height:144px;min-height:144px}
+  .sprint-page .sprint-contribution-pair > .contribution-card {padding:16px}
+  .sprint-page .sprint-contribution-pair .sprint-contribution-actions {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:360px){
+  .sprint-page .sprint-contribution-pair .sprint-contribution-actions {grid-template-columns:1fr}
+}

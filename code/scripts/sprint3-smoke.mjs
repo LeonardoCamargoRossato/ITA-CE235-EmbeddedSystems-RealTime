@@ -10,6 +10,51 @@ const results = [];
 const localEvidence = u => u.startsWith(base+'assets/') && /\/sprint-[123]\//.test(u) && !u.includes('/pdf/');
 const png = u => localEvidence(u)&&/\/PNG\//.test(u);
 const webp = u => localEvidence(u)&&/\/WebP\//.test(u);
+async function checkSprintOpening(page,label,sprint){
+  await page.locator(`.sprint-page--${sprint}`).waitFor({state:'visible'});
+  const pair=page.locator('.sprint-contribution-pair');
+  const card=pair.locator('.contribution-card');
+  const evidence=page.locator('.sprint-first-evidence');
+  await pair.waitFor({state:'visible'});
+  await page.evaluate(async()=>{
+    await document.fonts.ready;
+    document.documentElement.style.scrollBehavior='auto';
+    window.scrollTo({top:0,left:0,behavior:'instant'});
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  });
+  await page.waitForFunction(()=>window.scrollY===0);
+  const stats=await page.evaluate(()=>{
+    const pair=document.querySelector('.sprint-contribution-pair');
+    const evidence=document.querySelector('.sprint-first-evidence');
+    const firstMedia=evidence.querySelector('.sprint-demo-card,.drive-file-preview-card');
+    const a=pair.children[0].getBoundingClientRect(), b=pair.children[1].getBoundingClientRect();
+    return {scrollY:window.scrollY,pairTop:pair.getBoundingClientRect().top,viewport:innerHeight,width:innerWidth,pairHeight:pair.getBoundingClientRect().height,pairBottom:pair.getBoundingClientRect().bottom,evidenceTop:evidence.getBoundingClientRect().top,mediaTop:firstMedia.getBoundingClientRect().top,cardA:a.height,cardB:b.height,horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1};
+  });
+  assert.equal(stats.horizontalOverflow,false);
+  assert.equal(stats.scrollY,0);
+  assert.ok(stats.pairTop>=0 && stats.pairBottom>0 && stats.evidenceTop>0,JSON.stringify(stats));
+  if(label==='desktop'){
+    assert.ok(stats.pairHeight<=340,JSON.stringify(stats));
+    assert.ok(stats.pairBottom<=stats.viewport*2/3,JSON.stringify(stats));
+    assert.ok(stats.evidenceTop<=stats.viewport*2/3+24,JSON.stringify(stats));
+    assert.ok(stats.mediaTop<stats.viewport-100,JSON.stringify(stats));
+    assert.ok(Math.abs(stats.cardA-stats.cardB)<=2,JSON.stringify(stats));
+  }
+  if(sprint===1 && label==='desktop') await decoded(pair.locator('.pdf-page-reader__page').first().locator('img'));
+  assert.equal(await page.evaluate(()=>window.scrollY),0);
+  await page.screenshot({path:`qa-sprint3/opening-sprint${sprint}-${label}.png`});
+  const read=card.locator('.sprint-read-more');
+  const controlled=card.locator('.sprint-contribution-summary > div[id]');
+  assert.equal(await read.getAttribute('aria-expanded'),'false');
+  assert.equal(await controlled.isVisible(),false);
+  await read.click();
+  assert.equal(await read.getAttribute('aria-expanded'),'true');
+  assert.equal(await controlled.isVisible(),true);
+  await card.getByRole('button',{name:'Leia menos',exact:true}).click();
+  assert.equal(await controlled.isVisible(),false);
+  console.log('Opening '+sprint+' '+label+' '+JSON.stringify(stats));
+}
+
 async function checkContribution(page, expected, drive, app, file) {
   const card=page.locator('.contribution-card').first();
   await card.scrollIntoViewIfNeeded();
@@ -108,6 +153,7 @@ try {
     await page.getByRole('link',{name:'Ver Sprint 3'}).click();
     await page.waitForURL('**/#/list5');
     await page.getByRole('heading',{name:'US330 — Telemetry Decoder'}).waitFor();
+    await checkSprintOpening(page,label,3);
     const buttons=page.locator('.sprint-contribution-actions a');
     assert.deepEqual((await buttons.allTextContents()).map(t=>t.trim()),['Drive da Sprint 3','Portal de acesso US330 (Telemetry Decoder versão 3)','GitHub pessoal','US330 #146']);
     assert.equal(await buttons.first().getAttribute('href'),'https://drive.google.com/drive/folders/15snftyx0i1KedmWKj-tcm2iaX0XqweAM');
@@ -195,6 +241,7 @@ try {
     assert.equal(new Set(requests.filter(u=>png(u)&&u.includes('/sprint-3/'))).size,3);
     await page.getByRole('link',{name:'Voltar às listas'}).click();await page.waitForURL('**/#/listas');
     await page.goto(base+'#/sprint1');
+    await checkSprintOpening(page,label,1);
     await checkContribution(page,['Drive da Sprint 1','Portal de acesso US123 (Telemetry Decoder versão 1)','Repositório GitHub','Subsprint #70'],'https://drive.google.com/drive/folders/1XBxqqxhEtPH28rLyM3hbt0fQD92DiaQO','https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/','qa-sprint3/contribution-sprint1-'+label+'.png');
     const s1=page.locator('.sprint-media-gallery__item').first();
     const dialog1=await openViewer(page,s1);
@@ -205,6 +252,7 @@ try {
     await closeViewer(page,dialog1,s1);
     await checkPdfReader(page,'sprint1-enunciado',2,'/ITA-CE235-EmbeddedSystems-RealTime/documents/list3/listex3-enunciado.pdf',label);
     await page.goto(base+'#/list4');
+    await checkSprintOpening(page,label,2);
     await checkContribution(page,['Drive da Sprint 2','Repositório GitHub','US221 T1','US221 — Contrato C API'],'https://drive.google.com/drive/folders/1keKi3JUQDIM-mJS40sKdC3FLve-Bz2g-',null,'qa-sprint3/contribution-sprint2-'+label+'.png');
     const s2=page.locator('.sprint-main-figure__media');
     assert.equal(await s2.count(),3);
