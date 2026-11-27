@@ -13,6 +13,8 @@ import List2 from "./pages/List2";
 import List3 from "./pages/List3";
 import List4 from "./pages/List4";
 import List5 from "./pages/List5";
+import Sprint1Team1 from "./pages/Sprint1Team1";
+import Sprint1Team2 from "./pages/Sprint1Team2";
 import Sprint2Team1 from "./pages/Sprint2Team1";
 import Sprint2Team2 from "./pages/Sprint2Team2";
 import Sprint3Team3 from "./pages/Sprint3Team3";
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/disciplina" element={<Discipline />} />
           <Route path="/projeto" element={<Project />} />
           <Route path="/sprint1" element={<Sprint1 />} />
+          <Route path="/sprint1/time1" element={<Sprint1Team1 />} />
+          <Route path="/sprint1/time2" element={<Sprint1Team2 />} />
           <Route path="/listas" element={<Lists />} />
           <Route path="/list0" element={<List0 />} />
           <Route path="/list1" element={<List1 />} />

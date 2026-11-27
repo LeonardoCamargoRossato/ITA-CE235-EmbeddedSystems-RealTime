@@ -16,3 +16,9 @@
 .project-context-card :focus-visible{outline:2px solid #b78b43;outline-offset:2px}
 @media(min-width:901px){.project-context-card{height:var(--context-height);min-height:var(--context-height)}}
 @media(max-width:900px){.project-context-card{grid-template-rows:auto auto auto;padding:16px;min-height:0}.project-context-card__content{max-height:260px}}
+
+.sprint-page--1 .project-context-card{--context-height:268.53125px}
+.sprint1-enunciado-reference{border-top:1px solid var(--line);padding-top:22px;margin-top:12px;max-width:760px;width:100%;}
+.sprint1-enunciado-reference>h2{font-size:20px;margin:0 0 6px;color:var(--navy)}
+.sprint1-enunciado-reference>p{font-size:13px;color:var(--muted);margin:0 0 12px}
+.sprint1-enunciado-reference .drive-file-preview-card__viewer{height:220px;min-height:180px}
