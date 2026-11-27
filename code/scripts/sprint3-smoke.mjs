@@ -74,11 +74,10 @@ try {
     const figures=page.locator('.sprint3-evidence');
     assert.equal(await figures.count(),3);
     assert.equal(requests.filter(png).length,0,'PNG before opening');
-    for(const f of await figures.all()) {
-      const preview=f.locator(':scope > button');
-      // No source can be assigned to a strictly offscreen evidence thumbnail.
-      const box=await preview.boundingBox();
-      if(box && (box.y>=viewport.height||box.y+box.height<=0)) assert.equal(await preview.locator('img').count(),0);
+    // The first diagram may already have intersected during navigation or screenshot.
+    // The two later figures have not been visited; no initial request may load them.
+    for(const slug of ['portal-us330','kanban-sprint3']){
+      assert.equal(requests.filter(u=>webp(u)&&u.includes('/'+slug+'.webp')).length,0,slug+' fetched before its section was visited');
     }
     const before=requests.filter(webp).length;
     for(const [i,figure] of (await figures.all()).entries()){
