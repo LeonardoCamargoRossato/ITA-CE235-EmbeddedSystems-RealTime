@@ -93,6 +93,7 @@ async function checkPdfReader(page,key,count,originalHref,label){
     await item.evaluate(el=>el.scrollIntoView({block:'start',inline:'nearest'}));
     const img=item.locator('img');
     await decoded(img);
+    if(key==='sprint3-relatorio') assert.equal(await img.getAttribute('src'),'/ITA-CE235-EmbeddedSystems-RealTime/assets/WebP/sprint-3/pdf/sprint3-relatorio-p0'+(await item.getAttribute('data-page'))+'-d3bbbbca.webp');
     assert.ok(await img.evaluate(el=>Math.abs(el.getBoundingClientRect().width-el.parentElement.getBoundingClientRect().width)<=1));
     assert.ok(await img.evaluate(el=>Math.abs((el.clientWidth/el.clientHeight)/(el.naturalWidth/el.naturalHeight)-1)<0.02));
   }
@@ -105,6 +106,11 @@ async function checkPdfReader(page,key,count,originalHref,label){
   const modalReader=modal.locator('.pdf-page-reader');
   assert.equal(await modalReader.locator('.pdf-page-reader__page').count(),count);
   await decoded(modalReader.locator('.pdf-page-reader__page').first().locator('img'));
+  if(key==='sprint3-relatorio') {
+    assert.equal(await modalReader.locator('img').first().getAttribute('src'),'/ITA-CE235-EmbeddedSystems-RealTime/assets/WebP/sprint-3/pdf/sprint3-relatorio-p01-d3bbbbca.webp');
+    assert.equal(await modal.locator('.pdf-modal__bar a').getAttribute('href'),originalHref);
+    assert.equal(await page.locator('a[download]').filter({hasText:'Baixar PDF'}).getAttribute('href'),originalHref);
+  }
   await modalReader.screenshot({path:`qa-sprint3/pdf-expanded-${key}-${label}.png`});
   await page.keyboard.press('Escape');
   await modal.waitFor({state:'detached'});
@@ -257,12 +263,12 @@ try {
       }
       await closeViewer(page,dialog,trigger,i!==1);
     }
-    await checkPdfReader(page,'sprint3-relatorio',5, '/ITA-CE235-EmbeddedSystems-RealTime/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf',label);
-    const pdf=await page.request.get(base+'assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf');
+    await checkPdfReader(page,'sprint3-relatorio',5, '/ITA-CE235-EmbeddedSystems-RealTime/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato-d3bbbbca.pdf',label);
+    const pdf=await page.request.get(base+'assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato-d3bbbbca.pdf');
     assert.equal(pdf.status(),200);assert.equal((await pdf.body()).subarray(0,5).toString(),'%PDF-');
     assert.equal(createHash('sha256').update(await pdf.body()).digest('hex'),'d3bbbbca202e696b1ac4aaba62f486b434659f4ef9ea4cb6035ecb89c9c32177','Published PDF differs from user-approved edition');
     for (const [i,expected] of ["1611e89a4132ec907d68183b1983507dd04ae17e","cecde45409155659a98d64de80c589b77f109c33","939c847e17a9ba84297fbdd7968fb4a3725e103f","eea41dd49114b9d0366c7b2127cdbb92240087ce","b49651dc8ee55b2306f1f8491697205712408927"].entries()) {
-      const imageResponse=await page.request.get(base+'assets/WebP/sprint-3/pdf/sprint3-relatorio-p0'+(i+1)+'.webp');
+      const imageResponse=await page.request.get(base+'assets/WebP/sprint-3/pdf/sprint3-relatorio-p0'+(i+1)+'-d3bbbbca.webp');
       assert.equal(imageResponse.status(),200);
       const bytes=await imageResponse.body();
       assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),expected,'PDF preview bytes differ');
