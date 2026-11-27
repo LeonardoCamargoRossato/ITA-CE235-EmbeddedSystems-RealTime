@@ -11,7 +11,7 @@ const report=[];
 const desktop={width:1440,height:900};
 const mobile={width:390,height:844};
 const specs=[
- {route:"sprint1",sprint:1,buttons:["Drive da Sprint 1","Portal de acesso US123 (Telemetry Decoder versão 1)","Repositório GitHub","Subsprint #70"],teams:[]},
+ {route:"sprint1",sprint:1,buttons:["Drive da Sprint 1","Portal de acesso US123 (Telemetry Decoder versão 1)","Repositório GitHub","Subsprint #70"],teams:[{label:"Time 1",route:"sprint1/time1",number:1,meetings:5,stories:7},{label:"Time 2",route:"sprint1/time2",number:2,meetings:5,stories:4}]},
  {route:"list4",sprint:2,buttons:["Drive da Sprint 2","Repositório GitHub","US221 T1","US221 — Contrato C API"],teams:[{label:"Time 1",route:"list4/time1",number:1,meetings:3,stories:7},{label:"Time 2",route:"list4/time2",number:2,meetings:6,stories:3}]},
  {route:"list5",sprint:3,buttons:["Drive da Sprint 3","Portal de acesso US330 (Telemetry Decoder versão 3)","GitHub pessoal","US330 #146"],teams:[{label:"Time 3 (Time 1 + Time 2)",route:"list5/time3",number:3,meetings:4,stories:8}]}
 ];
@@ -109,9 +109,9 @@ try{
         assert.ok(await firstStory.locator("details").getAttribute("open")!==null);
         await firstStory.locator("summary").click();
         await c.page.evaluate(()=>window.scrollTo({top:0,behavior:"instant"}));
-        await c.page.screenshot({path:dir+`/time${team.number}-${label}.png`});
+        await c.page.screenshot({path:dir+`/sprint${spec.sprint}-time${team.number}-${label}.png`});
         await root.locator(".team-meeting").first().scrollIntoViewIfNeeded();
-        await root.locator(".team-meeting").first().screenshot({path:dir+`/time${team.number}-meeting-${label}.png`});
+        await root.locator(".team-meeting").first().screenshot({path:dir+`/sprint${spec.sprint}-time${team.number}-meeting-${label}.png`});
         await root.locator(".team-return").click();
         await c.page.waitForURL("**/#/"+spec.route);
         await card.waitFor();

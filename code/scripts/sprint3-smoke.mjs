@@ -40,7 +40,12 @@ async function checkSprintOpening(page,label,sprint){
     assert.ok(stats.mediaTop<stats.viewport-100,JSON.stringify(stats));
     assert.ok(Math.abs(stats.cardA-stats.cardB)<=2,JSON.stringify(stats));
   }
-  if(sprint===1 && label==='desktop') await decoded(pair.locator('.pdf-page-reader__page').first().locator('img'));
+  if(sprint===1){
+    assert.equal(await pair.locator('.pdf-page-reader').count(),0);
+    assert.equal(await pair.locator('.project-context-card').count(),1);
+    assert.equal(await page.locator('.content-stack--sprint1 > :last-child').getAttribute('class'),'sprint1-enunciado-reference');
+    assert.equal(await page.locator('.sprint1-enunciado-reference .pdf-page-reader img').count(),0);
+  }
   assert.equal(await page.evaluate(()=>window.scrollY),0);
   await page.screenshot({path:`qa-sprint3/opening-sprint${sprint}-${label}.png`});
   const read=card.locator('.sprint-read-more');

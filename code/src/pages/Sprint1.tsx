@@ -7,6 +7,7 @@ import ContributionCard from "../components/ContributionCard";
 import TelemetryFlow from "../components/TelemetryFlow";
 import SprintMediaGallery from "../components/SprintMediaGallery";
 import DriveFilePreview from "../components/DriveFilePreview";
+import ProjectContextCard from "../components/ProjectContextCard";
 
 const githubImages = [
   {
@@ -47,16 +48,7 @@ export default function Sprint1() {
         <div className="container content-stack content-stack--sprint1">
           <div className="sprint1-contribution-enunciado sprint-contribution-pair">
             <ContributionCard driveUrl={links.list3Drive} demoUrl={links.us123TelemetryDecoder} githubUrl={links.us123Repository} issueUrl={links.us123Issue70} />
-            <DriveFilePreview
-              title="Enunciado — ListEx 3 / Sprint 1"
-              fileName="listex3-enunciado.pdf"
-              description="Especificação de Requisitos do Relatório da 1ª Sprint do Projeto SPRB-TR/BD."
-              localSrc={`${import.meta.env.BASE_URL}documents/list3/listex3-enunciado.pdf`}
-              fallbackHref={links.list3Drive}
-              large
-              fitMode="width"
-              pagePreview="sprint1-enunciado"
-            />
+            <ProjectContextCard sprint={1}/>
           </div>
 
           <div className="sprint-first-evidence">
@@ -140,6 +132,19 @@ export default function Sprint1() {
               <div className="knowledge-bridge__target"><span>SPRINT 1</span><strong>Projeto SPRB-TR/BD</strong></div>
             </div>
           </div>
+          <section className="sprint1-enunciado-reference" aria-label="Enunciado oficial da ListEx 3">
+            <h2>Enunciado oficial — ListEx 3</h2>
+            <p>Documento de referência da atividade acadêmica.</p>
+            <DriveFilePreview
+              title="Enunciado — ListEx 3 / Sprint 1"
+              fileName="listex3-enunciado.pdf"
+              description="Especificação de Requisitos do Relatório da 1ª Sprint do Projeto SPRB-TR/BD."
+              localSrc={`${import.meta.env.BASE_URL}documents/list3/listex3-enunciado.pdf`}
+              fallbackHref={links.list3Drive}
+              fitMode="width"
+              pagePreview="sprint1-enunciado"
+            />
+          </section>
         </div>
       </section>
     </div>

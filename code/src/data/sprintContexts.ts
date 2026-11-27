@@ -2,7 +2,7 @@
 export type Resource = {title:string;description:string;kind:string;href:string;date?:string};
 export type Story = {id:string;title:string;status:string;description:string;source?:Resource};
 export type Meeting = {date:string;summary:string;details:string;resources:Resource[]};
-export type Team = {id:string;sprint:2|3;number:1|2|3;name:string;segment:string;period:string;back:string;intro:string;context:{title:string;text:string}[];stories:Story[];results:{title:string;text:string;source?:Resource}[];limitations:string[];meetings:Meeting[];groups:{title:string;resources:Resource[]}[]};
+export type Team = {id:string;sprint:1|2|3;number:1|2|3;name:string;segment:string;period:string;back:string;intro:string;context:{title:string;text:string}[];stories:Story[];results:{title:string;text:string;source?:Resource}[];limitations:string[];meetings:Meeting[];groups:{title:string;resources:Resource[]}[]};
 const repo="https://github.com/Projeto-SPRB-TR-BD/Projeto-SPRB-TR-BD";
 const org="https://github.com/Projeto-SPRB-TR-BD";
 const drive=(id:string)=>"https://drive.google.com/open?id="+id;
@@ -43,7 +43,87 @@ const tc334=md("TC034 — consolidação","compartilhado/integracao/us334/eviden
 const tc335=md("TC037–039 — validação local","ts2/testes/us335-tcs/resultado_ultima_execucao.md","Verificação local, homologação cloud bloqueada.");
 const meeting=(date:string,summary:string,details:string,resources:Resource[]):Meeting=>({date,summary,details,resources});
 const story=(id:string,title:string,status:string,description:string,n?:number):Story=>({id,title,status,description,source:n?issue(n):undefined});
+
+const s1r1=doc("Relatório sintético — TS1 / Sprint 1","1y88_ink7mZbEEjG5m0__SPmU7TW6x8Nw","Relatório coletivo: US110–116, implementação e evidências.","DOCX");
+const s1p1=doc("Apresentação — TS1 / Sprint 1","1qH96Kpt7VKp8UjHayj9ef6NUAXDA0MD0","Missão orbital, lógica de bordo e HMI.","PPTX");
+const s1r2=doc("Relatório sintético — TS2 / Sprint 1","17W-aJBgCAxipdUFyJD3KUnUDV84cawKp","Relatório coletivo: US121–124, tarefas e evidências.","DOCX");
+const s1p2=doc("Apresentação — TS2 / Sprint 1","1akGOg6paKLoJ_mCcwVNud4CzTFJrInWA","Resultados e ressalvas da revisão de Sprint.","PPTX");
+const s1period="31/08/2026 a 25/09/2026";
+const s1base=(number:1|2)=>({sprint:1 as const,number,name:"Time Scrum "+number,period:s1period,back:"/sprint1"});
+const s1teams:Record<string,Team>={
+sprint1Time1:{
+ ...s1base(1),id:"sprint1Time1",segment:"Componentes de SW e HW do Segmento de Satélites (Espacial)",
+ intro:"O Time 1 iniciou a missão orbital regional, a geração de telemetria, a lógica de bordo e a HMI ARINC 661. O objetivo era estabelecer uma cadeia determinística de referência, aceitando mock UDP antes da integração física completa.",
+ context:[
+ {title:"Simulação orbital",text:"A missão regional de cinco satélites foi estudada com GMAT e MATLAB; KSP/kRPC e STK eram alternativas previstas. O contrato ICD UDP permite substituir a fonte sem alterar a interface consumidora."},
+ {title:"Software embarcado",text:"SCADE Suite para estados Standby, Operacional e Emergência; geração de código C e transições determinísticas. HMI de bordo no padrão ARINC 661, com telemetria e alertas."},
+ {title:"Integração com o solo",text:"O wrapper C/Python e o mock UDP fornecem a base da comunicação com o Time 2. O objetivo de 60 FPS é requisito de projeto, não garantia de homologação."}
+ ],
+ stories:[
+ story("US110","Telemetria orbital e HMI de bordo integradas","Issue aberta","Meta de integração orbital, lógica e HMI; mock UDP aceito como desbloqueio.",20),
+ story("US111","Missão orbital e telemetria ICD UDP","Issue fechada","Baseline MATLAB e validação de trilhas; GMAT estudado. A comparação de ferramentas foi dispensada conforme issue #5.",21),
+ story("US112","Máquinas de estado no SCADE Suite","Issue fechada","Modelagem de estados, interfaces ICD e geração de código C; tarefas #10–13 fechadas.",22),
+ story("US113","HMI ARINC 661 no SCADE Display","Issue aberta","Wireframes, protótipo web e mock UDP documentados; Definition File/widgets (#15) permanece aberto.",23),
+ story("US114","Ponte de ingestão não bloqueante","Issue fechada","ICD, simulador/mock, adapters e wrapper UDP; tarefas #6–9 e #25 fechadas.",24),
+ story("US115","Casos de teste","Documentação localizada","Planilha de casos de teste e critérios positivos, negativos e de limite."),
+ story("US116","Documentação e entregáveis","Documentação localizada","Relatório, apresentação e vídeo de revisão.")
+ ],
+ results:[
+ {title:"Missão e comunicação orbital",text:"O relatório descreve visualizações orbitais e cobertura regional; a apresentação registra a preparação da telemetria para integração.",source:s1r1},
+ {title:"Protótipo de HMI",text:"Registro de 30/09 descreve US113 parcialmente finalizada, protótipo interativo HTML5, gerador Python/UDP e documentação técnica.",source:doc("Ata de 30/09","1daA0h8bbHDke8PLpZV-wjp3nbwgWjdZm","Fechamento e pendências após a janela nominal.","DOCX")},
+ {title:"Rastreabilidade e verificação",text:"O Kanban foi publicado e tarefas de ICD, lógica e simulação foram decompostas em issues. Os resultados do relatório não equivalem a certificação do sistema.",source:s1p1}
+ ],
+ limitations:["O período oficial encerrou em 25/09; a ata de 30/09 registra atividades de fechamento posteriores.","Na consulta de 27/11, US110 e US113 ainda estavam abertas. Estados do GitHub são atuais à consulta, não uma fotografia da data final da Sprint.","A integração completa entre todos os simuladores, HMI e solo não é presumida."],
+ meetings:[
+ meeting("08/09/2026","Planejamento inicial e definição das US110–114.","Alinhamento de backlog, critérios DoR/DoD, ferramentas, estimativas e frentes de trabalho. Há dois registros para a mesma data.",[ata("1IkEpPkBHMmiA3VRE1_Vc7zQHk1t5Nb-H","08/09/2026"),doc("Ata 00 — registro complementar","1xn87YRcWUu67Dps8TgiR4-mIHXB-5Nhi","Planejamento integrado.","DOCX")]),
+ meeting("11/09/2026","GMAT, alternativas orbitais e Planning Poker.","Discussão de GMAT como alternativa ao KSP, mock UDP e divisão de responsabilidades; transcrição automática registra estimativas e planejamento.",[ata("1-G_KomNB6bcFxGgI_N0gEoulVUDiCxF4","11/09/2026"),transcript("1hJ803f1iNau45-GW_Z8JGl_xlRWE1rHn","11/09/2026"),video("1bR9vxALziDsnouCcAGNXBgAxHD3cZibr","11/09/2026")]),
+ meeting("15/09/2026","Publicação do backlog e Kanban.","Issues de US110–114 e orientação de uma branch por card.",[ata("1uQpsZGRb3rwK_L3H7tBIsLCZYXnWnCQW","15/09/2026")]),
+ meeting("22/09/2026","Revisão de tarefas em andamento.","Ata registra itens em review e in progress; nenhum card concluído naquele momento.",[ata("1EpelU8WQ65X9qCI5l-5S18cSzBB6ZqC9","22/09/2026")]),
+ meeting("30/09/2026","Fechamento da ListEx 3 — após o período nominal.","Protótipo HMI parcial e integração/testes ainda em andamento; não se confunde com o encerramento oficial de 25/09.",[ata("1daA0h8bbHDke8PLpZV-wjp3nbwgWjdZm","30/09/2026")])
+ ],
+ groups:[
+ {title:"Gestão, backlog e testes",resources:[ref("Kanban TS1 — Sprint 1","Quadro #1, URL registrada nas atas de 15 e 22/09.","GitHub",org+"/projects/1/views/2"),doc("Sprint Backlog TS1","1q2Kx-mL40cqgOEQsIXde_xTZZHiv02rxOVuRTGf7edU","Planejamento original.","Planilha"),doc("Backlog completo","1TLmdhHg_ZgdX_mwhtP-B3h9EDZfbW-Se","Arquivo coletivo.","XLSM"),doc("Casos de teste TS1","1UG8azPxpJuc5-bYEfoTnOWEYTkQzIsm6","Planilha de testes localizada.","XLSX"),doc("Burndown Chart","1oQlSUnEXCdIA8XexL_c7QU4Srx1b40Jt","Gráfico original; valores não reproduzidos.","Planilha")]},
+ {title:"Relatórios e entregáveis",resources:[s1r1,s1p1,video("1pNXFlDMfjUbCIBMJqxLXgTmWmHeUfrmQ","Sprint 1"),dir("Entregáveis TS1","1sAsfTcu62c6i9qierWmYYBRJz4xARLR_","Relatório, slides e vídeo.")]},
+ {title:"Acervo oficial",resources:[dir("Pasta principal TS1","1bvdYxbejKSpyroHF8OqIFmuiaukNkMM5","Acervo da Sprint 1."),dir("Atas","17zd_N01kjgFtVebsj0Qno00NYWp5KSxZ","Registros originais."),dir("Gravações","1eBnwEzyaP6JV6de3rGHMXq-2DxHpIl8q","Vídeos e transcrições."),dir("Documentos e artefatos","1JgrT54uRvucIZ0UzA0E_wKiKTP5GU9oy","Artefatos de engenharia."),...common]}
+ ]
+},
+sprint1Time2:{
+ ...s1base(2),id:"sprint1Time2",segment:"Componentes de SW e HW do Segmento de Usuários (Solo)",
+ intro:"O Time 2 iniciou a arquitetura da estação de solo, com telemetria simulada, HMI, enlace de comunicação e banco geoespacial. A contribuição de Leonardo foi o demonstrador US123 — Telemetry Decoder, parte do esforço coletivo.",
+ context:[
+ {title:"Telemetria e HMI",text:"Gerador Python/C, codec ICD e socket UDP loopback para desenvolvimento antes da prontidão do KSP. A US122 desenvolve interfaces e lógica com SCADE Display/Suite e ARINC 661."},
+ {title:"Recepção e validação",text:"A US123 reúne recepção, desempacotamento e CRC, estudos de enlace Starlink Mini e dashboards. A implementação individual é o demonstrador de recepção, parsing e validação com dados simulados; não se confunde com todo o enlace ou a HMI coletiva."},
+ {title:"Persistência geoespacial",text:"US124: PostgreSQL/PostGIS, modelagem de trajetórias, malhas e cobertura, índices GiST e validação de geometrias."}
+ ],
+ stories:[
+ story("US121","Telemetria mockada via UDP","Tarefas fechadas","Pacotes simulados com campos orbitais, variações senoidais e testes de frequência/integridade. T1–T4 (#29, #30, #38, #39) fechadas.",29),
+ story("US122","HMI da estação de solo","Tarefas fechadas","Implementação gráfica, lógica SCADE e simulação/KCG, tarefas #43–45 fechadas.",44),
+ story("US123","Recepção, desempacotamento e checagem","Integração pendente","Demonstrador individual T1.x #70 fechado; estudo #41, dashboard #64 e simulação #46 fechados. Integração Starlink/SCADE #47 aberta.",70),
+ story("US124","Banco PostGIS e schema espacial","Tarefas fechadas","T1–T6 (#31–36) fechadas; modelagem, DDL, constraints, massa de teste e consultas espaciais.",31)
+ ],
+ results:[
+ {title:"Telemetria simulada e HMI",text:"Relatório registra gerador senoidal e modelagem de display ARINC 661, preparando a recepção e visualização.",source:s1r2},
+ {title:"Telemetry Decoder",text:"A ata de 18/09 registra o sistema open source US123 de Leonardo. A issue #70 documenta recepção, parsing e validação.",source:issue(70,"US123 T1.x — Telemetry Decoder")},
+ {title:"Enlace e PostGIS",text:"Apresentação registra ensaios Starlink Mini, CRC e banco PostGIS; são resultados do contexto coletivo e não atribuições individuais. Issues de TC001–012 fechadas na consulta, sem inferir aceite integral.",source:s1p2}
+ ],
+ limitations:["A apresentação informa necessidade de duas semanas adicionais para conclusão de todas as USs; não se presume entrega integral no prazo nominal.","A integração Starlink/SCADE (#47) ainda estava aberta em 27/11; testes de enlace e demonstrador simulado são evidências distintas.","A ata de 01/10 registra continuidade após o período oficial. As gravações são vinculadas por data e metadados, não transcritas integralmente."],
+ meetings:[
+ meeting("04/09/2026","Transição dos Labs e alinhamento inicial.","Definição de conceitos, escopo e preparação do planejamento.",[ata("10hIYCtTAy5KZx5YyJeV2aehys7-Ur0G5","04/09/2026"),video("1vS_vipUDUBorvMVkM2wZGhVYEYxB2B3D","04/09/2026")]),
+ meeting("11/09/2026","Escolha das USs e planejamento.","Alocação de telemetria, US123 e banco PostGIS; Planning Poker ainda em discussão.",[ata("1G-7mbrvptX4304vAfY3LtGWxTENojKW_","11/09/2026"),video("1adbBi2m_iZ9Z_PG9AQk9hXxjkNRuM-Py","11/09/2026")]),
+ meeting("18/09/2026","Desenvolvimento e dependências do ICD.","Registro do demonstrador US123, gerador US121, US124 e dependência do contrato ICD do Time 1.",[ata("17frRAY5edY-k4EoF-AR3sWWb_Eqw2QAb","18/09/2026"),video("1PVwt7EpEX9tiJAXVNesTdsbFF4nkT_c1","18/09/2026")]),
+ meeting("24/09/2026","Revisão de dashboard, banco e HMI.","T1/T2 da US124 relatadas como concluídas e em revisão; problemas de lógica da HMI ainda em tratamento.",[ata("1VGWYCxlUBDA6mUzvYg6X92YQfLx9_kZK","24/09/2026"),video("1ujQiM30M24KDe9UCTD78iYgleZBvWdo4","24/09/2026")]),
+ meeting("01/10/2026","Semaninha — continuidade e fechamento.","Atualização do Kanban, interface gráfica, testes pendentes e revisão da US121 após o prazo nominal.",[ata("1UNH2C_o1WGhcTijhL5R_JD6Y4OmLZKBI","01/10/2026"),video("1XzhVDsvpizrxSDRnZHF1k_N1E6ATwvrO","01/10/2026")])
+ ],
+ groups:[
+ {title:"Gestão, backlog e testes",resources:[ref("Kanban TS2 — Sprint 1","Quadro #2, referência da apresentação original.","GitHub",org+"/projects/2"),doc("Product Backlog TS2","1Nh_LBZDH9VgekrLsYXua1Y8yW-O3zyl5","Arquivo original.","XLSX"),doc("Backlog completo","1N4Uy0k_sd5s98YK3ZJmorGSGqEqGNJIE","Arquivo coletivo.","XLSM"),doc("Casos de teste TS2","1xLgDmJmbyO9WMPjisqPdWZ-1patxEEa2","TC001–012, arquivo original.","XLSX"),doc("Burndown Chart","1ypJPD1g564r56_zbphpqm-GZQxuQzKJ2","Gráfico original; valores não reproduzidos.","Planilha")]},
+ {title:"Relatórios e entregáveis",resources:[s1r2,doc("Relatório sintético — PDF","1HZh13kGqWeO9xRSPwzjnXWfnncdy-cI0","Cópia PDF no Drive.","PDF"),s1p2,doc("Apresentação — PDF","1kvGVnTFWU4_6WPGUZlYg3UbdpM8qdi-g","Cópia PDF no Drive.","PDF"),video("1thSKPUPeu-4LsN3PckNXx-nPAve4H1V8","Sprint 1"),ref("Vídeo US122","Demonstração da HMI.","Vídeo",file("1-33CXPtL47xTIaV_Eo_kiIRS-sgJj5h4")),dir("Entregáveis TS2","1sG1jaVVXxzG3rqaBagWBWA82keI23TgH","Relatórios, slides e vídeos.")]},
+ {title:"Acervo oficial",resources:[dir("Pasta principal TS2","1VZBBXK5-zvGTlW8mIP3BTLR6VnRMR7fu","Acervo da Sprint 1."),dir("Atas","1GPzJXrDRCehLEGxSNJHjlcYZcE7VS0xZ","Registros originais."),dir("Gravações","1U0OeUESwyguVJMc0Mk3b_L-jq-QqGBXx","Vídeos semanais."),dir("Documentos e artefatos","1i1Lg8kU-FYGcpiFOpuzcvHd6dXdmFEh2","Artefatos de engenharia."),...common]}
+ ]
+}
+};
+
 export const sprintContexts:Record<string,Team>={
+...s1teams,
 time1:{
  id:"time1",sprint:2,number:1,name:"Time Scrum 1",segment:"Componentes de SW e HW do Segmento de Satélites (Espacial)",period:"28/09/2026 a 30/10/2026",back:"/list4",
  intro:"O segmento espacial prepara a origem e o envio da telemetria, a lógica de bordo e a representação orbital da constelação acadêmica de cinco satélites. Na Sprint 2, a meta era integrar telemetria do KSP, controle em malha fechada e downlink determinístico.",
