@@ -10,3 +10,5 @@ Base main: 04b6146c60a50eee56cac3b71d2daf0de72930eb. Entrega individual, não Re
 - PDF individual preliminar, cinco páginas, com diagrama original e captura sanitizada.
 
 Caminho Git: code/public/assets/{PNG,WebP,PDF}/sprint-3/us330/. Acervo Drive: Sprint 3 (Leo + Cirineu + Roger)/Imagens. Originais, histórico e contexto Cirineu preservados no Drive; não publicar ZIP, guias operacionais, credenciais ou logs. Acesso ao acervo conforme permissões existentes.
+
+Revisão 2: relatório inclui tabela de métricas históricas, recorte sanitizado do Kanban e referências navegáveis. Versão anterior preservada no Drive com sufixo v1. Arquivos PNG/WebP do Kanban: SHA-256 443cc09f3c700c02df29d31687dae7daafc029f2f35a87bc9670df3f0945f1f7 / 27e58d273170e950bc8e02ad91e2c396658a8183e26ec112b6eb46d03a958978.

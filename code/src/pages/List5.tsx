@@ -67,7 +67,7 @@ export default function List5() {
       </div>
       <div><SectionTitle eyebrow="US330" title="Relatório individual e evidências" description="Contribuição individual, arquitetura, resultados históricos e limitações."/>
         <DriveFilePreview title="Relatório pessoal — US330 / Sprint 3" fileName="Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato.pdf" description="Versão preliminar quanto ao enunciado específico. PDF com diagrama aprovado e rastreabilidade." localSrc={report} fallbackHref={report} buttonLabel="Abrir relatório pessoal" large/>
-        <div className="card-actions"><a className="button button--secondary" href={report} download>Baixar PDF</a><External href="https://drive.google.com/file/d/1eyMirINQgk4vNRLnLZa2W70D6SV1i5n-/view">Cópia no Drive</External></div>
+        <div className="card-actions"><a className="button button--secondary" href={report} download>Baixar PDF</a><External href="https://drive.google.com/file/d/1FLtHN8y6VvkbGYzM8FRCMDYM1vHe7lzo/view">Cópia no Drive</External></div>
       </div>
       <div><SectionTitle eyebrow="Arquitetura" title="Integração da telemetria" description="Diagrama original aprovado, preservado sem corte."/>
         <Evidence slug="diagrama-us330" caption="Figura 1 — Arquitetura US330, teste histórico de 21/11/2026" alt="Fluxo de acesso e autorização, ingestão FastAPI, RAW, tratamento, PROCESSED, consulta e auditoria."/>
