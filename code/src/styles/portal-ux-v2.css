@@ -43,3 +43,15 @@
 .artifact-view--lista .portal-document:hover{background:#f6f9fc;box-shadow:none}
 .artifact-view--lista .portal-document .button{white-space:nowrap;justify-self:end}
 @media(max-width:760px){.artifact-view--lista .portal-document{grid-template-columns:minmax(0,1fr) auto;gap:7px 10px}.artifact-view--lista .artifact-document-heading,.artifact-view--lista .portal-document p,.artifact-view--lista .artifact-document-meta{grid-column:1}.artifact-view--lista .portal-document .button{grid-column:2;grid-row:1/4}.artifact-view--lista .portal-document .button{font-size:11px;padding:8px}}
+
+.portfolio-section{min-width:0}.portfolio-section .section-title{margin-bottom:8px}.portfolio-section>p{color:var(--muted);line-height:1.6}
+.portfolio-browser{background:#fff;border:1px solid #c9d8e6;border-radius:14px;overflow:hidden;transition:border-color .18s,box-shadow .18s}
+.portfolio-browser:hover,.portfolio-browser:focus-within{border-color:#367fb6;box-shadow:0 8px 24px #173b641a}
+.portfolio-browser-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;background:#eff5fa;border-bottom:1px solid var(--line)}
+.portfolio-browser-bar>span{display:flex;gap:8px;align-items:center;font-weight:800;color:var(--navy)}
+.portfolio-browser-caption{font-size:12px;color:#526277;padding:8px 16px;border-bottom:1px solid var(--line)}
+.portfolio-browser iframe,.portfolio-placeholder{width:100%;height:clamp(650px,78dvh,800px);display:block;border:0;background:#fff}
+.portfolio-placeholder{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;color:#526277;text-align:center;padding:20px}
+.portfolio-status{margin:0;padding:12px 16px;background:#f6f9fc;color:#526277;font-size:13px}.portfolio-status a{color:#135b9c;font-weight:700}
+@media(max-width:760px){.portfolio-browser iframe,.portfolio-placeholder{height:clamp(440px,72dvh,650px)}.portfolio-browser-bar .button{font-size:11px}.portfolio-browser-bar{padding:10px}}
+@media(prefers-reduced-motion:reduce){.portfolio-browser{transition:none}}
