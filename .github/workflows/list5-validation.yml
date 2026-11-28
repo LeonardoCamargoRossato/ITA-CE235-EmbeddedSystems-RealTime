@@ -42,6 +42,7 @@ jobs:
           done
           node scripts/sprint3-smoke.mjs
           node scripts/final-report-smoke.mjs
+          node scripts/ux-v2-smoke.mjs
       - name: Build approved baseline for visual regression
         run: |
           git fetch --no-tags origin 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
@@ -102,4 +103,5 @@ jobs:
             code/qa-sprint3/
             code/qa-final-report/
             code/qa-portal/
+            code/qa-ux-v2/
           if-no-files-found: warn

@@ -55,3 +55,7 @@
 .portfolio-status{margin:0;padding:12px 16px;background:#f6f9fc;color:#526277;font-size:13px}.portfolio-status a{color:#135b9c;font-weight:700}
 @media(max-width:760px){.portfolio-browser iframe,.portfolio-placeholder{height:clamp(440px,72dvh,650px)}.portfolio-browser-bar .button{font-size:11px}.portfolio-browser-bar{padding:10px}}
 @media(prefers-reduced-motion:reduce){.portfolio-browser{transition:none}}
+
+/* Previous release QA exposed a narrow ListEx 0 layout; no document/viewer changes. */
+@media(max-width:1050px){.list0-compact-stack > .embedded-drive-card--compact .embedded-drive-card__body > div{grid-template-columns:minmax(0,1fr);gap:8px;justify-items:start}.list0-compact-stack > .embedded-drive-card--compact .embedded-drive-card__body h3,.list0-compact-stack > .embedded-drive-card--compact .embedded-drive-card__body p{white-space:normal;overflow-wrap:anywhere}.list0-reports-heading + .report-preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.list0-reports-heading + .report-preview-grid{grid-template-columns:minmax(0,1fr)}.list0-compact-stack .files-grid{grid-template-columns:minmax(0,1fr)}.list0-compact-stack .file-card{grid-template-columns:48px minmax(0,1fr);overflow-wrap:anywhere}.portal-sequence{grid-template-columns:repeat(2,minmax(0,1fr))}.portal-sequence span{min-width:0;overflow-wrap:anywhere}}
