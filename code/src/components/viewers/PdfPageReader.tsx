@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 import { pdfPreviews, type PdfPreviewKey } from "../../data/pdfPreviews";
 import "./PdfPageReader.css";
 
@@ -25,8 +25,23 @@ export function PdfPage({page,number,title,href,links=[],onNavigate,style}:{page
   </div>;
 }
 
-export default function PdfPageReader({previewKey,title,href}:{previewKey:PdfPreviewKey;title:string;href:string}){
-  return <div className="pdf-page-reader" tabIndex={0} role="region" aria-label={`Leitura integral — ${title}`} data-pdf-preview={previewKey}>
-    {pdfPreviews[previewKey].map((page,i)=><PdfPage key={page.path} page={page} number={i+1} title={title} href={href}/>)}
+// Optional controls extend the same continuous reader without changing existing Sprint layouts.
+export function scrollPdfPage(reader:HTMLDivElement|null, number:number){
+  const page=reader?.querySelector<HTMLElement>('[data-page="'+number+'"]');
+  if(reader&&page)reader.scrollTo({top:reader.scrollTop+page.getBoundingClientRect().top-reader.getBoundingClientRect().top,behavior:"instant"});
+}
+type ReaderProps={previewKey:PdfPreviewKey;title:string;href:string;readerRef?:RefObject<HTMLDivElement>;pageLinks?:PdfPageLink[][];onPageChange?:(page:number)=>void;pageStyle?:CSSProperties};
+export default function PdfPageReader({previewKey,title,href,readerRef,pageLinks,onPageChange,pageStyle}:ReaderProps){
+  const fallbackRef=useRef<HTMLDivElement>(null);
+  const ref=readerRef??fallbackRef;
+  const onScroll=()=>{
+    const el=ref.current;if(!el||!onPageChange)return;
+    const top=el.getBoundingClientRect().top+Math.min(80,el.clientHeight*.15);
+    const pages=Array.from(el.querySelectorAll<HTMLElement>("[data-page]"));
+    const current=el.scrollHeight-el.clientHeight-el.scrollTop<2?pages[pages.length-1]:pages.find(page=>page.getBoundingClientRect().bottom>top);
+    if(current)onPageChange(Number(current.dataset.page));
+  };
+  return <div ref={ref} onScroll={onPageChange?onScroll:undefined} className="pdf-page-reader" tabIndex={0} role="region" aria-label={`Leitura integral — ${title}`} data-pdf-preview={previewKey}>
+    {pdfPreviews[previewKey].map((page,i)=><PdfPage key={page.path} page={page} number={i+1} title={title} href={href} links={pageLinks?.[i]} onNavigate={n=>scrollPdfPage(ref.current,n)} style={pageStyle}/>)}
   </div>;
 }
