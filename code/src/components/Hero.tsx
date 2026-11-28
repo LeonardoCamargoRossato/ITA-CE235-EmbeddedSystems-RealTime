@@ -1,4 +1,5 @@
-import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ExternalLink, FileText } from "lucide-react";
 import { links } from "../data/links";
 import { assets } from "../data/assets";
 
@@ -38,6 +39,7 @@ export default function Hero() {
             >
               Portfólio <ExternalLink size={15} />
             </a>
+            <Link className="button button--gold hero-final-link" to="/relatorio-final">Relatório Final <FileText size={15}/></Link>
           </div>
         </div>
       </div>

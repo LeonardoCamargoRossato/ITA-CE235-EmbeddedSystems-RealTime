@@ -11,8 +11,8 @@ export default function Lists() {
         <div>
           <SectionTitle
             eyebrow="CE-235"
-            title="Lista de Exercícios"
-            description="Organização das atividades conforme os materiais reais da disciplina."
+            title="Atividades: Listas"
+            description="Trajetória documentada das atividades. Entrega documentada indica disponibilidade do trabalho individual, não aprovação acadêmica ou integração coletiva integral."
           />
           <div className="cards-grid">{lists.map((x) => <ListCard key={x.id} item={x} />)}</div>
         </div>
