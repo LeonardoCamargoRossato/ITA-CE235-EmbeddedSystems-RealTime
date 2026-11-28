@@ -32,7 +32,7 @@ export default function List1(){return <>
    </div>
    <div id="lab2-relatorio" className="portal-anchor"><ReportPdfViewer title="Relatório do Lab 2" fileName="RelatórioLab2_SistemasTempoReal_ITA_LeonardoRossato.pdf" description="Desenvolvimento e simulação do Fuel Management utilizando ANSYS SCADE Suite e SCADE Display." fileId={links.lab2ReportPdfId} fallbackHref={links.lab2Drive}/></div>
    <div id="lab2-evidencias" className="evidence-grid evidence-grid--single portal-anchor"><EvidenceGallery title="Fuel Management — Evidências da Simulação" folderHref={links.lab2EvidenceDrive} folderEmbed={links.lab2EvidenceEmbed}/></div>
-   <div className="academic-detail"><h3>Funcionalidades</h3><p className="prose">Desenvolvimento e simulação de um aplicativo de gerenciamento de combustível integrando a lógica criada no ANSYS SCADE Suite com uma interface gráfica desenvolvida no SCADE Display.</p>
+   <div id="lab2-tecnica" className="academic-detail portal-anchor"><h3>Funcionalidades</h3><p className="prose">Desenvolvimento e simulação de um aplicativo de gerenciamento de combustível integrando a lógica criada no ANSYS SCADE Suite com uma interface gráfica desenvolvida no SCADE Display.</p>
     <ul className="compact-list"><li>Abrir e fechar o tanque; selecionar o tipo de combustível; controlar o reabastecimento.</li><li>Aumentar gradualmente o nível e esvaziar o tanque.</li><li>Representar graficamente nível e cor do combustível; indicar tanque cheio ou vazio.</li></ul>
     <h3>Implementação</h3><p className="tech-line">Main · ShowLayer · SetFuelLevel · RepaintFuelLevel · SetFuelColor · SetFuelTankFullVisible · EnableWidgets</p>
     <div className="state-flow"><span>TankClosed</span><b>↕</b><span>TankOpen</span></div>

@@ -11,6 +11,6 @@ export const artifactTypes=[
 export type ArtifactType=typeof artifactTypes[number]["id"];
 export function artifactType(a:{name:string;format:string;category:string}){
  const n=a.name.toLowerCase();
- const id:ArtifactType=/arquitetura|diagrama/.test(n)?"arquitetura":/definition of|checklist|teste|auditoria/.test(n)?"testes":/atas|reuniões|weekly meeting/.test(n)?"reunioes":/backlog|kanban|burndown|planning poker|scrum|método de gerenciamento/.test(n)&&!n.includes("time 1")&&!n.includes("time 2")&&!n.includes("time 3")?"gestao":a.format==="Pasta"||a.category==="coletivos"?"acervos":/relatório|documentação|visão do projeto|missão atribuída/.test(n)?"relatorios":/jenkins|google sites|github pages|us123|landing gear|fuel management|integração entre/.test(n)?"codigo":"relatorios";
+ const id:ArtifactType=/arquitetura|diagrama/.test(n)?"arquitetura":/definition of|checklist|teste|auditoria/.test(n)?"testes":/atas|reuniões|weekly meeting/.test(n)?"reunioes":/backlog|kanban|burndown|planning poker|scrum|método de gerenciamento/.test(n)&&!n.includes("time 1")&&!n.includes("time 2")&&!n.includes("time 3")?"gestao":a.format==="Pasta"||a.category==="coletivos"?"acervos":(/relatório|documentação|visão do projeto|missão atribuída/.test(n)||a.format==="PDF")?"relatorios":/jenkins|google sites|github pages|us123|landing gear|fuel management|integração entre/.test(n)?"codigo":"relatorios";
  return artifactTypes.find(t=>t.id===id)!;
 }
