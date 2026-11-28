@@ -28,6 +28,7 @@ export const pdfPreviews = {
     }
 ] ,
 
+
   "sprint1-enunciado": [
     {
       "path": "assets/WebP/sprint-1/pdf/sprint1-enunciado-p01.webp",
