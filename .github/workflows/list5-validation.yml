@@ -40,6 +40,7 @@ jobs:
             curl -fsS http://127.0.0.1:4173/ITA-CE235-EmbeddedSystems-RealTime/ > /dev/null && break
             sleep 1
           done
+          node scripts/activities-lists-smoke.mjs
           node scripts/sprint3-smoke.mjs
           node scripts/final-report-smoke.mjs
           git fetch --no-tags origin 4916e91ae67234599d416b5e815cae07f6ebefe8
@@ -110,4 +111,5 @@ jobs:
             code/qa-ux-v2/
             code/qa-home-v3/
             code/qa-navigation-v5/
+            code/qa-activities-lists/
           if-no-files-found: warn
