@@ -42,7 +42,11 @@ try {
    assert.deepEqual(await cards.locator(".card-actions a.button--primary").evaluateAll(es=>es.map(e=>e.getAttribute("href"))),routes.map(r=>"#/"+r));
    assert.deepEqual(await cards.locator(".card-actions a.button--secondary").evaluateAll(es=>es.map(e=>e.getAttribute("href"))),folders.map(id=>"https://drive.google.com/drive/folders/"+id));
    const section=page.locator("#arquivos");
+   assert.equal(await section.locator(".lab-catalog-list a").count(),6);
+   await section.getByRole("button",{name:"Carregar visualização do Drive"}).click();
    assert.equal(await section.locator("iframe").getAttribute("src"),embed);
+   await section.getByRole("button",{name:"Ocultar visualização"}).click();
+   assert.equal(await section.locator("iframe").count(),0);
    assert.equal(await section.getByRole("heading",{name:"Arquivos das Listas de Exercícios"}).count(),1);
    const external=section.getByRole("link",{name:"Abrir pasta no Google Drive"});
    assert.equal(await external.getAttribute("href"),root);

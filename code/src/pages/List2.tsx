@@ -17,6 +17,7 @@ export default function List2(){return <>
     <DriveFilePreview title="Enunciado — ListEx 2 / Lab 3" fileName="listex2-enunciado.pdf" description="Especificação de Requisitos da ListEx 2 — Laboratório 3." localSrc={`${import.meta.env.BASE_URL}documents/list2/listex2-enunciado.pdf`} fallbackHref={links.list2Drive} large fitMode="width"/>
    </div>
 
+   <DriveFilePreview title="Relatório gerado pelo SCADE — Lab 3" fileName="ListEx2_Lab3_RelatorioScade.pdf" description="Relatório técnico original gerado pelo SCADE." fileId="1te8nwBG2neqogytBZ01gnblxoi8IQJ0c" fallbackHref={links.lab3Drive} large/>
    <div id="evidencias" className="lab3-evidence-grid portal-anchor">
     <EvidenceGallery title="Prints das pastas" folderHref={links.lab3EvidenceFoldersDrive} folderEmbed={links.lab3EvidenceFoldersEmbed}/>
     <EvidenceGallery title="Project 1" folderHref={links.lab3Project1Drive} folderEmbed={links.lab3Project1Embed}/>

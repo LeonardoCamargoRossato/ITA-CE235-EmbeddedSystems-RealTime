@@ -40,6 +40,8 @@ jobs:
             curl -fsS http://127.0.0.1:4173/ITA-CE235-EmbeddedSystems-RealTime/ > /dev/null && break
             sleep 1
           done
+          git fetch --no-tags origin 1dbe061acac8ca0df81d3cd1a5c3a722bbbd6959
+          node scripts/labs-availability-smoke.mjs
           node scripts/activities-lists-smoke.mjs
           node scripts/sprint3-smoke.mjs
           node scripts/final-report-smoke.mjs
@@ -47,6 +49,9 @@ jobs:
           node scripts/home-v3-smoke.mjs
           node scripts/navigation-v5-smoke.mjs
           node scripts/ux-v2-smoke.mjs
+      - name: External Drive availability (separate unblocked test)
+        if: always()
+        run: node scripts/labs-external-check.mjs
       - name: Build approved baseline for visual regression
         run: |
           git fetch --no-tags origin 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
@@ -112,4 +117,5 @@ jobs:
             code/qa-home-v3/
             code/qa-navigation-v5/
             code/qa-activities-lists/
+            code/qa-labs-availability/
           if-no-files-found: warn
