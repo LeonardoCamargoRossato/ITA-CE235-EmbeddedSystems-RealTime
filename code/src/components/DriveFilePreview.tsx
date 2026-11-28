@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, Expand, FileText, X } from "lucide-react";
+import CompactPdfPreview from "./viewers/CompactPdfPreview";
+import type { PdfPageLink } from "./viewers/PdfPageReader";
 import PdfPageReader from "./viewers/PdfPageReader";
 import type { PdfPreviewKey } from "../data/pdfPreviews";
 
-type Props={title:string;fileName:string;description:string;fileId?:string;localSrc?:string;fallbackHref:string;buttonLabel?:string;large?:boolean;fitMode?:"width";pagePreview?:PdfPreviewKey};
+type Props={title:string;fileName:string;description:string;fileId?:string;localSrc?:string;fallbackHref:string;buttonLabel?:string;large?:boolean;fitMode?:"width";pagePreview?:PdfPreviewKey;compact?:boolean;landscape?:boolean;pageLinks?:PdfPageLink[][];downloadHref?:string};
 
-export default function DriveFilePreview({title,fileName,description,fileId,localSrc,fallbackHref,buttonLabel="Abrir PDF",large=false,fitMode,pagePreview}:Props){
+export default function DriveFilePreview({title,fileName,description,fileId,localSrc,fallbackHref,buttonLabel="Abrir PDF",large=false,fitMode,pagePreview,compact=false,landscape=false,pageLinks,downloadHref}:Props){
  const [open,setOpen]=useState(false);
  const expand=useRef<HTMLButtonElement>(null),close=useRef<HTMLButtonElement>(null);
  const rawPreview=fileId?`https://drive.google.com/file/d/${fileId}/preview`:localSrc;
@@ -13,6 +15,7 @@ export default function DriveFilePreview({title,fileName,description,fileId,loca
  const href=fileId?`https://drive.google.com/file/d/${fileId}/view`:(localSrc??fallbackHref);
  const hasPreview=Boolean(pagePreview||preview);
  useEffect(()=>{if(!open)return; const onKey=(e:KeyboardEvent)=>{if(e.key==="Escape")setOpen(false)}; document.addEventListener("keydown",onKey); document.body.classList.add("modal-open"); close.current?.focus(); return()=>{document.removeEventListener("keydown",onKey);document.body.classList.remove("modal-open");expand.current?.focus()}},[open]);
+ if(compact&&pagePreview)return <CompactPdfPreview title={title} previewKey={pagePreview} href={href} originalSrc={rawPreview} fileName={fileName} pageLinks={pageLinks} landscape={landscape} downloadHref={downloadHref}/>;
  return <>
   <article className={`drive-file-preview-card${large?" drive-file-preview-card--large":""}`}>
    <div className={`drive-file-preview-card__viewer${pagePreview?" drive-file-preview-card__viewer--pages":""}`}>{pagePreview?<PdfPageReader previewKey={pagePreview} title={title} href={href}/>:preview?<iframe src={preview} title={`PDF — ${title}`} loading="lazy" allow="autoplay"/>:<div className="drive-file-preview-card__fallback"><FileText size={34}/><span>Preview individual pendente</span></div>}</div>
