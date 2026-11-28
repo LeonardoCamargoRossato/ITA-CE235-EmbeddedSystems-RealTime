@@ -31,7 +31,7 @@ export default function CompactPdfPreview({title,previewKey,href,originalSrc=hre
  <div ref={modal} className={"pdf-modal__panel pdf-modal__panel--pages final-report-panel"+(full?" final-report-panel--full":"")}>
  <div className="pdf-modal__bar final-report-toolbar">
  <div className="final-report-tools" aria-label="Navegação e zoom">
- <span aria-live="polite">Página {number} / {total}</span>
+ <span aria-live="polite">Página {number} / {total}</span><button type="button" disabled={original||number<=1} aria-label="Página anterior" onClick={()=>scrollPdfPage(reader.current,number-1)}>‹</button><button type="button" disabled={original||number>=total} aria-label="Próxima página" onClick={()=>scrollPdfPage(reader.current,number+1)}>›</button>
  <button disabled={original||zoom===75} onClick={()=>changeZoom(-25)} aria-label="Diminuir zoom"><ZoomOut size={19}/></button>
  <button disabled={original} onClick={()=>{resume.current=number;setZoom(100)}} aria-label="Ajustar zoom"><output>{zoom}%</output></button>
  <button disabled={original||zoom===300} onClick={()=>changeZoom(25)} aria-label="Aumentar zoom"><ZoomIn size={19}/></button></div>
