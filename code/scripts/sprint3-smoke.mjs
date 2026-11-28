@@ -312,6 +312,7 @@ try {
     for(const route of ['','projeto','list0','list1','list2','list3','artefatos','scade','disciplina','curriculo','relatorio-final','sprint1/time1','sprint1/time2','list4/time1','list4/time2','list5/time3','nao-existe']){
       await page.goto(base+'#/'+route);
       await page.locator('main').waitFor();
+      await page.locator('.portal-loading').waitFor({state:'detached'});
       assert.ok((await page.locator('main').innerText()).trim().length>10,route+' empty');
       const author=page.locator('footer .footer__author a');
       assert.match(await author.innerText(),/@leonardocamargorossato/);

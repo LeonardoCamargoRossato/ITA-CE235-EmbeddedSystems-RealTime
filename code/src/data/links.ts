@@ -66,5 +66,6 @@ export const links = {
   finalReport: "https://drive.google.com/file/d/15w1PjlYRgfYZv1RKlSA5Eid7n5SE7Rf7/view",
   modelsDrive: "https://drive.google.com/drive/folders/1g9WjtycDhYPBd-cq3vAW2AQ7PeQqJnqd",
   personalGithub: "https://github.com/LeonardoCamargoRossato/",
-  linkedin: "https://www.linkedin.com/in/leonardocamargorossato/?locale=en"
+  linkedin: "https://www.linkedin.com/in/leonardocamargorossato/?locale=en",
+  lattes: "https://lattes.cnpq.br/3782791486582477"
 } as const;
