@@ -31,7 +31,7 @@ export default function Discipline() {
       <section className="page-header">
         <div className="container">
           <span className="eyebrow">Instituto Tecnológico de Aeronáutica — ITA</span>
-          <h1>CE-235</h1>
+          <h1>CE-235 | 2026/2</h1>
           <h2>Sistemas Embarcados de Tempo Real</h2>
         </div>
       </section>
@@ -81,7 +81,6 @@ export default function Discipline() {
             <SectionTitle eyebrow="Docentes" title="Professores" />
             <div className="professor-grid">
               <ProfessorCard name="Prof. Adilson Marques da Cunha" href={links.profCunha} interests={["Embedded Systems", "Real-Time Systems", "Model-Based Design"]} />
-              <ProfessorCard name="Prof. Denis Silva Loubach" />
             </div>
 
             <section className="official-references" aria-labelledby="official-references-title">

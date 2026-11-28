@@ -44,6 +44,7 @@ jobs:
           node scripts/final-report-smoke.mjs
           git fetch --no-tags origin 4916e91ae67234599d416b5e815cae07f6ebefe8
           node scripts/home-v3-smoke.mjs
+          node scripts/navigation-v5-smoke.mjs
           node scripts/ux-v2-smoke.mjs
       - name: Build approved baseline for visual regression
         run: |
@@ -73,6 +74,7 @@ jobs:
       - name: Protect approved assets and PDFs
         run: |
           git fetch --no-tags origin 5a690c729b6b9682bb9adafaaaf4ee94fa87640d
+          git fetch --no-tags origin 76c366836186da2f33004247e3f9c60609224627
           node scripts/portal-integrity.mjs
       - name: Baseline and consolidated portal validation
         run: |
@@ -107,4 +109,5 @@ jobs:
             code/qa-portal/
             code/qa-ux-v2/
             code/qa-home-v3/
+            code/qa-navigation-v5/
           if-no-files-found: warn

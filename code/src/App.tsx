@@ -3,11 +3,11 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import {Breadcrumbs,SectionIndex,ActivityNavigation,RouteContext} from "./components/PortalNavigation";
+import {Breadcrumbs,ActivityNavigation,RouteContext} from "./components/PortalNavigation";
 import "./styles/portal-consolidation.css";
 import Home from "./pages/Home";
-const Discipline=lazy(()=>import("./pages/Discipline"));
-const Project=lazy(()=>import("./pages/Project"));
+const DisciplineProject=lazy(()=>import("./pages/DisciplineProjectPage"));
+
 const Sprint1=lazy(()=>import("./pages/Sprint1"));
 const Lists=lazy(()=>import("./pages/Lists"));
 const List0=lazy(()=>import("./pages/List0"));
@@ -36,12 +36,12 @@ export default function App() {
       <a className="portal-skip" href="#conteudo-principal" onClick={e=>{e.preventDefault();document.getElementById("conteudo-principal")?.focus()}}>Ir para o conteúdo principal</a>
       <Navbar />
       <main id="conteudo-principal" tabIndex={-1}>
-        <Breadcrumbs/><SectionIndex/>
+        <Breadcrumbs/>
         <RouteError key={pathname}><Suspense fallback={<div className="container portal-loading" role="status">Carregando conteúdo…</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/disciplina" element={<Discipline />} />
-          <Route path="/projeto" element={<Project />} />
+          <Route path="/disciplina" element={<DisciplineProject />} />
+          <Route path="/projeto" element={<DisciplineProject />} />
           <Route path="/sprint1" element={<Sprint1 />} />
           <Route path="/sprint1/time1" element={<Sprint1Team1 />} />
           <Route path="/sprint1/time2" element={<Sprint1Team2 />} />

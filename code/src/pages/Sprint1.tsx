@@ -53,11 +53,6 @@ export default function Sprint1() {
             <ProjectContextCard sprint={1}/>
           </div>
 
-          <section id="relatorio" className="sprint1-retrospective portal-anchor">
-            <SectionTitle eyebrow="US123" title="Relatório individual — Sprint 1" description="Relato retrospectivo elaborado em 28/11/2026 com base nas evidências da atividade original." />
-            <DriveFilePreview compact title="Relatório individual — Sprint 1" fileName={us123Report.fileName} description="US123 — relato retrospectivo" localSrc={import.meta.env.BASE_URL+us123Report.path} fallbackHref={import.meta.env.BASE_URL+us123Report.path} pagePreview="sprint1-relatorio" pageLinks={us123Report.pageLinks}/>
-          </section>
-
           <div className="sprint-first-evidence">
             <SectionTitle id="demonstracao"
               eyebrow="US123"
@@ -80,6 +75,11 @@ export default function Sprint1() {
               </div>
             </article>
           </div>
+
+          <section id="relatorio" className="sprint1-retrospective portal-anchor">
+            <SectionTitle eyebrow="US123" title="Relatório individual — Sprint 1" description="Relato retrospectivo elaborado em 28/11/2026 com base nas evidências da atividade original." />
+            <DriveFilePreview compact title="Relatório individual — Sprint 1" fileName={us123Report.fileName} description="US123 — relato retrospectivo" localSrc={import.meta.env.BASE_URL+us123Report.path} fallbackHref={import.meta.env.BASE_URL+us123Report.path} pagePreview="sprint1-relatorio" pageLinks={us123Report.pageLinks}/>
+          </section>
 
           <div>
             <SectionTitle id="repositorio"

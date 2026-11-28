@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="container institutional-hero__content institutional-hero__content--satellite">
         <div className="hero-glass-panel">
           <span className="hero__kicker">Instituto Tecnológico de Aeronáutica</span>
-          <div className="hero__code">CE-235</div>
+          <div className="hero__code">CE-235 | 2026/2</div>
           <h1>Sistemas Embarcados<br />de Tempo Real</h1>
           <h2>Página Individual da Disciplina</h2>
 

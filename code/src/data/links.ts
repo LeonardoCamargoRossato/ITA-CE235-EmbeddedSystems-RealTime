@@ -21,7 +21,7 @@ export const links = {
   sprint1Page: "https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/sprint1",
   profCunha: "https://comp.ita.br/~cunha/home.html",
   portfolio: "https://leonardocamargorossato.github.io/LCR-SolutionsArchitecture-IA-Quantum/#/",
-  scadeOfficial: "https://www.ansys.com/products/embedded-software/ansys-scade-suite",
+  scadeOfficial: "https://ansys.synopsys.com/products/embedded-software/ansys-scade-suite/",
 
   team2Deliverables: "https://docs.google.com/folderview?authuser=0&id=1sG1jaVVXxzG3rqaBagWBWA82keI23TgH",
   team2Artifacts: "https://drive.google.com/drive/u/0/folders/1i1Lg8kU-FYGcpiFOpuzcvHd6dXdmFEh2",
