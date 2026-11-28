@@ -25,8 +25,8 @@ Como artefato da Sprint 1, foi desenvolvido o **Telemetry Decoder**, um demonstr
 
 A versão inicial utiliza dados simulados e implementa parsing, validação de faixa e sequência e visualização dos resultados. A lógica principal da demonstração roda no navegador e inclui uma implementação C independente preparada como referência para futura integração com SCADE/imported operators.
 
-- **Aplicação publicada:** https://leonardocamargorossato.github.io/US123-Telemetry-Decoder/
-- **Repositório:** https://github.com/LeonardoCamargoRossato/US123-Telemetry-Decoder
+- **Aplicação publicada:** https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/
+- **Repositório:** https://github.com/LeonardoCamargoRossato/ITA-US123-Telemetry-Decoder
 
 ---
 
@@ -84,7 +84,7 @@ Nesta etapa, o sistema foi demonstrado **totalmente em ambiente local**. O backe
 
 ---
 
-## Evolução US123 → US221
+## Evolução US123 → US221 (registro histórico)
 
 | Aspecto | Sprint 1 — US123 | Sprint 2 — US221 |
 |---|---|---|
@@ -99,6 +99,21 @@ Nesta etapa, o sistema foi demonstrado **totalmente em ambiente local**. O backe
 
 ---
 
+## Sprint 3 — US330 / Ground Station API V3
+
+A contribuição individual evoluiu para uma plataforma de serviços da estação de solo, com ingestão autenticada, processamento, PostgreSQL isolado, consulta e rastreabilidade. O experimento histórico de 21/11/2026 documenta 180 pacotes RAW/PROCESSED vinculados, cinco satélites simulados e correspondência SHA-256 integral naquele lote. Isso não implica homologação coletiva nem disponibilidade atual do portal remoto.
+
+- [Sprint 3 — US330](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/list5)
+- [Evolução tecnológica](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/list5?secao=evolucao)
+- [Relatório Individual Final — PDF aprovado, 15 páginas](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/relatorio-final)
+
+## Trajetória acadêmica
+
+- [ListEx 0 — Página individual e Jenkins](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/list0)
+- [ListEx 1 — Laboratórios Landing Gear e Fuel Management](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/list1)
+- [ListEx 2 — Integração](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/list2)
+- [Artefatos — documentação individual, coletiva e gestão](https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/artefatos)
+
 ## Conteúdo do portal
 
 O site foi estruturado para concentrar e tornar navegáveis os principais artefatos da disciplina:
@@ -112,15 +127,9 @@ O site foi estruturado para concentrar e tornar navegáveis os principais artefa
 
 ## Stack
 
-- React
-- Vite
-- TypeScript
-- FastAPI
-- SQLite
-- JSONL
-- C / C++
-- GitHub Pages
-- Git / GitHub
+**Portal:** React, Vite, TypeScript, GitHub Pages.
+
+**Aplicação acadêmica documentada:** React/Vite/TypeScript, FastAPI, JSONL, SQLite, PostgreSQL e contratos C/C++.
 
 O portal utiliza **HashRouter**, permitindo a navegação pelas páginas internas quando publicado no GitHub Pages.
 
@@ -145,8 +154,8 @@ npm run preview
 - **Portal CE-235:** https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/
 - **Sprint 1 / List 3:** https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/sprint1
 - **Sprint 2 / List 4:** https://leonardocamargorossato.github.io/ITA-CE235-EmbeddedSystems-RealTime/#/list4
-- **US123 — Telemetry Decoder:** https://leonardocamargorossato.github.io/US123-Telemetry-Decoder/
-- **Repositório US123:** https://github.com/LeonardoCamargoRossato/US123-Telemetry-Decoder
+- **US123 — Telemetry Decoder:** https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/
+- **Repositório US123:** https://github.com/LeonardoCamargoRossato/ITA-US123-Telemetry-Decoder
 - **US221 / Sprint 2:** https://github.com/orgs/Projeto-SPRB-TR-BD/projects/4/views/1?pane=issue&itemId=272020328&issue=Projeto-SPRB-TR-BD%7CProjeto-SPRB-TR-BD%7C107
 
 ## Portfólio
