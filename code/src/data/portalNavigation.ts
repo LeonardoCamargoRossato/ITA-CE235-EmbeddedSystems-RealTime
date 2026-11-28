@@ -1,10 +1,11 @@
 import {groundStationVersions} from "./groundStation";
+export const journeyColors={preparatory:"#818C98",1:"#D3A72D",2:"#C55353",3:"#367FB6",final:"#359364"} as const;
 export const journey=[
- {route:"/list0",title:"Nivelamento — ListEx 0",description:"Página individual e Jenkins."},
- {route:"/list1",title:"Laboratórios — ListEx 1",description:"Landing Gear e Fuel Management com SCADE."},
- {route:"/list2",title:"Integração — ListEx 2",description:"Lab 3: comunicação entre aplicações."},
- ...groundStationVersions.map(v=>({route:v.route,title:`Sprint ${v.sprint} — GSA V${v.sprint}`,description:v.development})),
- {route:"/relatorio-final",title:"Relatório Final",description:"Síntese da contribuição individual."}
+ {route:"/list0",title:"Nivelamento — ListEx 0",description:"Página individual e Jenkins.",color:journeyColors.preparatory},
+ {route:"/list1",title:"Laboratórios — ListEx 1",description:"Landing Gear e Fuel Management com SCADE.",color:journeyColors.preparatory},
+ {route:"/list2",title:"Integração — ListEx 2",description:"Lab 3: comunicação entre aplicações.",color:journeyColors.preparatory},
+ ...groundStationVersions.map(v=>({route:v.route,title:`Sprint ${v.sprint} — ${v.name}`,description:v.development,color:journeyColors[v.sprint]})),
+ {route:"/relatorio-final",title:"Relatório Final",description:"Síntese da contribuição individual.",color:journeyColors.final}
 ];
 export const mainNav=[["/","Início"],["/disciplina","Disciplina"],["/projeto","Projeto"],["/listas","Atividades: Listas"],["/artefatos","Artefatos"],["/relatorio-final","Relatório Final"],["/curriculo","Currículo"]] as const;
 export const sprintSections:Record<string,readonly (readonly [string,string])[]>={
