@@ -40,6 +40,7 @@ jobs:
             curl -fsS http://127.0.0.1:4173/ITA-CE235-EmbeddedSystems-RealTime/ > /dev/null && break
             sleep 1
           done
+          git fetch --no-tags origin 1dbe061acac8ca0df81d3cd1a5c3a722bbbd6959
           node scripts/labs-availability-smoke.mjs
           node scripts/activities-lists-smoke.mjs
           node scripts/sprint3-smoke.mjs

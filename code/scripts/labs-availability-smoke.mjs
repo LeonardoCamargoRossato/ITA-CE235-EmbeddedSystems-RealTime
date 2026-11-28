@@ -42,7 +42,7 @@ try{
    }
    const enunciado=page.locator('iframe[src*="documents/list"]');assert.equal(await enunciado.count(),1);const original=await context.request.get(new URL(await enunciado.getAttribute("src"),site).href);assert.equal(original.status(),200);assert.equal((await original.body()).subarray(0,5).toString(),"%PDF-");
    const galleries=page.locator(".evidence-gallery");const galleryCount=route==="list0"?0:3;assert.equal(await galleries.count(),galleryCount);
-   for(let i=0;i<galleryCount;i++){const g=galleries.nth(i);const buttons=g.locator(".sprint-media-gallery__item");assert.ok(await buttons.count()>0);for(const im of await g.locator(".sprint-media-gallery__image img").all()){await im.scrollIntoViewIfNeeded();await im.evaluate(el=>el.decode());assert.ok(await im.evaluate(el=>el.naturalWidth>0))}
+   for(let i=0;i<galleryCount;i++){const g=galleries.nth(i);const buttons=g.locator(".sprint-media-gallery__item");assert.ok(await buttons.count()>0);for(const button of await buttons.all()){await button.scrollIntoViewIfNeeded();const im=button.locator("img");await im.waitFor({timeout:15000});await im.evaluate(el=>el.decode());assert.ok(await im.evaluate(el=>el.naturalWidth>0))}
     await g.screenshot({path:output+"/"+route+"-gallery-"+i+"-"+viewport.width+".png"});await buttons.first().click();const image=page.getByRole("dialog").locator("img").first();await image.waitFor();await image.evaluate(el=>el.decode());await page.keyboard.press("Escape");await page.getByRole("dialog").waitFor({state:"detached"});}
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),route+" overflow");
   }
