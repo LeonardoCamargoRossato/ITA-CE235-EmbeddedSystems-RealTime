@@ -9,7 +9,7 @@ export const journey=[
 ];
 export const mainNav=[["/","Início"],["/disciplina","Disciplina"],["/projeto","Projeto"],["/listas","Atividades: Listas"],["/artefatos","Artefatos"],["/relatorio-final","Relatório Final"],["/curriculo","Currículo"]] as const;
 export const sprintSections:Record<string,readonly (readonly [string,string])[]>={
- "/sprint1":[["contribuicao","Minha contribuição"],["demonstracao","Demonstração"],["repositorio","Repositório"],["implementacao","Implementação"],["fluxo","Fluxo funcional"],["rastreabilidade","Rastreabilidade"],["continuidade","Dos Labs ao projeto"],["enunciado","Enunciado"]],
+ "/sprint1":[["contribuicao","Minha contribuição"],["relatorio","Relatório individual"],["demonstracao","Demonstração"],["repositorio","Repositório"],["implementacao","Implementação"],["fluxo","Fluxo funcional"],["rastreabilidade","Rastreabilidade"],["continuidade","Dos Labs ao projeto"],["enunciado","Enunciado"]],
  "/list4":[["contribuicao","Minha contribuição"],["relatorio","Relatório individual"],["arquitetura","Arquitetura"],["repositorio","Repositório e Kanban"],["relatorio-evolucao","Relatório de evolução"],["implementacao","Implementação"],["fluxo","Fluxo funcional"],["rastreabilidade","Rastreabilidade"],["continuidade","Continuidade"]],
  "/list5":[["contribuicao","Minha contribuição"],["relatorio","Relatório individual"],["arquitetura","Arquitetura"],["evolucao","Evolução tecnológica"],["rastreabilidade","Rastreabilidade"],["portal","Portal de acesso"],["resultados","Resultados experimentais"],["documentacao","Documentação técnica"],["historico","Histórico US123–US330"],["continuidade","Continuidade"]]
 };

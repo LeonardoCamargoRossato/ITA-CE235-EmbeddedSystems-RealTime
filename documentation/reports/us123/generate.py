@@ -115,7 +115,7 @@ for i,p in enumerate(doc,1):
  filename=f'sprint1-relatorio-p{i:02}.webp';path=PREV/filename
  Image.frombytes('RGB',(pix.width,pix.height),pix.samples).save(path,'WEBP',quality=91,method=6)
  raw=path.read_bytes();rel=str(path.relative_to(PUBLIC))
- pages.append({'key':'sprint1-relatorio','path':rel,'sha':sha1(b'blob '+str(len(raw)).encode()+b'\\0'+raw).hexdigest(),'sha256':sha256(raw).hexdigest(),'width':pix.width,'height':pix.height,'bytes':len(raw)})
+ pages.append({'key':'sprint1-relatorio','path':rel,'sha':sha1(b'blob '+str(len(raw)).encode()+bytes([0])+raw).hexdigest(),'sha256':sha256(raw).hexdigest(),'width':pix.width,'height':pix.height,'bytes':len(raw)})
  annotations.append([{'rect':[l['from'].x0/p.rect.width,l['from'].y0/p.rect.height,l['from'].width/p.rect.width,l['from'].height/p.rect.height],'href':l['uri'],'label':p.get_textbox(l['from']).strip() or 'Abrir referência'} for l in p.get_links() if l.get('uri')])
  assert 'Leonardo Camargo Rossato' in p.get_text()
 manifest=ROOT/'documentation/pdf-previews/manifest.json'
@@ -123,7 +123,7 @@ m=json.loads(manifest.read_text());m['documents']=[d for d in m['documents'] if 
 m['documents'].append({'key':'sprint1-relatorio','source':str(PDF.relative_to(ROOT)),'sourceSha256':sha256(PDF.read_bytes()).hexdigest(),'pages':pages,'retrospectiveDate':'2026-11-28'})
 manifest.write_text(json.dumps(m,ensure_ascii=False,indent=2)+'\n')
 catalog=ROOT/'code/src/data/pdfPreviews.ts';s=catalog.read_text()
-s=re.sub(r'  "sprint1-relatorio": \[.*?\n  \],\n','',s,flags=re.S)
+s=re.sub(r'  "sprint1-relatorio": \[.*?\n\s*\]\s*,\n','',s,flags=re.S)
 s=s.replace('export const pdfPreviews = {','export const pdfPreviews = {\n  "sprint1-relatorio": '+json.dumps([{k:p[k] for k in ('path','width','height')} for p in pages],indent=4)+' ,\n',1)
 catalog.write_text(s)
 (ROOT/'code/src/data/us123Report.ts').write_text('import type {PdfPageLink} from "../components/viewers/PdfPageReader";\nexport const us123Report = {path:'+json.dumps(str(PDF.relative_to(PUBLIC)))+',fileName:'+json.dumps(PDF.name)+',sha256:'+json.dumps(sha256(PDF.read_bytes()).hexdigest())+',pageLinks:'+json.dumps(annotations,ensure_ascii=False)+' as PdfPageLink[][]};\n')

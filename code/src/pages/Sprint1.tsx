@@ -1,3 +1,4 @@
+import {us123Report} from "../data/us123Report";
 import { gsaV1 } from "../data/groundStation";
 import { ExternalLink } from "lucide-react";
 import { imagePair } from "../data/assets";
@@ -51,6 +52,11 @@ export default function Sprint1() {
             <ContributionCard driveUrl={links.list3Drive} demoUrl={links.us123TelemetryDecoder} githubUrl={links.us123Repository} issueUrl={links.us123Issue70} />
             <ProjectContextCard sprint={1}/>
           </div>
+
+          <section id="relatorio" className="sprint1-retrospective portal-anchor">
+            <SectionTitle eyebrow="US123" title="Relatório individual — Sprint 1" description="Relato retrospectivo elaborado em 28/11/2026 com base nas evidências da atividade original." />
+            <DriveFilePreview compact title="Relatório individual — Sprint 1" fileName={us123Report.fileName} description="US123 — relato retrospectivo" localSrc={import.meta.env.BASE_URL+us123Report.path} fallbackHref={import.meta.env.BASE_URL+us123Report.path} pagePreview="sprint1-relatorio" pageLinks={us123Report.pageLinks}/>
+          </section>
 
           <div className="sprint-first-evidence">
             <SectionTitle id="demonstracao"
