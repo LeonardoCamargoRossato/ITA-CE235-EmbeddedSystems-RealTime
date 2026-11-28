@@ -27,3 +27,19 @@
 @media(max-width:1050px){.portal-journey-wrap{grid-template-columns:repeat(3,minmax(0,1fr))}.portal-journey-wrap .portal-journey{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:620px){.portal-journey-wrap .portal-journey{grid-template-columns:1fr}.portal-journey-wrap .portal-journey li:nth-child(3){margin-bottom:10px}}
 @media(prefers-reduced-motion:reduce){.portal-journey-wrap .portal-journey a{transition:none}.portal-journey-wrap .portal-journey a:hover,.portal-journey-wrap .portal-journey a:focus-visible{transform:none}}
+
+.artifact-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:22px}
+.artifact-toolbar .portal-filters{margin:0}
+.artifact-view-toggle{display:flex;gap:4px;margin-left:auto;padding:3px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.artifact-view-toggle button{display:grid;place-items:center;border:1px solid transparent;background:transparent;color:#526277;border-radius:6px;padding:9px;cursor:pointer}
+.artifact-view-toggle button:hover{background:#eaf2fa;color:#135b9c}.artifact-view-toggle button[aria-pressed=true]{background:#e2eef9;color:#135b9c;border-color:#c5dbef}
+.artifact-document-heading{display:flex;align-items:flex-start;gap:10px;width:100%;min-width:0}.artifact-document-heading>div{min-width:0}
+.artifact-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;color:#135b9c;background:#eaf2fa;border-radius:8px}
+.portal-document{overflow-wrap:anywhere}.portal-document h3{margin-top:3px}
+.portal-document:hover{border-color:#b8cde0;box-shadow:0 4px 12px #173b640b}
+.portal-library-grid.artifact-view--lista{display:block;border:1px solid var(--line);border-radius:12px;background:#fff}
+.artifact-view--lista .portal-document{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1.35fr) minmax(0,1fr) auto;align-items:center;gap:16px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}
+.artifact-view--lista .portal-document:last-child{border-bottom:0}
+.artifact-view--lista .portal-document:hover{background:#f6f9fc;box-shadow:none}
+.artifact-view--lista .portal-document .button{white-space:nowrap;justify-self:end}
+@media(max-width:760px){.artifact-view--lista .portal-document{grid-template-columns:minmax(0,1fr) auto;gap:7px 10px}.artifact-view--lista .artifact-document-heading,.artifact-view--lista .portal-document p,.artifact-view--lista .artifact-document-meta{grid-column:1}.artifact-view--lista .portal-document .button{grid-column:2;grid-row:1/4}.artifact-view--lista .portal-document .button{font-size:11px;padding:8px}}
