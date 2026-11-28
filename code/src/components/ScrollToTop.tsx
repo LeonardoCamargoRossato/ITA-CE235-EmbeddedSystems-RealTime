@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
+    if(new URLSearchParams(search).has("secao"))return;
     window.scrollTo({
       top: 0,
       left: 0,
