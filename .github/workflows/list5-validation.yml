@@ -41,6 +41,7 @@ jobs:
             sleep 1
           done
           node scripts/sprint3-smoke.mjs
+          node scripts/final-report-smoke.mjs
       - name: Build approved baseline for visual regression
         run: |
           git fetch --no-tags origin 57761cd591c9df35fbcc5a7cbe09d1dab8a16970
@@ -71,5 +72,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sprint3-browser-qa
-          path: code/qa-sprint3/
+          path: |
+            code/qa-sprint3/
+            code/qa-final-report/
           if-no-files-found: warn

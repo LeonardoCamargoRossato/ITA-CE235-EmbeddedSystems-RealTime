@@ -118,6 +118,135 @@
         }
       ],
       "publishedSource": "code/public/assets/PDF/sprint-3/us330/Relatorio_Pessoal_US330_Sprint3_Leonardo_Rossato-d3bbbbca.pdf"
+    },
+    {
+      "key": "final-report",
+      "source": "code/public/assets/PDF/final-report/Relatorio_Final_CE235_2026_2_Leonardo_Camargo_Rossato_v7-eb2ae1cd.pdf",
+      "sourceSha256": "eb2ae1cd1059c2728879c491b7923fc6a6fa0e07fe16237cc01b6c2616feca2b",
+      "drive": "https://drive.google.com/file/d/15w1PjlYRgfYZv1RKlSA5Eid7n5SE7Rf7/view",
+      "method": "PyMuPDF 1600px width, WebP quality 88; 161 original PDF link rectangles, 15 pages; original PDF unchanged",
+      "pages": [
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p01-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "4511abab2b1365588cd97578a95305f3d82609b7",
+          "bytes": 172792,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p02-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "d899e6d4b9d8cf4fa830a4f1ae67e0a5eccdbc59",
+          "bytes": 142364,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p03-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "6ad513bcccac53829ea3ccb004cbd47784c0caea",
+          "bytes": 348606,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p04-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "8ec9aba3b7d3b377c1dd68809876071961af160d",
+          "bytes": 280828,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p05-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "49fab4040df4940d348facfae7dc7a27616f241d",
+          "bytes": 288822,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p06-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "0ab3d0cd2f9199f341d9340bc827620349a19c92",
+          "bytes": 224290,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p07-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "96303ef98351fcd8e70fa4e1357dc7a0512544d8",
+          "bytes": 307392,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p08-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "06a218c0e6eb23ac3430cb8fedf06c7ed9928d1e",
+          "bytes": 326308,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p09-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "dc67d5ba7358ae2a2d74fe8fcfa9e263f157dce3",
+          "bytes": 214888,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p10-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "5911c8fbca66740a6e9f6f51e99184199c7e9cfe",
+          "bytes": 250810,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p11-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "496d0368ffda5e8a3683c79069cd1f607af1246b",
+          "bytes": 254132,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p12-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "6e448c132cb8bb792fa694857a1a4fa957d23343",
+          "bytes": 375902,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p13-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "5ada9030fce5f54f5da6de707fbd7e7c705d31a7",
+          "bytes": 298210,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p14-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "3ee147fb89e97ece5b2ca8d6b2b329823f3505da",
+          "bytes": 337578,
+          "key": "final-report"
+        },
+        {
+          "path": "assets/WebP/final-report/pdf/final-report-p15-eb2ae1cd.webp",
+          "width": 1600,
+          "height": 2263,
+          "sha": "97c55988b6f051b209bf782ff0687d2e5270a907",
+          "bytes": 268594,
+          "key": "final-report"
+        }
+      ]
     }
   ]
 }

@@ -69,3 +69,6 @@ jobs:
           node-version: 20
       - name: Verify public Sprint 3 PDF and previews by hash
         run: node code/scripts/verify-sprint3-publication.mjs
+
+      - name: Verify public final report and previews by hash
+        run: node code/scripts/verify-final-report-publication.mjs
