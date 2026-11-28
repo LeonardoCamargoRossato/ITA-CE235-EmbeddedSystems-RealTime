@@ -1,5 +1,33 @@
 // Complete page renderings of approved, existing PDF documents. Previews match the currently approved source PDFs.
 export const pdfPreviews = {
+  "sprint1-relatorio": [
+    {
+        "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p01.webp",
+        "width": 1600,
+        "height": 2263
+    },
+    {
+        "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p02.webp",
+        "width": 1600,
+        "height": 2263
+    },
+    {
+        "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p03.webp",
+        "width": 1600,
+        "height": 2263
+    },
+    {
+        "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p04.webp",
+        "width": 1600,
+        "height": 2263
+    },
+    {
+        "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p05.webp",
+        "width": 1600,
+        "height": 2263
+    }
+] ,
+
   "sprint1-enunciado": [
     {
       "path": "assets/WebP/sprint-1/pdf/sprint1-enunciado-p01.webp",
