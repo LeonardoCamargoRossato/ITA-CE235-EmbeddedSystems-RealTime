@@ -20,6 +20,6 @@ jobs:
       - run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add code/public/assets/WebP/list-* code/src/data/labPdfPreviews.ts code/src/data/labDocuments.ts documentation/labs-availability/previews.json
+          git add code/public/assets/PNG/list-* code/public/assets/WebP/list-* code/src/data/labEvidence.ts documentation/labs-availability/evidence.json code/src/data/labPdfPreviews.ts code/src/data/labDocuments.ts documentation/labs-availability/previews.json
           git diff --cached --quiet || git commit -m 'assets(labs): generate verified WebP previews and PDF annotations'
           git push origin HEAD:fix/ce235-labs-document-availability

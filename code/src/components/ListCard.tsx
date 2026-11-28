@@ -5,7 +5,7 @@ import type{ListItem}from"../data/lists";
 
 export default function ListCard({item}:{item:ListItem}){
   const href=item.internalHref??`/${item.id}`;
-  return <article className="list-card list-card--academic">
+  return <article className="list-card list-card--academic" data-activity={item.id}>
     <div className="list-card__top"><span>LIST {item.number}</span><StatusBadge status={item.status}/></div>
     <h3>{item.title}</h3>
     <p className="list-card__subtitle">{item.shortTitle}</p>

@@ -1,5 +1,7 @@
+import { labPdfPreviews } from "./labPdfPreviews";
 // Complete page renderings of approved, existing PDF documents. Previews match the currently approved source PDFs.
 export const pdfPreviews = {
+  ...labPdfPreviews,
   "sprint1-relatorio": [
     {
         "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p01.webp",

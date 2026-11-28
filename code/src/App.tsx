@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import {Breadcrumbs,ActivityNavigation,RouteContext} from "./components/PortalNavigation";
 import "./styles/portal-consolidation.css";
+import "./styles/labs-availability.css";
 import Home from "./pages/Home";
 const DisciplineProject=lazy(()=>import("./pages/DisciplineProjectPage"));
 
@@ -35,7 +36,7 @@ export default function App() {
       <ScrollToTop />
       <a className="portal-skip" href="#conteudo-principal" onClick={e=>{e.preventDefault();document.getElementById("conteudo-principal")?.focus()}}>Ir para o conteúdo principal</a>
       <Navbar />
-      <main id="conteudo-principal" tabIndex={-1}>
+      <main id="conteudo-principal" tabIndex={-1} data-activity={/^\/(?:list[0-5]|sprint1)$/.test(pathname)?pathname==="/sprint1"?"list3":pathname.slice(1):undefined}>
         <Breadcrumbs/>
         <RouteError key={pathname}><Suspense fallback={<div className="container portal-loading" role="status">Carregando conteúdo…</div>}>
         <Routes>
