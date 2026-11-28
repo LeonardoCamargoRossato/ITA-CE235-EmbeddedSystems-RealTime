@@ -1,0 +1,19 @@
+.academic-context-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.academic-context-card{display:flex;flex-direction:column;align-items:flex-start;gap:14px;text-align:left;padding:clamp(18px,3vw,30px);border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--navy);cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;min-width:0}
+.academic-context-card:hover,.academic-context-card:focus-visible{transform:translateY(-3px);border-color:#367fb6;box-shadow:0 10px 22px #173b641a}
+.academic-context-card strong{font-size:clamp(20px,2.2vw,27px);line-height:1.2}
+.academic-context-card span{font-size:14px;line-height:1.65;color:#526277}
+.academic-context-icon{color:#135b9c;background:#eaf2fa;padding:8px;box-sizing:content-box;border-radius:10px}
+.academic-context-card b{display:flex;align-items:center;gap:8px;color:#135b9c;margin-top:auto;padding-top:12px;font-size:14px}
+.academic-context-card b svg{transition:transform .18s}.academic-context-card .is-rotated{transform:rotate(180deg)}
+.academic-resources{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px}
+.academic-resources[hidden]{display:none}.academic-resources h3{margin:0 0 12px;color:var(--navy)}
+.academic-resources table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px}
+.academic-resources th,.academic-resources td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);overflow-wrap:anywhere;vertical-align:middle}
+.academic-resources th:first-child{width:42%}.academic-resources th:last-child{width:64px}.academic-resources td:last-child,.academic-resources th:last-child{text-align:center}
+.academic-resources tbody th{color:var(--navy);font-weight:700}.academic-resources td{color:#526277}
+.academic-resources small{display:block;font-size:10px;font-weight:400;color:#64748b;margin-top:3px}
+.academic-resources a{display:inline-flex;padding:8px;border-radius:6px;background:#edf4fa;color:#135b9c}.academic-resources a:hover{background:#dbeafa}
+.academic-context-card:focus-visible,.academic-resources a:focus-visible{outline:3px solid #b78b43;outline-offset:3px}
+@media(max-width:650px){.academic-context-grid{grid-template-columns:1fr}.academic-resources{padding:10px}.academic-resources th,.academic-resources td{padding:8px 4px;font-size:12px}.academic-resources th:last-child{width:48px}}
+@media(prefers-reduced-motion:reduce){.academic-context-card,.academic-context-card b svg{transition:none}.academic-context-card:hover,.academic-context-card:focus-visible{transform:none}}

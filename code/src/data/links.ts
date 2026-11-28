@@ -11,6 +11,7 @@ export const links = {
 
   sprbOfficial: "https://sites.google.com/view/projeto-sprb-trbd/home",
   sprbCe235: "https://sites.google.com/view/projeto-sprb-trbd/disciplinas/ce-235",
+  projectRepository: "https://github.com/Projeto-SPRB-TR-BD/Projeto-SPRB-TR-BD",
   projectGithub: "https://github.com/Projeto-SPRB-TR-BD",
   projectDrive: "https://drive.google.com/drive/folders/1Gf_Hp4CZFhhk_zP-RPPmDpy95ADVrm4h",
   us123TelemetryDecoder: "https://leonardocamargorossato.github.io/ITA-US123-Telemetry-Decoder/",
