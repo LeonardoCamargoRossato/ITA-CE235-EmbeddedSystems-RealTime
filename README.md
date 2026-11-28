@@ -1,6 +1,6 @@
-# CE-235 — Sistemas de Tempo Real
+# CE-235 | 2026/2 — Sistemas Embarcados de Tempo Real
 
-Portal acadêmico e portfólio técnico de **Leonardo Camargo Rossato** para a disciplina **CE-235 — Sistemas de Tempo Real**, desenvolvido em **React + Vite + TypeScript**.
+Portal acadêmico e portfólio técnico de **Leonardo Camargo Rossato** para a disciplina **CE-235 | 2026/2 — Sistemas Embarcados de Tempo Real**, desenvolvido em **React + Vite + TypeScript**.
 
 O projeto centraliza as atividades da disciplina, ListExes, laboratórios, artefatos, documentação do **Projeto SPRB-TR/BD**, atividades com **ANSYS SCADE** e entregas das Sprints.
 

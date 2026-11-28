@@ -1,0 +1,6 @@
+# Final Release V5
+Baseline: 76c366836186da2f33004247e3f9c60609224627. LCR_ASSET_ORGANIZATION_STANDARD v1.2 consulted. No new assets or PDF edits. 11 repository PDFs checked against V4 by SHA-256 in CI; Drive documents not written. Existing report V7 and all original links preserved. The Sprint 1 retrospective block is moved after the demonstrator to restore the opening layout regression introduced by V4; its bytes and anchor remain unchanged.
+
+The SCADE background uses the existing --gold (#d6b35a) without modification. Official product URL: https://ansys.synopsys.com/products/embedded-software/ansys-scade-suite/. Official academic terms https://ansys.synopsys.com/academic/terms-and-conditions distinguish logo use on student physical devices from general referential use (word marks only); therefore no graphical logo copied without confirmed permission. Plain textual product identification is an interim fallback, not a fabricated logo. No sponsorship implied.
+
+Artifact filters: categoria, tipo, modo. Menus use existing lists and artifact catalogs; new anchors refer only to existing content. Both /disciplina and /projeto render one shared page and scroll to respective sections. Existing PDFs untouched.
