@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { pdfPreviews, type PdfPreviewKey } from "../../data/pdfPreviews";
 import "./PdfPageReader.css";
 
 type Page = {path:string;width:number;height:number};
+export type PdfPageLink = {rect:number[];label:string;page?:number;href?:string};
 
-function PdfPage({page,number,title,href}:{page:Page;number:number;title:string;href:string}){
+export function PdfPage({page,number,title,href,links=[],onNavigate,style}:{page:Page;number:number;title:string;href:string;links?:PdfPageLink[];onNavigate?:(page:number)=>void;style?:CSSProperties}){
   const ref=useRef<HTMLDivElement>(null);
   const [visible,setVisible]=useState(false);
   const [failed,setFailed]=useState(false);
@@ -17,8 +18,9 @@ function PdfPage({page,number,title,href}:{page:Page;number:number;title:string;
     observer.observe(el);
     return()=>observer.disconnect();
   },[]);
-  return <div ref={ref} className="pdf-page-reader__page" style={{aspectRatio:`${page.width} / ${page.height}`}} data-page={number}>
+  return <div ref={ref} className="pdf-page-reader__page" style={{aspectRatio:`${page.width} / ${page.height}`,...style}} data-page={number}>
     {visible&&!failed&&<img src={`${import.meta.env.BASE_URL}${page.path}`} width={page.width} height={page.height} alt={`${title} — página ${number}`} decoding="async" onError={()=>setFailed(true)}/>}
+    {visible&&!failed&&links.map((link,i)=>{const [x,y,w,h]=link.rect;const style={left:`${x*100}%`,top:`${y*100}%`,width:`${w*100}%`,height:`${h*100}%`};return link.href?<a key={i} className="pdf-page-link" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label} title={link.label} style={style}/>:<button key={i} className="pdf-page-link" type="button" onClick={()=>link.page&&onNavigate?.(link.page)} aria-label={`${link.label} — página ${link.page}`} title={link.label} style={style}/>;})}
     {failed&&<p role="alert">Não foi possível exibir a página {number}. <a href={href} target="_blank" rel="noopener noreferrer">Abrir PDF original</a>.</p>}
   </div>;
 }

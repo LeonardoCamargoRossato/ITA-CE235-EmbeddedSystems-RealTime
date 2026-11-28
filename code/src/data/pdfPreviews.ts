@@ -65,6 +65,83 @@ export const pdfPreviews = {
       "width": 1600,
       "height": 2263
     }
-  ]
+  ],
+  "final-report": [
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p01-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p02-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p03-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p04-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p05-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p06-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p07-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p08-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p09-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p10-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p11-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p12-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p13-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p14-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  },
+  {
+    "path": "assets/WebP/final-report/pdf/final-report-p15-eb2ae1cd.webp",
+    "width": 1600,
+    "height": 2263
+  }
+]
 } as const;
 export type PdfPreviewKey = keyof typeof pdfPreviews;
