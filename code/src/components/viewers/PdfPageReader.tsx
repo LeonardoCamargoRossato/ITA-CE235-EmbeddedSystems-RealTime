@@ -38,7 +38,7 @@ export default function PdfPageReader({previewKey,title,href,readerRef,pageLinks
     const el=ref.current;if(!el||!onPageChange)return;
     const top=el.getBoundingClientRect().top+Math.min(80,el.clientHeight*.15);
     const pages=Array.from(el.querySelectorAll<HTMLElement>("[data-page]"));
-    const current=pages.find(page=>page.getBoundingClientRect().bottom>top);
+    const current=el.scrollHeight-el.clientHeight-el.scrollTop<2?pages[pages.length-1]:pages.find(page=>page.getBoundingClientRect().bottom>top);
     if(current)onPageChange(Number(current.dataset.page));
   };
   return <div ref={ref} onScroll={onPageChange?onScroll:undefined} className="pdf-page-reader" tabIndex={0} role="region" aria-label={`Leitura integral — ${title}`} data-pdf-preview={previewKey}>

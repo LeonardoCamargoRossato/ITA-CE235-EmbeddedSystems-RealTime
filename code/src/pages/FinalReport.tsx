@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Download, Expand, ExternalLink, ZoomIn, ZoomOut, X, Maximize, FileText } from "lucide-react";
 import PdfPageReader, { scrollPdfPage } from "../components/viewers/PdfPageReader";
 import { finalReport } from "../data/finalReport";
@@ -22,7 +22,7 @@ export default function FinalReport(){
  const onFull=()=>setFull(document.fullscreenElement===modal.current);
  document.addEventListener("keydown",onKey);document.addEventListener("fullscreenchange",onFull);
  return()=>{document.body.classList.remove("modal-open");document.removeEventListener("keydown",onKey);document.removeEventListener("fullscreenchange",onFull);trigger.current?.focus()};},[open]);
- useEffect(()=>{if(!open||original)return;const id=requestAnimationFrame(()=>scrollPdfPage(reader.current,resume.current));return()=>cancelAnimationFrame(id)},[open,original,zoom]);
+ useLayoutEffect(()=>{if(open&&!original)scrollPdfPage(reader.current,resume.current)},[open,original,zoom]);
  const toggleFull=async()=>{try{if(document.fullscreenElement===modal.current)await document.exitFullscreen();else await modal.current?.requestFullscreen()}catch{setFull(v=>!v)}};
  const toggleOriginal=()=>{resume.current=number;setOriginal(v=>!v)};
  const changeZoom=(delta:number)=>{resume.current=number;scale(delta)};
@@ -49,7 +49,7 @@ export default function FinalReport(){
  <div className="final-report-tools"><button onClick={toggleOriginal} aria-pressed={original} aria-label={original?"Voltar à prévia":"Ler PDF original"}><FileText size={18}/><span>{original?"Prévia":"PDF original"}</span></button><a href={pdf} download={finalReport.fileName} aria-label="Baixar PDF"><Download size={19}/></a><button aria-label="Alternar tela cheia" aria-pressed={full} onClick={()=>void toggleFull()}><Maximize size={19}/></button><button ref={close} onClick={hide} aria-label="Fechar"><X size={22}/></button></div>
  </div>
  {original?<div className="final-report-native"><iframe title="PDF original — relatório final" src={pdf+"#page="+resume.current+"&view=FitH"}/><a href={pdf+"#page="+resume.current} target="_blank" rel="noopener noreferrer">Abrir PDF original em nova aba <ExternalLink size={15}/></a></div>:<div className="final-report-stage" data-zoom={zoom} onPointerDown={e=>{if(zoom<=100||e.pointerType!=="mouse"||(e.target as HTMLElement).closest("a,button")||!reader.current)return;drag.current={x:e.clientX,y:e.clientY,left:reader.current.scrollLeft,top:reader.current.scrollTop};e.currentTarget.setPointerCapture(e.pointerId)}} onPointerMove={e=>{if(!drag.current||!reader.current)return;reader.current.scrollLeft=drag.current.left+drag.current.x-e.clientX;reader.current.scrollTop=drag.current.top+drag.current.y-e.clientY}} onPointerUp={()=>{drag.current=null}} onPointerCancel={()=>{drag.current=null}}>
- <PdfPageReader previewKey="final-report" title="Relatório Final" href={pdf} readerRef={reader} pageLinks={pageLinks} onPageChange={setNumber} pageStyle={{width:`min(${zoom}%, ${900*zoom/100}px)`,maxWidth:"none"}}/>
+ <PdfPageReader previewKey="final-report" title="Relatório Final" href={pdf} readerRef={reader} pageLinks={pageLinks} onPageChange={n=>{resume.current=n;setNumber(n)}} pageStyle={{width:`min(${zoom}%, ${900*zoom/100}px)`,maxWidth:"none"}}/>
  </div>}
  </div></div>}
  </div>
