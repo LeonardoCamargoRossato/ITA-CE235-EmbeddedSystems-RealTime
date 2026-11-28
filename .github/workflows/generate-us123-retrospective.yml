@@ -1,0 +1,32 @@
+name: Generate US123 retrospective assets
+on:
+  push:
+    branches: [feat/ce235-home-perspectives-us123-report]
+    paths: [documentation/reports/us123/generate.py, .github/workflows/generate-us123-retrospective.yml]
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/ce235-home-perspectives-us123-report
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install reportlab==4.4.4 svglib==1.5.1 pymupdf==1.26.5 Pillow==11.3.0
+      - run: python documentation/reports/us123/generate.py
+      - name: Store generated assets only on feature branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add code/public/assets/PDF/sprint-1/us123/Relatorio_Pessoal_US123_Sprint1_Leonardo_Rossato.pdf code/public/assets/WebP/sprint-1/pdf/sprint1-relatorio-p*.webp code/src/data/us123Report.ts code/src/data/pdfPreviews.ts documentation/pdf-previews/manifest.json
+          git diff --cached --quiet || git commit -m 'docs(us123): generate retrospective PDF and five traceable previews'
+          git push origin HEAD:feat/ce235-home-perspectives-us123-report
+      - uses: actions/upload-artifact@v4
+        with:
+          name: us123-retrospective
+          path: |
+            code/public/assets/PDF/sprint-1/us123/Relatorio_Pessoal_US123_Sprint1_Leonardo_Rossato.pdf
+            code/public/assets/WebP/sprint-1/pdf/sprint1-relatorio-p*.webp

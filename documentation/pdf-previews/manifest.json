@@ -247,6 +247,59 @@
           "key": "final-report"
         }
       ]
+    },
+    {
+      "key": "sprint1-relatorio",
+      "source": "code/public/assets/PDF/sprint-1/us123/Relatorio_Pessoal_US123_Sprint1_Leonardo_Rossato.pdf",
+      "sourceSha256": "4be330eee94228e7d869159a2bc67ae86df060c5d5d4f6438aa3f4489d604247",
+      "pages": [
+        {
+          "key": "sprint1-relatorio",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p01.webp",
+          "sha": "e6c7ee8acfa7c98919098f7cbb80f226ac50fbb0",
+          "sha256": "0513f9fb011c041b64c4dc8a1dc08cf174b618779908fe82195ec0b563fbc450",
+          "width": 1600,
+          "height": 2263,
+          "bytes": 249560
+        },
+        {
+          "key": "sprint1-relatorio",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p02.webp",
+          "sha": "e70f8126467896cfa5e9ad7e786f350725c0f646",
+          "sha256": "1ae589d2036ff2e24b2762d867062c1a48d7c9ee34a34bff98963b00084b2167",
+          "width": 1600,
+          "height": 2263,
+          "bytes": 198778
+        },
+        {
+          "key": "sprint1-relatorio",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p03.webp",
+          "sha": "6289ae764f294ea0c31185ff11c00f6cea0e4a02",
+          "sha256": "6c767fc3ff4928062c4ea674d71dcd8f417eb3d2bdb3a8992ee0edcd8dbf65e9",
+          "width": 1600,
+          "height": 2263,
+          "bytes": 266314
+        },
+        {
+          "key": "sprint1-relatorio",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p04.webp",
+          "sha": "161d2faa0f39cceac157e7c67ec06b74054d867a",
+          "sha256": "35408c47697fd44c7f25bf8c161cf9cd39f704d1b59a46b6032955047a7dad2e",
+          "width": 1600,
+          "height": 2263,
+          "bytes": 223598
+        },
+        {
+          "key": "sprint1-relatorio",
+          "path": "assets/WebP/sprint-1/pdf/sprint1-relatorio-p05.webp",
+          "sha": "10bb9020e3ec77702f4d16f77673b7bb768faf62",
+          "sha256": "a823a27d368e071b1e3b005c4c55b257fd719e240c0488743917e21354217626",
+          "width": 1600,
+          "height": 2263,
+          "bytes": 244060
+        }
+      ],
+      "retrospectiveDate": "2026-11-28"
     }
   ]
 }
