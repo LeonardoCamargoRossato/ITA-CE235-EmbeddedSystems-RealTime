@@ -14,7 +14,7 @@ type Props = {
 export default function DriveFolderPreview({
   title, description, href, embed, buttonLabel = "Abrir no Google Drive", compact = false
 }: Props) {
-  const id=href.split("/").at(-1)??"";
+  const id=href.split("/").pop()??"";
   const catalog=labFolderCatalog[id];
   const [attempt,setAttempt]=useState(0),[timedOut,setTimedOut]=useState(false),[keep,setKeep]=useState(false);
   useEffect(()=>{if(!catalog||!attempt||keep)return;const timer=window.setTimeout(()=>setTimedOut(true),10000);return()=>window.clearTimeout(timer)},[catalog,attempt,keep]);

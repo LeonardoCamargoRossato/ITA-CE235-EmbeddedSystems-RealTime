@@ -6,7 +6,7 @@ import DemandImage from "./viewers/DemandImage";
 type EvidenceItem={src:string;fullSrc:string;alt:string;caption:string};
 type Props={title:string;folderHref:string;folderEmbed:string;items?:EvidenceItem[]};
 export default function EvidenceGallery({title,folderHref,folderEmbed,items=[]}:Props){
-  const selected=items.length?items:labEvidence[folderHref.split("/").at(-1)??""]??[];
+  const selected=items.length?items:labEvidence[folderHref.split("/").pop()??""]??[];
   const [active,setActive]=useState<number|null>(null);
   if(!selected.length)return <article className="evidence-gallery">
     <div className="evidence-gallery__heading"><span><Images size={19}/></span><div><h3>{title}</h3><p>As imagens permanecem no Google Drive, com acesso conforme as permissões existentes.</p></div></div>
