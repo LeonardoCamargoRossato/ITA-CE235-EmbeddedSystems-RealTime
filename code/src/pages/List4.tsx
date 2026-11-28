@@ -55,7 +55,7 @@ export default function List4() {
 
       <section className="section sprint1-main">
         <div className="container content-stack content-stack--sprint1">
-          <div className="sprint1-contribution-enunciado sprint-contribution-pair">
+          <div id="contribuicao" className="sprint1-contribution-enunciado sprint-contribution-pair">
             <article className="contribution-card">
               <span className="eyebrow">Minha contribuição</span>
               <h2>{groundStationTitle(gsaV2)}</h2>
@@ -75,7 +75,7 @@ export default function List4() {
           </div>
 
           <div className="sprint-first-evidence">
-            <SectionTitle
+            <SectionTitle id="relatorio"
               eyebrow="US221"
               title={"Demonstração e evidências — "+gsaV2.name}
               description="Relatório pessoal da US221 / Sprint 2 e evidências visuais da implementação executada em localhost."
@@ -113,7 +113,7 @@ export default function List4() {
           </div>
 
           <div className="sprint2-supporting-docs-section">
-            <SectionTitle
+            <SectionTitle id="arquitetura"
               eyebrow="Documentação técnica"
               title="Arquitetura local e integração RAW / Processed"
               description="Documentos de apoio produzidos na Sprint 2 para registrar a implementação local e orientar a integração das saídas tipadas com o ANSYS SCADE."
@@ -143,7 +143,7 @@ export default function List4() {
           </div>
 
           <div>
-            <SectionTitle
+            <SectionTitle id="repositorio"
               eyebrow="GitHub"
               title="Repositório e Kanban da US221"
               description="Kanban da Sprint 2 com acesso direto à atividade US221 T1 e ao repositório individual da disciplina."
@@ -186,7 +186,7 @@ export default function List4() {
           </div>
 
           <div>
-            <div className="sprint2-report-block">
+            <div id="relatorio-evolucao" className="sprint2-report-block">
               <DriveFilePreview
                 title="Relatório — Evolução US123 → US221"
                 fileName="US221_Sprint2_Evolucao_US123_para_US221.pdf"
@@ -200,7 +200,7 @@ export default function List4() {
           </div>
 
           <div>
-            <SectionTitle eyebrow="Resumo técnico" title="Implementação" />
+            <SectionTitle id="implementacao" eyebrow="Resumo técnico" title="Implementação" />
             <div className="sprint-tech-grid">
               <article><span>Frontend / monitor</span><strong>React · Vite · TypeScript</strong></article>
               <article><span>Backend local</span><strong>FastAPI · REST · localhost</strong></article>
@@ -214,7 +214,7 @@ export default function List4() {
           </div>
 
           <div>
-            <SectionTitle
+            <SectionTitle id="fluxo"
               eyebrow="Fluxo funcional"
               title="Cadeia de processamento da US221"
               description="Da telemetria JSON recebida do Time 1 ao dado validado e disponibilizado para consumidores."
@@ -235,7 +235,7 @@ export default function List4() {
           </div>
 
           <div>
-            <SectionTitle eyebrow="Rastreabilidade" title="Rastreabilidade da atividade" />
+            <SectionTitle id="rastreabilidade" eyebrow="Rastreabilidade" title="Rastreabilidade da atividade" />
             <div className="traceability-grid">
               <a href={us221ProjectUrl} target="_blank" rel="noopener noreferrer"><span>US221 / Sprint 2</span><strong>T1 — #107</strong></a>
               <a href={us221DocumentationUrl} target="_blank" rel="noopener noreferrer"><span>Documentação técnica</span><strong>US221 — Contrato C API</strong></a>
@@ -246,7 +246,7 @@ export default function List4() {
           </div>
 
           <div>
-            <SectionTitle
+            <SectionTitle id="continuidade"
               eyebrow="Transição"
               title="Dos Labs ao backend da central de terra"
               description="A evolução mantém a continuidade entre os laboratórios SCADE, a demonstração da Sprint 1 e a infraestrutura real planejada para a Sprint 3."

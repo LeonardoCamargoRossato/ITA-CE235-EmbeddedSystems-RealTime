@@ -47,13 +47,13 @@ export default function Sprint1() {
 
       <section className="section sprint1-main">
         <div className="container content-stack content-stack--sprint1">
-          <div className="sprint1-contribution-enunciado sprint-contribution-pair">
+          <div id="contribuicao" className="sprint1-contribution-enunciado sprint-contribution-pair">
             <ContributionCard driveUrl={links.list3Drive} demoUrl={links.us123TelemetryDecoder} githubUrl={links.us123Repository} issueUrl={links.us123Issue70} />
             <ProjectContextCard sprint={1}/>
           </div>
 
           <div className="sprint-first-evidence">
-            <SectionTitle
+            <SectionTitle id="demonstracao"
               eyebrow="US123"
               title={"Demonstração publicada — "+gsaV1.name}
               description="Demonstração funcional da cadeia de recepção, desempacotamento e validação de telemetria."
@@ -76,7 +76,7 @@ export default function Sprint1() {
           </div>
 
           <div>
-            <SectionTitle
+            <SectionTitle id="repositorio"
               eyebrow="GitHub"
               title="Repositório e implementação"
               description="Visão do repositório e do README da implementação US123 — Telemetry Decoder."
@@ -90,7 +90,7 @@ export default function Sprint1() {
           </div>
 
           <div>
-            <SectionTitle eyebrow="Resumo técnico" title="Implementação" />
+            <SectionTitle id="implementacao" eyebrow="Resumo técnico" title="Implementação" />
             <div className="sprint-tech-grid">
               <article><span>Frontend / demonstrador</span><strong>React · Vite · TypeScript</strong></article>
               <article><span>Processamento</span><strong>Recepção simulada · parsing · faixa · sequência</strong></article>
@@ -104,12 +104,12 @@ export default function Sprint1() {
           </div>
 
           <div>
-            <SectionTitle eyebrow="Fluxo funcional" title="Cadeia de processamento da US123" />
+            <SectionTitle id="fluxo" eyebrow="Fluxo funcional" title="Cadeia de processamento da US123" />
             <TelemetryFlow />
           </div>
 
           <div>
-            <SectionTitle eyebrow="Rastreabilidade" title="Rastreabilidade da atividade" />
+            <SectionTitle id="rastreabilidade" eyebrow="Rastreabilidade" title="Rastreabilidade da atividade" />
             <div className="traceability-grid">
               <a href={links.us123Issue41} target="_blank" rel="noopener noreferrer"><span>US123 principal</span><strong>#41</strong></a>
               <a href={links.us123Issue70} target="_blank" rel="noopener noreferrer"><span>Subsprint / Issue</span><strong>#70</strong></a>
@@ -120,7 +120,7 @@ export default function Sprint1() {
           </div>
 
           <div>
-            <SectionTitle
+            <SectionTitle id="continuidade"
               eyebrow="Transição"
               title="Dos Labs para o projeto"
               description="A Sprint 1 marca a transição dos laboratórios preparatórios para o desenvolvimento colaborativo do Projeto Acadêmico SPRB-TR/BD."
@@ -133,7 +133,7 @@ export default function Sprint1() {
               <div className="knowledge-bridge__target"><span>SPRINT 1</span><strong>Projeto SPRB-TR/BD</strong></div>
             </div>
           </div>
-          <section className="sprint1-enunciado-reference" aria-label="Enunciado oficial da ListEx 3">
+          <section id="enunciado" className="sprint1-enunciado-reference" aria-label="Enunciado oficial da ListEx 3">
             <h2>Enunciado oficial — ListEx 3</h2>
             <p>Documento de referência da atividade acadêmica.</p>
             <DriveFilePreview

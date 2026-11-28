@@ -67,6 +67,32 @@ jobs:
             done
           done
           node scripts/team-context-smoke.mjs
+      - name: Protect approved assets and PDFs
+        run: |
+          git fetch --no-tags origin 5a690c729b6b9682bb9adafaaaf4ee94fa87640d
+          node scripts/portal-integrity.mjs
+      - name: Baseline and consolidated portal validation
+        run: |
+          git worktree add --detach /tmp/ce235-preconsolidation 5a690c729b6b9682bb9adafaaaf4ee94fa87640d
+          ln -s "$GITHUB_WORKSPACE/code/node_modules" /tmp/ce235-preconsolidation/code/node_modules
+          node "$GITHUB_WORKSPACE/code/node_modules/vite/bin/vite.js" build /tmp/ce235-preconsolidation/code --config /tmp/ce235-preconsolidation/code/vite.config.ts --outDir /tmp/ce235-preconsolidation-dist
+          mkdir -p /tmp/ce235-preconsolidation-http
+          ln -s /tmp/ce235-preconsolidation-dist /tmp/ce235-preconsolidation-http/ITA-CE235-EmbeddedSystems-RealTime
+          python3 -m http.server 4175 --bind 127.0.0.1 --directory /tmp/ce235-preconsolidation-http > /tmp/ce235-preconsolidation.log 2>&1 &
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/ce235-portal-preview.log 2>&1 &
+          for port in 4173 4175; do
+            for i in {1..30}; do
+              curl -fsS "http://127.0.0.1:$port/ITA-CE235-EmbeddedSystems-RealTime/" > /dev/null && break
+              sleep 1
+            done
+          done
+          node scripts/portal-smoke.mjs
+      - name: Security dependency audit (report only)
+        run: |
+          mkdir -p qa-portal
+          npm audit --json > qa-portal/npm-audit.json || true
+          python3 scripts/inspect-archives.py
+          node scripts/audit-public-links.mjs
       - name: Upload QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -75,4 +101,5 @@ jobs:
           path: |
             code/qa-sprint3/
             code/qa-final-report/
+            code/qa-portal/
           if-no-files-found: warn

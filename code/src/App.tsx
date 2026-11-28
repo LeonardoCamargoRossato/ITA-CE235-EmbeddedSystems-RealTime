@@ -1,35 +1,43 @@
-import { Route, Routes } from "react-router-dom";
+import {Component,lazy,Suspense,type ReactNode} from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import {Breadcrumbs,SectionIndex,ActivityNavigation,RouteContext} from "./components/PortalNavigation";
+import "./styles/portal-consolidation.css";
 import Home from "./pages/Home";
-import Discipline from "./pages/Discipline";
-import Project from "./pages/Project";
-import Sprint1 from "./pages/Sprint1";
-import Lists from "./pages/Lists";
-import List0 from "./pages/List0";
-import List1 from "./pages/List1";
-import List2 from "./pages/List2";
-import List3 from "./pages/List3";
-import List4 from "./pages/List4";
-import List5 from "./pages/List5";
-import Sprint1Team1 from "./pages/Sprint1Team1";
-import Sprint1Team2 from "./pages/Sprint1Team2";
-import Sprint2Team1 from "./pages/Sprint2Team1";
-import Sprint2Team2 from "./pages/Sprint2Team2";
-import Sprint3Team3 from "./pages/Sprint3Team3";
-import Artifacts from "./pages/Artifacts";
-import FinalReport from "./pages/FinalReport";
-import Curriculum from "./pages/Curriculum";
-import Scade from "./pages/Scade";
-import NotFound from "./pages/NotFound";
+const Discipline=lazy(()=>import("./pages/Discipline"));
+const Project=lazy(()=>import("./pages/Project"));
+const Sprint1=lazy(()=>import("./pages/Sprint1"));
+const Lists=lazy(()=>import("./pages/Lists"));
+const List0=lazy(()=>import("./pages/List0"));
+const List1=lazy(()=>import("./pages/List1"));
+const List2=lazy(()=>import("./pages/List2"));
+const List3=lazy(()=>import("./pages/List3"));
+const List4=lazy(()=>import("./pages/List4"));
+const List5=lazy(()=>import("./pages/List5"));
+const Sprint1Team1=lazy(()=>import("./pages/Sprint1Team1"));
+const Sprint1Team2=lazy(()=>import("./pages/Sprint1Team2"));
+const Sprint2Team1=lazy(()=>import("./pages/Sprint2Team1"));
+const Sprint2Team2=lazy(()=>import("./pages/Sprint2Team2"));
+const Sprint3Team3=lazy(()=>import("./pages/Sprint3Team3"));
+const Artifacts=lazy(()=>import("./pages/Artifacts"));
+const FinalReport=lazy(()=>import("./pages/FinalReport"));
+const Curriculum=lazy(()=>import("./pages/Curriculum"));
+const Scade=lazy(()=>import("./pages/Scade"));
+const NotFound=lazy(()=>import("./pages/NotFound"));
 
+class RouteError extends Component<{children:ReactNode},{failed:boolean}>{state={failed:false};static getDerivedStateFromError(){return {failed:true}}render(){return this.state.failed?<div className="container portal-loading" role="alert"><h1>Não foi possível carregar esta página</h1><button className="button button--primary" onClick={()=>window.location.reload()}>Tentar novamente</button></div>:this.props.children}}
 export default function App() {
+ const {pathname}=useLocation();
   return (
     <div className="app-shell">
       <ScrollToTop />
+      <a className="portal-skip" href="#conteudo-principal" onClick={e=>{e.preventDefault();document.getElementById("conteudo-principal")?.focus()}}>Ir para o conteúdo principal</a>
       <Navbar />
-      <main>
+      <main id="conteudo-principal" tabIndex={-1}>
+        <Breadcrumbs/><SectionIndex/>
+        <RouteError key={pathname}><Suspense fallback={<div className="container portal-loading" role="status">Carregando conteúdo…</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/disciplina" element={<Discipline />} />
@@ -53,6 +61,8 @@ export default function App() {
           <Route path="/scade" element={<Scade />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <RouteContext/><ActivityNavigation/>
+        </Suspense></RouteError>
       </main>
       <Footer />
     </div>

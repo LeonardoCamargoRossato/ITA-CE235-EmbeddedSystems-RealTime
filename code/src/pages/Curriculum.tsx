@@ -1,24 +1,11 @@
-import { ExternalLink } from "lucide-react";
+import {ExternalLink,ArrowRight} from "lucide-react";
+import {Link} from "react-router-dom";
+import {assets} from "../data/assets";
+import {links} from "../data/links";
 import SectionTitle from "../components/SectionTitle";
-import { links } from "../data/links";
-
-export default function Curriculum() {
-  return (
-    <section className="section page-section">
-      <div className="container">
-        <SectionTitle
-          eyebrow="Currículo"
-          title="Leonardo Camargo Rossato"
-          description="Acesso ao portfólio e site pessoal do aluno."
-        />
-        <div className="curriculum-card">
-          <h2>Leonardo Camargo Rossato</h2>
-          <p>Consulte o portfólio para informações profissionais e acadêmicas atualizadas.</p>
-          <a className="button button--primary" href={links.portfolio} target="_blank" rel="noopener noreferrer">
-            Portfólio / Site pessoal <ExternalLink size={15} />
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
+export default function Curriculum(){return <section className="section page-section portal-curriculum"><div className="container content-stack">
+ <div className="portal-profile"><img src={assets.profile} alt="Leonardo Camargo Rossato" width={144} height={144}/><div><span className="eyebrow">Currículo acadêmico e profissional</span><h1>Leonardo Camargo Rossato</h1><p>Doutorando no ITA</p><strong>AI Engineering &amp; Software Development</strong><div className="card-actions">{[["Portfólio profissional",links.portfolio],["GitHub",links.personalGithub],["LinkedIn",links.linkedin],["Currículo Lattes",links.lattes]].map(([name,href])=><a key={name} className="button button--primary" href={href} target="_blank" rel="noopener noreferrer">{name} <ExternalLink size={14}/></a>)}</div></div></div>
+ <div><SectionTitle title="Formação acadêmica"/><div className="portal-version-grid">{[["Doutorado em Engenharia Eletrônica e Computação","Instituto Tecnológico de Aeronáutica (ITA)","Em andamento"],["Mestrado em Física","Universidade Federal do Rio Grande do Sul (UFRGS)","Concluído"],["Bacharelado em Física","Universidade Federal de Santa Maria (UFSM)","Concluído"]].map(([degree,institution,status])=><article key={degree} className="portal-version"><span className="eyebrow">{status}</span><h3>{degree}</h3><p>{institution}</p></article>)}</div></div>
+ <div><SectionTitle title="Áreas de atuação e interesse"/><div className="tag-row tag-row--large">{["AI Engineering","Software Architecture","Data Engineering","Software Development","Sistemas Embarcados"].map(x=><span className="tag" key={x}>{x}</span>)}</div></div>
+ <div><SectionTitle title="Contribuição acadêmica na CE-235" description="Ground Station API — evolução da recepção e validação de telemetria até a plataforma de serviços da estação de solo, desenvolvida no contexto acadêmico do SPRB-TR/BD."/><div className="card-actions">{[["Projeto SPRB-TR/BD","/projeto"],["Sprint 3","/list5"],["Relatório Final","/relatorio-final"]].map(([name,to])=><Link key={to} className="button button--secondary" to={to}>{name} <ArrowRight size={14}/></Link>)}</div></div>
+ </div></section>}

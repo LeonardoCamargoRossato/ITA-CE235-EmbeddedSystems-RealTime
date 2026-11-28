@@ -63,5 +63,9 @@ export const links = {
   lab3Project2Embed: "https://drive.google.com/embeddedfolderview?id=1Qmd4Owbn12u17GEXMEVgO38Y7dR4fmZz#grid",
   lab3ReportPdfId: "1gzpUA-pnHG0inlylQt7LM7EVNVIvAFYz",
 
-  finalReport: ""
+  finalReport: "https://drive.google.com/file/d/15w1PjlYRgfYZv1RKlSA5Eid7n5SE7Rf7/view",
+  modelsDrive: "https://drive.google.com/drive/folders/1g9WjtycDhYPBd-cq3vAW2AQ7PeQqJnqd",
+  personalGithub: "https://github.com/LeonardoCamargoRossato/",
+  linkedin: "https://www.linkedin.com/in/leonardocamargorossato/?locale=en",
+  lattes: "https://lattes.cnpq.br/3782791486582477"
 } as const;
