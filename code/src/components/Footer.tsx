@@ -9,7 +9,7 @@ export default function Footer() {
           <img src={assets.itaLogo} alt="Instituto Tecnológico de Aeronáutica — ITA" />
           <div>
             <strong>Instituto Tecnológico de Aeronáutica — ITA</strong>
-            <span>CE-235 — Sistemas Embarcados de Tempo Real</span>
+            <span>CE-235 | 2026/2 — Sistemas Embarcados de Tempo Real</span>
             <span>Página Individual da Disciplina</span>
             <small>Material acadêmico desenvolvido no contexto da disciplina CE-235.</small>
           </div>
@@ -19,7 +19,7 @@ export default function Footer() {
           <a href={links.portfolio} target="_blank" rel="noopener noreferrer">
             Leonardo Camargo Rossato<br/><span>@leonardocamargorossato ↗</span>
           </a>
-          <span>2026</span>
+          <span>2026/2</span>
         </div>
       </div>
     </footer>

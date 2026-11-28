@@ -1,0 +1,5 @@
+import {Link,useLocation} from "react-router-dom";
+import {useLayoutEffect} from "react";
+import Discipline from "./Discipline";
+import Project from "./Project";
+export default function DisciplineProjectPage(){const {pathname,search}=useLocation();useLayoutEffect(()=>{if(new URLSearchParams(search).has("secao"))return;const frame=requestAnimationFrame(()=>document.getElementById(pathname==="/projeto"?"projeto":"disciplina")?.scrollIntoView({block:"start",behavior:"instant"}));return()=>cancelAnimationFrame(frame)},[pathname,search]);return <div className="discipline-project-page"><section id="disciplina" className="portal-anchor"><Discipline/></section><div className="container unified-project-bridge"><p>A CE-235 | 2026/2 é a edição da disciplina. O SPRB-TR/BD é o projeto interdisciplinar coletivo com continuidade entre semestres. A Ground Station API é a contribuição individual de Leonardo nesse contexto.</p><Link className="button button--primary" to="/projeto">Conhecer o projeto acadêmico</Link></div><section id="projeto" className="portal-anchor"><Project/></section></div>}
